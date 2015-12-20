@@ -1,4 +1,4 @@
-;; Base de fait
+;; Base de fait de batard
 
 (setq *BF* '(
 	(semestre 2)
