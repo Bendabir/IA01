@@ -137,7 +137,20 @@
 		)
 		(add2BF '(filiere NIL))
 	)
-
+	(if (> (getValue 'semestre) 1)
+		(progn
+			(let ((answer T))
+				(format T "Quelle sont les UVs déjà validés ? (Rentrer NIL pour quitter) ~%")
+				(loop while (not (equal answer NIL)) do
+					(setq answer (read))
+					(dolist (fait *bf*) 
+						(if (eq answer (car fait))
+							(setf (cadr fait) 'VALIDEE))
+					)
+				)
+			)
+		)
+	)
 )
 
 
