@@ -3,6 +3,7 @@
 ; Permet de charger le fichier LISP relativement au dossier
 (load (merge-pathnames "services.lisp" *load-truename*))
 
+; Plutôt passer sur de la variable globale avec un defparameter ou équivalent ? J'me rappelle plus du cours 
 (setq *BF* NIL)
 
 (defun main()

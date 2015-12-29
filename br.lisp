@@ -1,4 +1,7 @@
 
+; On devrait faire une liste de règles nan ?
+; Il faut que je re-regarde le TP sur les SE, je l'avais recodé proprement en entier
+
 (setq R1 '(num1
 	((SEMESTRE 2) (NF16 non_validee))
 	(NB_UV 7)
