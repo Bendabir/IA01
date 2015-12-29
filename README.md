@@ -95,52 +95,140 @@ En inférant les résultats, le site du GI et les avis UVWEB été majoritaireme
 (A) Automne et (P) Printemps, correspondent à la disponibilité de chaque UV
 
 ### Base de faits, base de règles
-```
-BASE DE REGLES :
 
-- C1 : Si Crédits_TSH >= 28 alors TSH = NIL
-- C2 : Si Crédits_CS >= 32 alors CS = NIL
-- C3 : Si Crédits_TM >= 32 alors TM = NIL
+###### Base de faits
 
-- R1 : Si semestre = 1 et NF16 = non_validée alors NF16 = conseillée
-- R2 : Si semestre = 1 et NF17 = non_validée et saison = automne alors NF17 = non_conseillée
-- R3 : Si semestre = 1 et IA01 = non_validée et saison = automne alors IA01 = conseillée
-- R4 : Si semestre = 1 et MI01 = non_validée et saison = automne alors MI01 = conseillée
-- R5 : Si semestre = 1 et NF17 = non_validée et saison = printemps alors NF17 = conseillée
+Pour établir la base de faits, nous nous appuyerons sur le Dossier Etudiant de l'élève.
 
-- R6 : Si filière = FDD et semestre = 4 et saison = printemps alors NF26 = conseillée
-- R7 : Si filière = ICSI et saison = automne alors IA03 = conseillée
+Le dossier étudiant permet de savoir les caractéristiques de l'étudiant à savoir son numero de semestre, sa filière, sa provenance mais aussi les informations relatives à ses semestres précédents comme le nombre et la répartition des crédits validés, les UVs déjà validés. 
 
-BASE DE FAITS : 
+Par exemple, si l'on prend le dossier étudiant de Jean-Karim :
 
-- F1 : semestre = 1
-- F2 : saison = automne
-- F3 : Crédits_TSH = 0
-- F4 : Crédits_CS = 0
-- F5 : Crédits_TM = 0
-- F6 : filière = NIL
-- F7 : UVs_Validées = NIL
-```
+* Provenance : TC
+* Semestre : GI02
+* Filière : Pas de filière
+* Periode : Printemps
+* CS validées : NF16, IA01, SY02 pour un total de 18 crédits CS validés
+* TM validées : SR01 pour un total de 6 crédits TM validés
+* TSH validées : LA12, SI11 pour un total de 4 crédits TSH validés
 
-BASE DE REGLES V2 :
+Pour représenter la base de faits en Lisp, nous avon choisi de créer une simple liste ```(fait1 fait2 fait3 ... fait n)``` où un fait correspond à un couple ```(attribut valeur)```.
 
-1. Si SEMESTRE = 2 et NF16 = non validée alors NB_UV = 7
+Pour les caractéristiques de l'élèves, ils pourront être représentés comme ceci : ``` (Provenance TC) (Semestre 2) (Filiere NIL) (Credits_CS 18) ...```
+
+Pour ce qui est des UVs, nous avons choisi de **tous** les représenter dans la base de faits à la suite des informations précédemment données. Chaque UV peut prendre 3 valeurs : validée, non validée ou conseillée par le SE. ce qui donnerait : ```... (NF16 validée) (NF17 conseillée) (NF22 non_validée)...```
+
+###### Base de règles
+
+Les conditions du diplôme sont les suivantes. Il faut avoir validé :
+
+- 30 crédits CS
+- 30 crédits TM
+- 60 crédits de stage (non comptés dans ce SE)
+- 84 crédits CS et TM (24 crédits CS ou TM, selon le choix de l'étudiant donc)
+- 60 crédits en Profil Commun de Branche et en Profil Spécifique de Filière
+- 28 crédits TSH
+
+On peut établir des conditions sur le nombre d'UVs à prendre par semestre selon l'avance ou le retard de l'étudiant.
+En moyenne, il faut valider 30 crédits par semestre. On considèrera donc que 6 crédits de retards (par rapport à cette moyenne) nécessitent de prendre une UV en plus. Ce qui donne les règles suivantes :
+
+- Si **Semestre = 1** alors **UVs_a_prendre = 6**
+
+En GI01, il n'y a ni retard ni avance, on prend donc un semestre typique de 6 crédits
+
+- Si **Semestre = 2** et **crédits <= 24** alors **UVs_a_prendre = 7**
+- Si **Semestre = 2** et **crédits > 24** alors **UVs_a_prendre = 6**
+
+- Si **Semestre = 4** et **crédits <= 84** alors **UVs_a_prendre = 7**
+- Si **Semestre = 4** et **crédits > 84** alors **UVs_a_prendre = 6**
+
+- Si **Semestre = 5** et **crédits <= 114** alors **UVs_a_prendre = 7**
+- Si **Semestre = 5** et **crédits > 114** et **crédits <= 126** alors **UVs_a_prendre = 7**  TU VOULAIS PAS DIRE 6 PLUTOT ?
+- Si **Semestre = 5** et **crédits > 126** alors **UVs_a_prendre = 5**
 
 
-D'après le catalogue des UVs, pour les étudiants venant d'IUT et rentrant à l'UTC, l'UV de remise à niveau en mathématiques MB11 est obligatoire pour tout GI01. On a donc :
+Conditions sur le type d'UVs à prendre. On fait des tests pour équilibrer le nombre de CS/TM à prendre. Le nombre de TSH à prendre s'équilibre automatiquement. En théorie, si le retard n'est pas trop important, les 28 crédits TSH à valider ne posent pas de problème. 
 
-2. Si SEMESTRE = 1 et Provenance = IUT alors CS = CS + MB11
+PARTIE A RETRAVAILLER. Surement possible de condenser les règles en fonction du semestre (via un modulo ou autre)
 
-De même pour les étudiants venant de TC, NF16 est une UV incontournable pour les GI01 :
+- Si **Semestre = 1** alors **CS_a_prendre = 2**
+- Si **Semestre = 1** alors **TM_a_prendre = 2**
+- Si **Semestre = 1** alors **TSH_a_prendre = 2**
 
-3. Si SEMESTRE = 1 et Provenance = TC alors CS = CS + NF16
+Lors du premier semestre, on considérera un équilibre entre les UVs (2 / 2 / 2)
 
-Afin d'avoir le diplôme, d'après le catalogue des UVs et confirmé par les étudiants sur UVWEB, l'UTCéen doit valider le niveau 3 d'anglais. D'après UVWEB toujours, l'UV est assez difficile à valider, c'est pourquoi, si l'étudiant a validé LA12 mais pas LA13, on considère qu'il doit prendre LA13.
 
-4. Si LA13 = non validée et LA12 = validée alors TSH = TSH + LA13
+- Si **Semestre = 2** et **crédits_CS < 12** alors **CS_a_prendre = 3**
+- Si **Semestre = 2** et **crédits_CS >= 12** alors **CS_a_prendre = UVs_a_prendre - 5** DONC SI IL A VALIDE TOUTES SES UV (2/2/2), IL DEVRA DONC PRENDRE 6-5 = 1 CS ??
 
-5. Si NB_UV = 7 et SEMESTRE = 2 et Credits_CS < 12 alors NB_CS = 3
+Si l'étudiant n'a pas validé 2 CS en GI01, alors il doit en prendre 3 en GI02. Sinon, il doit prendre .......
 
-6. Si NB_UV = 7 et SEMESTRE = 2 et Credits_TM < 12 alors NB_TM = 3
+- Si **Semestre = 2** et **crédits_TM < 12** alors **TM_a_prendre = 1**
+- Si **Semestre = 2** et **crédits_TM >= 12** alors **TM_a_prendre = UVs_a_prendre - 5**
 
-7. Si NB_CS = 3 et NF16 = non validée alors CS = CS + NF16
+Si l'étudiant n'a pas validé 2 TM en GI01, alors il doit en prendre 3 en GI02. Sinon, il doit prendre .......
+
+
+- Si **Semestre = 2** et **crédits_CS + crédits_TM < 24** et **CS_a_prendre + TM_a_prendre < 5** alors **CS_a_prendre = CS_a_prendre + 1**
+- Si **Semestre = 2** et **crédits_CS + crédits_TM < 24** et **CS_a_prendre + TM_a_prendre < 5** alors **TM_a_prendre = TM_a_prendre + 1** CETTE REGLE NE VA JAMAIS S EXECUTER A CAUSE DE LA PRECEDENTE NON ?
+- Si **Semestre = 2** alors **TSH_a_prendre = UVs_a_prendre - (CS_a_prendre + TM_a_prendre)**
+
+Ces règles permettent d'établir la répartition des UVs pour le GI02.
+
+- Si **Semestre = 4** et **crédits_CS < 18** alors **CS_à_prendre = 1**
+- Si **Semestre = 4** et **crédits_CS >= 18** alors **CS_à_prendre = UVs_à_prendre - 5**
+- Si **Semestre = 4** et **crédits_TM < 18** alors **TM_à_prendre = 2**
+- Si **Semestre = 4** et **crédits_TM >= 18** alors **TM_à_prendre = UVs_à_prendre - 5**
+- Si **Semestre = 4** et **crédits_CS + crédits_TM < 42** et **CS_à_prendre + TM_à_prendre < 5** alors **TM_à_prendre = TM_à_prendre + 1**
+- Si **Semestre = 4** et **crédits_CS + crédits_TM < 42** et **CS_à_prendre + TM_à_prendre < 5** alors **CS_à_prendre = CS_à_prendre + 1**
+- - Si **Semestre = 4** alors **TSH_à_prendre = UVs_à_prendre - (CS_à_prendre + TM_à_prendre)**
+
+- Si **Semestre = 5** et **crédits_CS < 24** alors **CS_à_prendre = 2**
+- Si **Semestre = 5** et **crédits_CS >= 24** alors **CS_à_prendre = UVs_à_prendre - 5**
+- Si **Semestre = 5** et **crédits_TM < 24** alors **TM_à_prendre = 2**
+- Si **Semestre = 5** et **crédits_TM >= 24** alors **TM_à_prendre = UVs_à_prendre - 5**
+- Si **Semestre = 5** et **crédits_CS + crédits_TM < 42** et **CS_à_prendre + TM_à_prendre < 5** alors **TM_à_prendre = TM_à_prendre + 1**
+- Si **Semestre = 5** et **crédits_CS + crédits_TM < 42** et **CS_à_prendre + TM_à_prendre < 5** alors **CS_à_prendre = CS_à_prendre + 1**
+- - Si **Semestre = 5** alors **TSH_à_prendre = UVs_à_prendre - (CS_à_prendre + TM_à_prendre)**
+
+Choix des UVs :
+
+- Si **Semestre = 1** et (**provenance = TC** ou **provenance = prépa**) alors **SR01 = conseillée**
+- Si **Semestre = 1** alors **NF16 = conseillée**
+- Si **Semestre = 1** et **provenance = IUT** alors **MB11 = conseillée**
+
+- Si **Semestre = 2** et **NF16 = non_validée** alors **NF16 = conseillée**
+- Si **Semestre = 2** et **SR01 = validée** alors **SR02 = conseillée**
+
+
+- Si **LO21 = non_validée** et **Periode = printemps** alors **LO21 = conseillée**
+- Si **NF17 = non_validée** et **Periode = printemps** alors **NF17 = conseillée**
+
+- Si **filière = SRI** et **Semestre >= 4** et **Periode = automne** et **SR04 = non_validée** alors **SR04 = conseillée**
+- Si **filière = SRI** et **Semestre >= 4** et **Periode = automne** et **SR06 = non_validée** alors **SR06 = conseillée**
+- Si **filière = SRI** et **Semestre >= 4** et **Periode = printemps** et **SR03 = non_validée** alors **SR05 = conseillée**
+- Si **filière = SRI** et **Semestre >= 4** et **Periode = printemps** et **SR05 = non_validée** alors **SR05 = conseillée**
+
+- Si **filière = ADEL** et **Semestre >= 4** et **Periode = automne** et **MP02 = non_validée** alors **MP02 = conseillée**
+- Si **filière = ADEL** et **Semestre >= 4** et **Periode = automne** et **MP03 = non_validée** alors **MP03 = conseillée**
+- Si **filière = ADEL** et **Semestre >= 4** et **Periode = automne** et **RO06 = non_validée** alors **RO06 = conseillée**
+
+- Si **filière = FDD** et **Semestre >= 4** et **Periode = automne** et **SY19 = non_validée** alors **SY19 = conseillée**
+- Si **filière = FDD** et **Semestre >= 4** et **Periode = printemps** et **SY09 = non_validée** alors **SY09 = conseillée**
+- Si **filière = FDD** et **Semestre >= 4** et **Periode = printemps** et **NF26 = non_validée** alors **NF26 = conseillée**
+
+- Si **filière = ICSI** et **Semestre >= 4** et **Periode = automne** et **NF29 = non_validée** alors **NF29 = conseillée**
+- Si **filière = ICSI** et **Semestre >= 4** et **Periode = automne** et **IA03 = non_validée** alors **IA03 = conseillée**
+- Si **filière = ICSI** et **Semestre >= 4** et **Periode = printemps** et **NF28 = non_validée** alors **NF28 = conseillée**
+- Si **filière = ICSI** et **Semestre >= 4** et **Periode = printemps** et **IA04 = non_validée** alors **IA04 = conseillée**
+- Si **filière = ICSI** et **Semestre >= 4** et **Periode = printemps** et **LO17 = non_validée** alors **LO17 = conseillée**
+
+- Si **filière = STRIE** et **Semestre >= 4** et **Periode = automne** et **SY23 = non_validée** alors **SY23 = conseillée**
+- Si **filière = STRIE** et **Semestre >= 4** et **Periode = printemps** et **SY15 = non_validée** alors **SY15 = conseillée**
+- Si **filière = STRIE** et **Semestre >= 4** et **Periode = printemps** et **MI11 = non_validée** alors **MI11 = conseillée**
+- Si **filière = STRIE** et **Semestre >= 4** et **Periode = printemps** et **MI12 = non_validée** alors **MI12 = conseillée**
+
+
+
+On proposera une liste d'UVs conseillée ainsi qu'un nombre d'UVs (total et par type) à prendre. On pourra proposer un semestre type à partir de ces UVs. 
+
