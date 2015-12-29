@@ -18,6 +18,7 @@
 		(let ((answer (read-line)))
 
 		; Check reponse correcte
+		; Le loop while, ça dégage, on l'a pas vu en cours !
 		(loop while (and (not (equal answer "prefabriquer")) (not (equal answer "initialiser"))) do
 			(print "Veuillez rentrer seulement prefabriquer ou initialiser ")
 			(setq answer (read-line))
