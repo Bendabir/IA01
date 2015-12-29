@@ -40,5 +40,27 @@
 	)
 )
 
+; Pour le moteur, on va partir sur du chainage avant je pense
+; Ca me parait plus logique vu qu'on l'on veut arriver à plusieurs UVs proposées
+; De toute façon, vu que l'on ne sait pas où l'on veut arriver, le chaînage arrière me parait compliqué
+; Pour le parcourt, je pencherai plus pour de la profondeur
+; D'abord on détermine le nombre d'UVs à prendre
+; Ensuite le nombre d'UV par catégorie
+; On choisie les UVs par catégorie
+; Bref, c'est de la profondeur
 
+; Algoritme :
+; TANT QUE UVs_choisies != 5 ou 6 ou 7 ET analyse = en_cours ET il existe une règle applicable FAIRE
+;	R = filtrage(Ensemble_des_règles_applicables) // On filtre pour cibler en profondeur sur les règles applicables
+; 	BF = BF + conclusion(R)
+; 	BR = BR - R
+; FIN_TANT_QUE
+
+; SI UVs_choisies = 5 ou 6 ou 7 ET analyse = terminée ALORS
+; 	Afficher les UVs
+; SINON
+; 	Afficher "Vous êtes dans la merde !"
+
+; Ici, c'est un algo de chainage avant général
+; Il faut que le filtrage vise les règles en profondeur pour avoir un algo en profondeur d'abord
 		
