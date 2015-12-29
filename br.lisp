@@ -1,6 +1,18 @@
 
 ; On devrait faire une liste de règles nan ?
-; Il faut que je re-regarde le TP sur les SE, je l'avais recodé proprement en entier
+; Un peu comme dans le TD :
+; (setq BR
+;     '(
+;         (R1 (B D E) F)
+;         (R2 (D G) A)
+;         (R3 (C F) A)
+;         (R4 (C) D)
+;         (R5 (D) E)
+;         (R6 (A) H)
+;         (R7 (B) X)
+;         (R8 (X C) A)
+;     )
+; )
 
 (setq R1 '(num1
 	((SEMESTRE 2) (NF16 non_validee))
