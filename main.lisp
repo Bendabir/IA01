@@ -63,4 +63,5 @@
 
 ; Ici, c'est un algo de chainage avant général
 ; Il faut que le filtrage vise les règles en profondeur pour avoir un algo en profondeur d'abord
+; On peut utiliser les faits stockés en dernier pour cela
 		
