@@ -1,10 +1,9 @@
-;(load "/home/valentin/git/IA01/services.lisp")
-
 ; Permet de charger le fichier LISP relativement au dossier
 (load (merge-pathnames "services.lisp" *load-truename*))
 
 ; Plutôt passer sur de la variable globale avec un defparameter ou équivalent ? J'me rappelle plus du cours 
-(setq *BF* NIL)
+;(setq *BF* NIL)
+(defvar *BF* NIL)
 
 (defun main()
 
@@ -19,6 +18,7 @@
 
 		; Check reponse correcte
 		; Le loop while, ça dégage, on l'a pas vu en cours !
+		; Elle adit quec c'était une macro et ca marche :(
 		(loop while (and (not (equal answer "prefabriquer")) (not (equal answer "initialiser"))) do
 			(print "Veuillez rentrer seulement prefabriquer ou initialiser ")
 			(setq answer (read-line))

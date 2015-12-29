@@ -14,200 +14,79 @@
 ;     )
 ; )
 
-(setq R1 '(num1
-	((SEMESTRE 2) (NF16 non_validee))
-	(NB_UV 7)
-	)
-)
+(setq *BR* '(
+	(R1 ((Semestre 1)) (NB_UV 6)) ; 2 cs + 2 tm + 2 tsh = 28 credits
+	(R2 ((Semestre 2) (< Credits 25)) (NB_UV 7))
+	(R3 ((Semestre 2) (> Credits 24)) (NB_UV 6))
+	(R4 ((Semestre 4) (< Credits 85)) (NB_UV 7))
+	(R5 ((Semestre 4) (> Credits 84)) (NB_UV 6))
+	(R6 ((Semestre 5) (< Credits 115)) (NB_UV 7))
+	(R7 ((Semestre 5) (> Credits 114) (< Credits 127)) (NB_UV 6))
+	(R8 ((Semestre 5) (> Credits 126)) (NB_UV 5))
 
-(setq R2 '(num2
-	((SEMESTRE 1) (PROVENANCE IUT))
-	(MB11 conseillee)
-	)
-)
 
-(setq R3 '(num3
-	((SEMESTRE 1) (PROVENANCE TC))
-	(NF16 conseillee)
-	)
-)
+	(R9 ((Semestre 1)) (NB_CS 2))
+	(R10 ((Semestre 1)) (NB_TM 2))
+	(R11 ((Semestre 1)) (NB_TSH 2))
 
-(setq R4 '(num4
-	((SEMESTRE 2) (SR01 validee) (SAISON P))
-	(SR02 conseillee)
-	)
-)
+	(R12 ((Semestre 2) (< Credits_CS 12)) (NB_CS 3))
+	(R13 ((Semestre 2) (> Credits_CS 11)) (NB_CS (- NB_UV 5)))
+	(R14 ((Semestre 2) (< Credits_TM 12)) (NB_TM 1)) ; 3 ?
+	(R15 ((Semestre 2) (> Credits_TM 11)) (NB_TM (- NB_UV 5)))
+	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
+	;(R16 ((Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
+	;(R17 ((Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
+	(R18 ((Semestre 2)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
-(setq R5 '(num5
-	((SEMESTRE 2) (NF16 validee))
-	(NF17 conseillee)
-	)
-)
+	(R19 ((Semestre 4) (< Credits_CS 18)) (NB_CS 1)) ; 3 ?
+	(R20 ((Semestre 4) (> Credits_CS 17)) (NB_CS (- NB_UV 5)))
+	(R21 ((Semestre 4) (< Credits_TM 18)) (NB_TM 2)) ; 3 ?
+	(R22 ((Semestre 4) (> Credits_TM 17)) (NB_TM (- NB_UV 5)))
+	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
+	;(R23 ((Semestre 4) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
+	;(R24 ((Semestre 4) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
+	(R25 ((Semestre 4)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
-(setq R6 '(num6
-	((SEMESTRE 2) (IA01 validee) (SAISON P))
-	(IA02 conseillee)
-	)
-)
+	(R26 ((Semestre 5) (< Credits_CS 24)) (NB_CS 2)) ; 3? 
+	(R27 ((Semestre 5) (> Credits_CS 23)) (NB_CS (- NB_UV 5)))
+	(R28 ((Semestre 5) (< Credits_TM 24)) (NB_TM 2)) ;3?
+	(R29 ((Semestre 5) (> Credits_TM 23)) (NB_TM (- NB_UV 5)))
+	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
+	;(R30 ((Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
+	;(R31 ((Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
+	(R32 ((Semestre 5)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
+	
+	(R33 ((Semestre 1) (Provenance TC)) (SR01 conseillee))
+	(R34 ((Semestre 1) (Provenance Prepa)) (SR01 conseillee))
+	(R35 ((Semestre 1) (Provenance TC)) (NF16 conseillee))
+	(R36 ((Semestre 1) (Provenance Prepa)) (NF16 conseillee))
+	(R37 ((Semestre 1) (Provenance IUT)) (MB11 conseillee))
+	(R38 ((LO21 non_validee) (Periode P)) (LO21 conseilee))
+	(R39 ((NF17 non_validee) (Periode P)) (NF17 conseilee))
 
-(setq R7 '(num7
-	((SEMESTRE 4) (< CreditsCS 30))
-	(CS 3)
-	)
-)
 
-(setq R8 '(num8
-	((SEMESTRE 4) (< CreditsTM 30))
-	(TM 3)
-	)
-)
+	(R40 ((Filiere SRI) (Periode A) (SR04 non_validee)) (SR04 conseilee))
+	(R41 ((Filiere SRI) (Periode A) (SR06 non_validee)) (SR06 conseilee))
+	(R42 ((Filiere SRI) (Periode P) (SR03 non_validee)) (SR03 conseilee))
+	(R43 ((Filiere SRI) (Periode P) (SR05 non_validee)) (SR05 conseilee))
+	(R44 ((Filiere ADEL) (Periode A) (MP02 non_validee)) (MP02 conseilee))
+	(R45 ((Filiere ADEL) (Periode A) (MP03 non_validee)) (MP03 conseilee))
+	(R46 ((Filiere ADEL) (Periode A) (RO06 non_validee)) (RO06 conseilee))
+	(R47 ((Filiere FDD) (Periode A) (SY19 non_validee)) (SY19 conseilee))
+	(R48 ((Filiere FDD) (Periode P) (SY09 non_validee)) (SY09 conseilee))
+	(R49 ((Filiere FDD) (Periode P) (NF26 non_validee)) (NF26 conseilee))
+	(R50 ((Filiere ICSI) (Periode A) (NF29 non_validee)) (NF29 conseilee))
+	(R51 ((Filiere ICSI) (Periode A) (IA03 non_validee)) (IA03 conseilee))
+	(R52 ((Filiere ICSI) (Periode P) (NF28 non_validee)) (NF28 conseilee))
+	(R53 ((Filiere ICSI) (Periode P) (IA04 non_validee)) (IA04 conseilee))
+	(R54 ((Filiere ICSI) (Periode P) (LO17 non_validee)) (LO17 conseilee))
+	(R55 ((Filiere STRIE) (Periode A) (SY23 non_validee)) (SY23 conseilee))
+	(R56 ((Filiere STRIE) (Periode P) (SY15 non_validee)) (SY15 conseilee))
+	(R57 ((Filiere STRIE) (Periode P) (MI11 non_validee)) (MI11 conseilee))
+	(R58 ((Filiere STRIE) (Periode P) (MI12 non_validee)) (MI12 conseilee))
 
-(setq R9 '(num9
-	((LA12 validee) (LA13 non_validee))
-	(LA13 conseillee)
-	)
-)
-
-(setq R10 '(num10
-	((NB_UV 7) (SEMESTRE 2) (< CreditsTM 12))
-	(TM 3)
-	)
-)
-
-(setq R11 '(num11
-	((NB_UV 7) (SEMESTRE 2) (< CreditsCS 12))
-	(CS 3)
-	)
-)
-
-(setq R12 '(num12
-	((CS 3) (NF16 non_validee))
-	(NF16 conseillee)
-	)
-)
-
-(setq R13 '(num13
-	((FILIERE SRI) (SR01 non_validee) (SAISON A))
-	(SR01 conseillee)
-	)
-)
-
-(setq R14 '(num14
-	((FILIERE SRI) (SR02 non_validee) (SAISON P))
-	(SR02 conseillee)
-	)
-)
-
-(setq R15 '(num15
-	((FILIERE SRI) (SR04 non_validee) (SAISON A))
-	(SR04 conseillee)
-	)
-)
-
-(setq R16 '(num16
-	((FILIERE SRI) (SR05 non_validee) (SAISON P))
-	(SR05 conseillee)
-	)
-)
-
-(setq R17 '(num17
-	((FILIERE SRI) (SR06 non_validee) (SAISON A))
-	(SR06 conseillee)
-	)
-)
-
-(setq R18 '(num18
-	((FILIERE SRI) (SR03 non_validee) (SAISON P))
-	(SR03 conseillee)
-	)
-)
-
-(setq R19 '(num19
-	((FILIERE ADEL) (MP03 non_validee) (SAISON A))
-	(MP03 conseillee)
-	)
-)
-
-(setq R20 '(num20
-	((FILIERE ADEL) (RO06 non_validee) (SAISON A))
-	(RO06 conseillee)
-	)
-)
-
-(setq R21 '(num21
-	((FILIERE ADEL) (MP02 non_validee) (SAISON A))
-	(MP02 conseillee)
-	)
-)
-
-(setq R22 '(num22
-	((FILIERE FDD) (SY09 non_validee) (SAISON P))
-	(SY09 conseillee)
-	)
-)
-
-(setq R23 '(num23
-	((FILIERE FDD) (NF26 non_validee) (SAISON P))
-	(NF26 conseillee)
-	)
-)
-
-(setq R24 '(num24
-	((FILIERE FDD) (SY19 non_validee) (SAISON A))
-	(SY19 conseillee)
-	)
-)
-
-(setq R25 '(num25
-	((FILIERE ICSI) (IA04 non_validee) (SAISON P))
-	(IA04 conseillee)
-	)
-)
-
-(setq R26 '(num26
-	((FILIERE ICSI) (LO17 non_validee) (SAISON P))
-	(LO17 conseillee)
-	)
-)
-
-(setq R27 '(num27
-	((FILIERE ICSI) (IA03 non_validee) (SAISON A))
-	(IA03 conseillee)
-	)
-)
-
-(setq R28 '(num28
-	((FILIERE ICSI) (NF28 non_validee) (SAISON P))
-	(NF28 conseillee)
-	)
-)
-
-(setq R29 '(num29
-	((FILIERE ICSI) (NF29 non_validee) (SAISON A))
-	(NF29 conseillee)
-	)
-)
-
-(setq R30 '(num30
-	((FILIERE STRIE) (SY15 non_validee) (SAISON P))
-	(SY15 conseillee)
-	)
-)
-
-(setq R31 '(num31
-	((FILIERE STRIE) (MI11 non_validee) (SAISON P))
-	(MI11 conseillee)
-	)
-)
-
-(setq R32 '(num32
-	((FILIERE STRIE) (MI12 non_validee) (SAISON P))
-	(MI12 conseillee)
-	)
-)
-
-(setq R33 '(num33
-	((FILIERE STRIE) (SY23 non_validee) (SAISON A))
-	(SY23 conseillee)
+	(R59 ((Semestre 2) (NF16 validee) (Periode P)) (NF17 conseillee))
+	(R60 ((Semestre 2) (SR01 validee) (Periode P)) (SR02 conseillee))
+	
 	)
 )
