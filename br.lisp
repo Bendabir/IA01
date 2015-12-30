@@ -1,19 +1,3 @@
-
-; On devrait faire une liste de règles nan ?
-; Un peu comme dans le TD :
-; (setq BR
-;     '(
-;         (R1 (B D E) F)
-;         (R2 (D G) A)
-;         (R3 (C F) A)
-;         (R4 (C) D)
-;         (R5 (D) E)
-;         (R6 (A) H)
-;         (R7 (B) X)
-;         (R8 (X C) A)
-;     )
-; )
-
 (setq *BR* '(
 	(R1 ((equal Semestre 1)) (NB_UV 6)) ; 2 cs + 2 tm + 2 tsh = 28 credits
 	(R2 ((equal Semestre 2) (< Credits 25)) (NB_UV 7))

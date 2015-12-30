@@ -13,9 +13,6 @@
 	(cddr (assoc r *BR*))
 )
 
-(defun getRuleNumber (r)
-	(car r)
-)
 
 ;Affichage du menu
 (defun displayMenu()
@@ -44,9 +41,10 @@
 (defun createBF()
 	; A initialiser en dehors de la fonction oupas ?
 	(setq *BF* '(
-		(CreditsCS 0)
-		(CreditsTM 0)
-		(CreditsCSTM (+ CreditsCS  CreditsTM))
+		(Credits 0)
+		(Credits_CS 0)
+		(Credits_TM 0)
+		(Credits_CSTM (+ Credits_CS  Credits_TM))
 		(FQ01 non_validee)
 		(GE37 non_validee)
 		(IA01 non_validee)
@@ -221,8 +219,10 @@
 		'(periode P)
 		'(provenance TC)
 		'(filiere NIL)
-		'(CreditsCS 18)
-		'(CreditsTM 6)
+		'(Credits 32)
+		'(Credits_CS 18)
+		'(Credits_TM 6)
+		'(Credits_TSH 8)
 		; La ligne du dessous va planter je pense
 		'(CreditsCSTM (+ CreditsCS  CreditsTM))
 		'(FQ01 non_validee)

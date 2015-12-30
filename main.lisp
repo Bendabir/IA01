@@ -65,3 +65,36 @@
 ; Il faut que le filtrage vise les règles en profondeur pour avoir un algo en profondeur d'abord
 ; On peut utiliser les faits stockés en dernier pour cela
 
+(defun chainageAvantProfondeur ()
+	(let (
+			(L (reglesCandidates))
+			(analyse T)
+			(UVs_Choisies)
+		)
+	)
+)
+
+(defun reglesCandidates ()
+	(let (ListeRegles (flag 0))
+		(dolist (R *BR* (reverse ListeRegles))
+			(dolist (P (getPremisses (car R)))
+				(let ((F (assoc (cadr P) *BF*)))
+					(if (not (and F (verifierPremisse P F)))
+						(setq flag 1)
+					)
+				)
+			)
+			(if (= flag 0)
+				(push (car R) ListeRegles))
+			(setq flag 0)
+		)
+	)
+)
+
+(defun verifierPremisse (P F)
+	(cond
+		((equal (car P) 'equal) (equal (caddr P) (cadr F)))
+		((equal (car P) '<) (< (cadr F) (caddr P)))
+		((equal (car P) '>) (> (cadr F) (caddr P)))
+	)
+)
