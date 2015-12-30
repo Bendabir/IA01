@@ -1,6 +1,20 @@
-();Recuperer la valeur d'un élèment dans la BF
+;Recuperer la valeur d'un élèment dans la BF
 (defun getValue (elem)
 	(cadr (assoc elem *BF*))
+)
+
+;Recuperer les premisses d'une règle
+(defun getPremisses (r)
+	(cadr (assoc r *BR*))
+)
+
+;recuperer la conclusion d'une règle
+(defun getGoal (r)
+	(cddr (assoc r *BR*))
+)
+
+(defun getRuleNumber (r)
+	(car r)
 )
 
 ;Affichage du menu
