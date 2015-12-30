@@ -1,4 +1,4 @@
-;Recuperer la valeur d'un élèment dans la BF
+();Recuperer la valeur d'un élèment dans la BF
 (defun getValue (elem)
 	(cadr (assoc elem *BF*))
 )
@@ -71,8 +71,33 @@
 		(SY15 non_validee)
 		(SY19 non_validee)	
 		(SY23 non_validee)
+
+		(EI03 non_validee) ; Communication
+		(GE10 non_validee) ; Economie
+		(GE15 non_validee) ; Entreprise
+		(GE21 non_validee) ; Economie
+		(GE22 non_validee) ; Economie
+		(GE36 non_validee) ; Marketing / Entreprise
+		(HE03 non_validee) ; Logique
+		(LA00 non_validee)
+		(LA01 non_validee)
+		(LA02 non_validee)
+		(LA03 non_validee)
 		(LA12 non_validee)
 		(LA13 non_validee)
+		(LA20 non_validee)
+		(LA21 non_validee)
+		(LA22 non_validee)
+		(LA23 non_validee)
+		(LG60 non_validee) ; tching tchong
+		(LG61 non_validee)
+		(LG62 non_validee) ; Master Tching Tchong 
+		(PH01 non_validee) ; Philo
+		(PH03 non_validee) ; Philo
+		(PH10 non_validee) ; Philo
+		(SI28 non_validee) ; Ecriture interactive et multimedia
+		(SP01 non_validee) ; Sport
+		(TO01 non_validee) ;Preparation au TOEIC
 	))
 	(format T "En quel semestre entrez vous ? GI0X ( X = 1,2,4 ou 5) ~%")
 	(let ((choice (parse-integer (read-line))))
@@ -224,7 +249,32 @@
 		'(SY15 non_validee)
 		'(SY19 non_validee)	
 		'(SY23 non_validee)
-		'(LA12 validee)
+		
+		'(EI03 non_validee) ; Communication
+		'(GE10 non_validee) ; Economie
+		'(GE15 non_validee) ; Entreprise
+		'(GE21 non_validee) ; Economie
+		'(GE22 non_validee) ; Economie
+		'(GE36 non_validee) ; Marketing / Entreprise
+		'(HE03 non_validee) ; Logique
+		'(LA00 non_validee)
+		'(LA01 non_validee)
+		'(LA02 non_validee)
+		'(LA03 non_validee)
+		'(LA12 non_validee)
 		'(LA13 non_validee)
+		'(LA20 non_validee)
+		'(LA21 non_validee)
+		'(LA22 non_validee)
+		'(LA23 non_validee)
+		'(LG60 non_validee) ; tching tchong
+		'(LG61 non_validee)
+		'(LG62 non_validee) ; Master Tching Tchong 
+		'(PH01 non_validee) ; Philo
+		'(PH03 non_validee) ; Philo
+		'(PH10 non_validee) ; Philo
+		'(SI28 non_validee) ; Ecriture interactive et multimedia
+		'(SP01 non_validee) ; Sport
+		'(TO01 non_validee) ;Preparation au TOEIC
 	)
 )
