@@ -112,15 +112,15 @@ Par exemple, si l'on prend le dossier étudiant de Jean-Karim :
 * TM validées : SR01 pour un total de 6 crédits TM validés
 * TSH validées : LA12, SI11 pour un total de 4 crédits TSH validés
 
-Pour représenter la base de faits en Lisp, nous avon choisi de créer une simple liste ```(fait1 fait2 fait3 ... fait n)``` où un fait correspond à un couple ```(attribut valeur)```.
+Pour représenter la base de faits en Lisp, nous avons choisi de créer une simple liste ```(fait1 fait2 fait3 ... fait n)``` où un fait correspond à un couple ```(attribut valeur)```.
 
 Pour les caractéristiques de l'élèves, ils pourront être représentés comme ceci : ``` (Provenance TC) (Semestre 2) (Filiere NIL) (Credits_CS 18) ...```
 
-Pour ce qui est des UVs, nous avons choisi de **tous** les représenter dans la base de faits à la suite des informations précédemment données. Chaque UV peut prendre 3 valeurs : validée, non validée ou conseillée par le SE. ce qui donnerait : ```... (NF16 validée) (NF17 conseillée) (NF22 non_validée)...```
+Pour ce qui est des UVs, nous avons choisi de **tous** les représenter dans la base de faits à la suite des informations précédemment données. De cette manière, nous avons indirectement la liste des UVs gérées par le SE. Chaque UV peut prendre 3 valeurs : validée, non validée ou conseillée par le SE. ce qui donnerait : ```... (NF16 validée) (NF17 conseillée) (NF22 non_validée)...```
 
 ###### Base de règles
 
-Les conditions du diplôme sont les suivantes. Il faut avoir validé :
+Les conditions du diplôme sont les suivantes, Il faut avoir validé :
 
 - 30 crédits CS
 - 30 crédits TM
@@ -232,3 +232,53 @@ Choix des UVs :
 
 On proposera une liste d'UVs conseillée ainsi qu'un nombre d'UVs (total et par type) à prendre. On pourra proposer un semestre type à partir de ces UVs. 
 
+### Moteurs d'inférence
+
+###### Notion de règle candidate
+
+Une règle candidate est une règle dont les prémisses sont vérifiées compte-tenu de l'état actuel de la base de faits. Il s'agit donc d'une règle applicable qui une fois déclenchée fournit une nouvelle information.
+
+La fonction de service ```reglesCandidates``` retourne la liste des identifiants des règles chandidates en fonction des informations contenues actuellement dans la base de faits. L'algorithme qui régit son fonctionnement est le suivant :
+
+```
+flag <- 0
+ListeCandidates <- NIL
+Pour chaque règle R de la *BR* faire
+	Pour chaque prémisse de la règle R faire
+		Si *BF* ne contient aucun fait permettant de décider si la prémisse et vérifiée ou non OU si ce fait existe et infirme la prémisse, 
+			alors flag <- 1
+	Fpour
+	Si flag = 0, alors ajouter R à ListeCandidates
+	Sinon flag = 0
+Fpour
+Retourner ListeCandidates
+```
+
+###### Fonctions de service
+
+Nous avons du implétementer quelques fonctions de service afin de rendre le code plus lisible et faicilier sa maintenance. Celà nous permettait également de faire évoler les représentations des règles et des faits sans pour autant modifier le moteur d'inférence à chaque fois.
+
+* getPremisses : renvoie la liste des premisses de la règle passée en argument
+* getGoal : renvoie la liste des conclusions de la règle passée en argument
+* getValue : renvoie la valeur contenu dans la base de faits du fait passé en argument.
+
+
+###### Principe du chainage avant en profondeur d'abord
+
+Ce moteur permet de déduire une liste d'UVs à conseiller à l'étudiant grâce à l'application de règles sur notre base de faits.
+
+A chaque cycle du moteur d'inférence, on choisit de déclencher la premère règle ayant pour prémisse le dernier fait établi (il s'agit d'un choix stratégique parmi d'autres possibles). L'algorithme en chainage avant en profondeur est le suivant :
+
+```
+ TANT QUE UVs_choisies != 5 ou 6 ou 7 ET analyse = en_cours ET ListeCandidates != NIL FAIRE
+	R = filtrage(Ensemble_des_règles_applicables) // On filtre pour cibler en profondeur sur les règles applicables
+ 	BF = BF + conclusion(R)
+ 	BR = BR - R
+ FIN_TANT_QUE
+
+ SI UVs_choisies = 5 ou 6 ou 7 ET analyse = terminée ALORS
+ 	Afficher les UVs
+ SINON
+   Afficher "Vous êtes dans la merde !"
+
+```
