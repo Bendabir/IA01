@@ -44,22 +44,40 @@
 	(format T "| 2 - Renseigner tes infos pour conseils        |~%")
 	(format T "| 3 - Se barrer d'ici                           |~%")
 	(format T "_________________________________________________~%")
-
-
 )
 
 ;;On affiche la BF sauf les UVs non validées.
 (defun displayBF()
-	(dolist (Fait *BF*)
-		(if (not (equal 'NON_VALIDEE (cadr Fait)))
-			(print Fait)
+	(dolist (fait *BF*)
+		(if (not (equal 'NON_VALIDEE (cadr fait)))
+			(print fait)
 		)
 	)
 )
 
+(defun add2BF (element)
+	(if (listp element)
+		(if (eq (length element) 2)
+			(if (assoc (car element) *BF*)
+				(progn
+					(format T "Attention, l'élèment est déjà renseigné. Ajout annulé ! ~%")
+					(print element)
+				)
+				(push element *BF*)
+			)
+			(progn
+				(format T "Erreur, l'élèment n'est pas de la forme (nom valeur) ~%")
+				(print element)
+			)
+		)
+		(progn
+			(format T "Erreur, l'élèment n'est pas une liste ~%")
+			(print element)
+		)
+	)
+)
 
 (defun createBF()
-	; A initialiser en dehors de la fonction oupas ?
 	(setq *BF* '(
 		(Credits 0)
 		(Credits_CS 0)
@@ -129,7 +147,7 @@
 		(PH10 non_validee) ; Philo
 		(SI28 non_validee) ; Ecriture interactive et multimedia
 		(SP01 non_validee) ; Sport
-		(TO01 non_validee) ;Preparation au TOEIC
+		(TO01 non_validee) ; Preparation au TOEIC
 	))
 	(format T "En quel semestre entrez vous ? GI0X ( X = 1,2,4 ou 5) ~%")
 	(let ((choice (parse-integer (read-line))))
@@ -175,7 +193,7 @@
 	)
 	(if (> (getValue 'semestre) 3)
 		(progn
-			(format T "Quelle est ta filière ?(SRI ICSI STRIE ADEL FDD) ~%")
+			(format T "Quelle est ta filière ?(SRI, ICSI, STRIE, ADEL ou FDD) ~%")
 			(let ((choice (read-line)))
 				(cond
 					((not (or (equal choice "SRI") (equal choice "ICSI") (equal choice "STRIE") (equal choice "ADEL") (equal choice "FDD")))
@@ -199,8 +217,8 @@
 	(if (> (getValue 'semestre) 1)
 		(progn
 			(let ((answer T))
-				(format T "Quelle sont les UVs déjà validées ? (Rentrer NIL pour quitter) ~%")
-				(loop while (not (equal answer NIL)) do
+				(format T "Quelle sont les UVs déjà validées ? (Entrer NIL pour quitter) ~%")
+				(loop while answer do
 					(setq answer (read))
 					(if (getValue answer)
 						(setValue answer 'VALIDEE))
@@ -208,29 +226,7 @@
 			)
 		)
 	)
-)
-
-
-(defun add2BF (element)
-	(if (listp element)
-		(if (eq (length element) 2)
-			(if (assoc (car element) *BF*)
-				(progn
-					(format T "Attention, l'élèment est déjà renseignée, Ajout avorté ! ~%")
-					(print element)
-				)
-				(push element *BF*)
-			)
-			(progn
-				(format T "Erreur, l'élèment n'est pas de la forme (Nom valeur) ~%")
-				(print element)
-			)
-		)
-		(progn
-			(format T "Erreur, l'élèment n'est pas une liste ~%")
-			(print element)
-		)
-	)
+	(format T "Base de faits générée ! ~%")
 )
 
 (defun generateBF ()
