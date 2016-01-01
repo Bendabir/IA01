@@ -30,15 +30,13 @@
 	(format T "| 2 - Renseigner tes infos pour conseils        |~%")
 	(format T "| 3 - Se barrer d'ici                           |~%")
 	(format T "_________________________________________________~%")
-
-
 )
 
 ;;On affiche la BF sauf les UVs non validées.
 (defun displayBF()
-	(dolist (Fait *BF*)
-		(if (not (equal 'NON_VALIDEE (cadr Fait)))
-			(print Fait)
+	(dolist (fait *BF*)
+		(if (not (equal 'NON_VALIDEE (cadr fait)))
+			(print fait)
 		)
 	)
 )
