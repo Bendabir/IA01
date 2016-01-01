@@ -1,5 +1,6 @@
 (setq *BR* '(
-	(R1 ((equal Semestre 1)) (NB_UV 6)) ; 2 cs + 2 tm + 2 tsh = 28 credits
+	; On détermine le nombre d'UVs à prendre
+	(R1 ((equal Semestre 1)) (NB_UV 6)) ; 2 cs + 2 tm + 2 tsh = 28 credits --> 32 (4*6 + 2*4)
 	(R2 ((equal Semestre 2) (< Credits 25)) (NB_UV 7))
 	(R3 ((equal Semestre 2) (> Credits 24)) (NB_UV 6))
 	(R4 ((equal Semetre 4) (< Credits 85)) (NB_UV 7))
@@ -9,6 +10,7 @@
 	(R8 ((equal Semestre 5) (> Credits 126)) (NB_UV 5))
 
 
+	; On détermine le nombre d'UVs à prendre par catégorie
 	(R9 ((equal Semestre 1)) (NB_CS 2))
 	(R10 ((equal Semestre 1)) (NB_TM 2))
 	(R11 ((equal Semestre 1)) (NB_TSH 2))
@@ -40,6 +42,8 @@
 	;(R31 ((equal Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
 	(R32 ((equal Semestre 5)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 	
+
+	; Sélection des UVs
 	(R33 ((equal Semestre 1) (equal Provenance TC)) (SR01 conseillee))
 	(R34 ((equal Semestre 1) (equal Provenance Prepa)) (SR01 conseillee))
 	(R35 ((equal Semestre 1) (equal Provenance TC)) (NF16 conseillee))
