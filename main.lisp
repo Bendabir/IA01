@@ -91,12 +91,22 @@
 	)
 )
 
-(defun checkPremisse (P F)
+(defun checkPremisse (P &optional F)
 	(cond
 		((equal (car P) 'equal) (equal (caddr P) F))
 		((equal (car P) '<) (< F (caddr P)))
 		((equal (car P) '>) (> F (caddr P)))
 		((equal (car P) '>=) (>= F (caddr P)))
 		((equal (car P) '<=) (<= F (caddr P)))
+		((equal (car P) 'or)
+			(or (dolist (Q (cdr P))
+					(let (
+							(FactValue (getValue (cadr Q)))
+						 )
+						(checkPremisse Q FactValue)
+					)
+				)
+			)
+		)
 	)
 )
