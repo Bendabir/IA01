@@ -1,37 +1,13 @@
-; Permet de charger le fichier LISP relativement au dossier
-(load (merge-pathnames "services.lisp" *load-truename*))
-(load (merge-pathnames "br.lisp" *load-truename*))
-
-(defvar *BF* NIL)
-
 (defun main()
+	; Permet de charger le fichier LISP relativement au dossier
+	(load (merge-pathnames "services.lisp" *load-truename*))
+	(load (merge-pathnames "br.lisp" *load-truename*))
+
+	(defvar *BF* NIL) 
 
 	(displayWelcome)
-	(format T "Voulez-vous prendre un dossier etudiant (pour faire une démo) ou bien construire le tiens ? ~%( Réponses : prefabriquer / initialiser) ~%")
-		(let ((answer (read-line)))
 
-		; Check reponse correcte
-		; Le loop while, ça dégage, on l'a pas vu en cours !
-		; Elle adit quec c'était une macro et ca marche :(
-		(loop while (and (not (equal answer "prefabriquer")) (not (equal answer "initialiser"))) do
-			(print "Veuillez rentrer seulement prefabriquer ou initialiser ")
-			(setq answer (read-line))
-		)
-
-		(if (equal answer "initialiser")
-			(progn
-				(format T "C'est parti, on va s'occuper de ton cas ! ~%~%")
-				(createBF)
-				(displayBF)
-			)
-			(progn
-				(format T "Très bien ! On va prendre le cas de Jean-Karim, un étudiant qui rentre en GI02 !~%~% ")
-				(setq *BF* (generateBF))
-				(format T "Son dossier etudiant est le suivant : ~%")
-				(displayBF)
-			)
-		)
-	)
+	(menu))
 )
 
 ; Pour le moteur, on va partir sur du chainage avant je pense
