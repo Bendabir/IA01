@@ -79,6 +79,7 @@
 	; On pond une règle par UV, on affinera par la suite
 	; LES CS :
 	; Il faut ajouter une condition pour spécifier que ce sont des CS
+	; Il faut reprendre ces règles car cela manque de cohérence (au niveau de la structure)
 	(R61 ((<= Semestre 2) (equal IA01 non_validee) (equal Periode A)) (IA01 conseillee))
 	(R62 ((<= Semestre 2) (equal MB11 non_validee) (equal Provenance IUT)) (MB11 conseillee))
 	(R63 ((<= Semestre 2) (equal MT09 non_validee) (equal Periode A)) (MT09 conseillee))
@@ -88,8 +89,8 @@
 	(R67 ((>= Semestre 4) (equal SR04 non_validee) (equal Periode A)) (SR04 conseillee)) ; On pourrait peut-être ajouter une condition sur SR01 ou SR02 validée car il faut des pré-requis en OS
 	(R68 ((>= Semestre 4) (equal SR05 non_validee) (equal Periode A) (equal SR01 validee) (equal SR02 validee) (equal RO03 validee) (equal NF16 validee)) (SR05 conseillee))
 	(R69 ((<= Semestre 2) (equal SY02 non_validee)) (SY02 conseillee))
-	(R70 ((<= Semestre 2) (equal SY08 non_validee) (equal Periode A)) (SY08 conseillee)) ; Pas mal de pré-requis en maths/physique/elec issus du TC
-	; BI01 ?
+	(R70 ((<= Semestre 2) (equal SY08 non_validee) (equal Periode A) (equal SY02 validee)) (SY08 conseillee)) ; Pas mal de pré-requis en maths/physique/elec issus du TC
+	(R113 ((>= Semestre 4) (equal BI01 non_validee) (equal Periode P)) (BI01 conseillee))
 	(R71 ((equal IA02 non_validee) (equal Periode P)) (IA02 conseillee)) ; Pas vraiment de niveau conseillé
 	(R72 ((equal MT10 non_validee) (equal Periode P)) (MT10 conseillee)) ; Pas vraiment de niveau conseillé
 	(R74 ((>= Semestre 2) (<= Semestre 4) (equal NF11 non_validee) (equal NF16 validee) (equal Periode P)) (NF11 conseillee))
@@ -133,5 +134,8 @@
 	(R110 ((>= Semestre 4) (equal SR03 non_validee) (equal Periode P) (or (equal SR01 validee) (equal Provenance IUT)) (equal SR02 validee)) (SR03 conseillee))
 	(R111 ((>= Semestre 4) (equal SY26 non_validee) (equal Periode P)) (SY26 conseillee))
 	(R112 ((>= semestre 2) (<= Semestre 4) (equal SY32 non_validee) (equal Periode P)) (SY32 conseillee))
+
+	; LES TSH que l'on prend en compte
+
 	)
 )

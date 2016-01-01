@@ -184,7 +184,7 @@
 				(format T "Quelle sont les UVs déjà validées ? (Rentrer NIL pour quitter) ~%")
 				(loop while (not (equal answer NIL)) do
 					(setq answer (read))
-					(if (not (equal (getValue answer) NIL))
+					(if (getValue answer)
 						(setValue answer 'VALIDEE))
 				)
 			)
