@@ -22,6 +22,7 @@
 
 ;Affichage du menu
 (defun displayMenu()
+	(format T "~%")
 	(format T "_________________________________________________~%")
 	(format T "|                     Menu                      |~%")
 	(format T "_________________________________________________~%")
@@ -30,6 +31,27 @@
 	(format T "| 2 - Renseigner tes infos pour conseils        |~%")
 	(format T "| 3 - Se barrer d'ici                           |~%")
 	(format T "_________________________________________________~%")
+	(format T "~%") ; Petit saut de ligne au calme
+
+	(let
+		((choice (read-line)))
+		(setq choice (parse-integer choice))
+		(cond
+			((or (< choice 1) (> choice 3))
+				(format T "Ce choix n'est pas valide. ~%")
+			)
+			((eq choice 1)
+
+			)
+			((eq choice 2)
+
+			)
+			((eq choice 3)
+				(format T "A la prochaine ! ~%")
+				(return-from displayMenu NIL)
+			)						
+		)
+	)
 )
 
 ;;On affiche la BF sauf les UVs non validées.
