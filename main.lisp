@@ -68,7 +68,7 @@
 
 (defun chainageAvantProfondeur ()
 	(let (
-			(L (reglesCandidates))
+			(L (candidateRules))
 			(analyse T)
 			(UVs_Choisies)
 		)
