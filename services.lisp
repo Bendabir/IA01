@@ -19,6 +19,20 @@
 	(cddr (assoc r *BR*))
 )
 
+(defun displayWelcome()
+	(format t "~50%###############################################################~%")
+	(format t "#         __~%")
+	(format t "# _(\\    |@@|~%")
+	(format t "#(__/\\__ \\--/ __~Vd~%" 36 "Bonjour humain UTCéen")
+	(format t "#   \\___|----|  |   __~%")
+	(format t "#       \\ }{ /\\ )_ / _\\~%")
+	(format t "#       /\\__/\\ \\__O (__~Vd~%" 40 "Besoin d'aide pour choisir tes UV ?")
+	(format t "#      (--/\\--)    \\__/~Vd~%" 40 "Pas de panique, je suis là !")
+	(format t "#      _)(  )(_~Vd~%" 48 "Je vais analyser ton cas puis je")
+	(format t "#     `---''---`~Vd~%" 47 "te conseillerai une liste d'UV !")
+	(format t "#~%")
+	(format t "###############################################################~%")
+)
 
 ;Affichage du menu
 (defun displayMenu()

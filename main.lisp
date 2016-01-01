@@ -6,12 +6,7 @@
 
 (defun main()
 
-	(format T "Salut mon ami ! Si tu es là c'est que tu es une peu perdu pour choisir ~%")
-	(format T "tes UVs. Mais pas de problème, j'ai la solution ! Je vais te poser ~%")
-	(format T "quelques questions sur ton parcours à l'UTC et à partir de ça, je vais te ~%")
-	(format T "suggérer un ensemble d'UVs que tu pourrais faire ce semestre ! ~%")
-	(format T " ~%")
-
+	(displayWelcome)
 	(format T "Voulez-vous prendre un dossier etudiant (pour faire une démo) ou bien construire le tiens ? ~%( Réponses : prefabriquer / initialiser) ~%")
 		(let ((answer (read-line)))
 
@@ -79,7 +74,7 @@
 			(dolist (Premisse (getPremisses (car Rule)))
 				(let* ( (attribut (cadr Premisse))
 						(FactValue (getValue attribut)))
-					(if (not (and FactValue (checkPremisse Premisse FactValue)))
+					(if (not (checkPremisse Premisse FactValue))
 						(setq flag 1)
 					)
 				)
@@ -105,6 +100,6 @@
 								)
 								(push 'OR result)
 								(eval result)
-							)
+							))
 	)
 )
