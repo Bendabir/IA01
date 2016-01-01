@@ -180,10 +180,13 @@
 				(format T "Quelle sont les UVs déjà validées ? (Rentrer NIL pour quitter) ~%")
 				(loop while (not (equal answer NIL)) do
 					(setq answer (read))
-					(dolist (fait *bf*) 
-						(if (eq answer (car fait))
-							(setf (cadr fait) 'VALIDEE))
-					)
+					; A tester, mais ça me parait plus propre
+					(setf (cadr (assoc answer *bf*)) 'validee)
+
+					;(dolist (fait *bf*) 
+					;	(if (eq answer (car fait))
+					;		(setf (cadr fait) 'VALIDEE))
+					;)
 				)
 			)
 		)
