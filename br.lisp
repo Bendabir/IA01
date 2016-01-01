@@ -83,6 +83,13 @@
 	(R62 ((<= Semestre 2) (equal MB11 non_validee) (equal Provenance IUT)) (MB11 conseillee))
 	(R63 ((<= Semestre 2) (equal MT09 non_validee) (equal Periode A)) (MT09 conseillee))
 	(R64 ((<= Semestre 2) (equal MT12 non_validee)) (MT12 conseillee))
+	(R65 ((<= Semestre 2) (equal NF16 non_validee)) (NF16 conseillee))
+	(R66 ((equal RO05 non_validee) (equal Periode A)) (RO05 conseillee))
+	(R67 ((>= semestre 4) (equal SR04 non_validee) (equal Periode A)) (SR04 conseillee)) ; On pourrait peut-être ajouter une condition sur SR01 ou SR02 validée car il faut des pré-requis en OS
+	(R68 ((>= semestre 4) (equal SR05 non_validee) (equal Periode A) (SR01 validee) (SR02 validee) (RO03 validee) (NF16 validee)) (SR05 conseillee))
+	(R69 ((<= semestre 2) (equal SY02 non_validee)) (SY02 conseillee))
+	(R70 ((<= semestre 2) (equal SY08 non_validee)) (SY08 conseillee)) ; Pas mal de pré-requis en maths/physique/elec issus du TC
+
 
 	)
 )
