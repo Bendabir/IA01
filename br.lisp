@@ -133,9 +133,34 @@
 	(R109 ((>= Semestre 4) (equal NF28 non_validee) (equal Periode P) (equal LO21 validee)) (NF28 conseillee))
 	(R110 ((>= Semestre 4) (equal SR03 non_validee) (equal Periode P) (or (equal SR01 validee) (equal Provenance IUT)) (equal SR02 validee)) (SR03 conseillee))
 	(R111 ((>= Semestre 4) (equal SY26 non_validee) (equal Periode P)) (SY26 conseillee))
-	(R112 ((>= semestre 2) (<= Semestre 4) (equal SY32 non_validee) (equal Periode P)) (SY32 conseillee))
+	(R112 ((>= Semestre 2) (<= Semestre 4) (equal SY32 non_validee) (equal Periode P)) (SY32 conseillee))
 
 	; LES TSH que l'on prend en compte
-
+	(R114 ((<= Semestre 2) (equal EI03 non_validee)) (EI03 conseillee)) ; Communication
+	(R115 ((equal GE10 non_validee)) (GE10 conseillee)) ; Economie
+	(R116 ((equal GE15 non_validee)) (GE15 conseillee)) ; Entreprise
+	(R117 ((equal GE21 non_validee)) (GE21 conseillee)) ; Economie
+	(R118 ((equal GE22 non_validee)) (GE22 conseillee)) ; Economie
+	(R119 ((equal GE36 non_validee)) (GE36 conseillee)) ; Marketing / Entreprise
+	(R120 ((equal HE03 non_validee)) (HE03 conseillee)) ; Logique
+	(R121 ((equal LA00 non_validee)) (LA00 conseillee))
+	(R122 ((equal LA01 non_validee) (equal LA00 validee)) (LA01 conseillee))
+	(R123 ((equal LA02 non_validee) (equal LA01 validee)) (LA02 conseillee))
+	(R124 ((equal LA03 non_validee) (equal LA02 validee)) (LA03 conseillee))
+	(R125 ((equal LA12 non_validee)) (LA12 conseillee))
+	(R126 ((equal LA13 non_validee) (equal LA12 validee)) (LA12 conseillee))
+	(R127 ((equal LA20 non_validee)) (LA20 conseillee))
+	(R128 ((equal LA21 non_validee) (equal LA20 validee)) (LA21 conseillee))
+	(R129 ((equal LA22 non_validee) (equal LA21 validee)) (LA22 conseillee))
+	(R130 ((equal LA23 non_validee) (equal LA22 validee)) (LA23 conseillee))
+	(R131 ((equal LG60 non_validee)) (LG60 conseillee)) ; tching tchong
+	(R132 ((equal LG61 non_validee) (equal LG60 validee)) (LG61 conseillee))
+	(R133 ((equal LG62 non_validee) (equal LG61 validee)) (LG62 conseillee)) ; Master Tching Tchong 
+	(R134 ((equal PH01 non_validee)) (PH01 conseillee)) ; Philo
+	(R135 ((equal PH03 non_validee)) (PH03 conseillee)) ; Philo
+	(R136 ((equal PH10 non_validee)) (PH10 conseillee)) ; Philo
+	(R137 ((equal SI28 non_validee)) (SI28 conseillee)) ; Ecriture interactive et multimedia
+	(R138 ((<= Semestre 2) (equal SP01 non_validee)) (SP01 conseillee)) ; Sport
+	(R139 ((>= Semestre 4) (equal TO01 non_validee) (or (equal LA13 validee) (equal LA13 conseillee))) (TO01 conseillee)) ;Preparation au TOEIC
 	)
 )
