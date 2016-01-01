@@ -55,10 +55,10 @@
 				(format T "Ce choix n'est pas valide. ~%")
 			)
 			((eq choice 1)
-
+				(displayBF)
 			)
 			((eq choice 2)
-
+				(createBF)
 			)
 			((eq choice 3)
 				(format T "A la prochaine ! ~%")
@@ -66,6 +66,12 @@
 			)						
 		)
 	)
+	T
+)
+
+; Petite fonction qui permet d'afficher le menu en boucle !
+(defun menu()
+	(loop while (displayMenu))
 )
 
 ;;On affiche la BF sauf les UVs non validées.
