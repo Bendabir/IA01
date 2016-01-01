@@ -4,7 +4,9 @@
 )
 
 (defun setValue (elem value)
-	(setf (cadr (assoc elem *BF*)) value)
+	(if (getValue elem)
+		(setf (cadr (assoc elem *BF*)) value)
+	)
 )
 
 ;Recuperer les premisses d'une règle
