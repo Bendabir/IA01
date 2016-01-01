@@ -82,13 +82,24 @@
 	(R61 ((<= Semestre 2) (equal IA01 non_validee) (equal Periode A)) (IA01 conseillee))
 	(R62 ((<= Semestre 2) (equal MB11 non_validee) (equal Provenance IUT)) (MB11 conseillee))
 	(R63 ((<= Semestre 2) (equal MT09 non_validee) (equal Periode A)) (MT09 conseillee))
-	(R64 ((<= Semestre 2) (equal MT12 non_validee)) (MT12 conseillee))
+	(R73 ((<= Semestre 2) (equal MT12 non_validee)) (MT12 conseillee)) ; Pas vraiment de niveau conseillé
 	(R65 ((<= Semestre 2) (equal NF16 non_validee)) (NF16 conseillee))
 	(R66 ((equal RO05 non_validee) (equal Periode A)) (RO05 conseillee))
-	(R67 ((>= semestre 4) (equal SR04 non_validee) (equal Periode A)) (SR04 conseillee)) ; On pourrait peut-être ajouter une condition sur SR01 ou SR02 validée car il faut des pré-requis en OS
-	(R68 ((>= semestre 4) (equal SR05 non_validee) (equal Periode A) (SR01 validee) (SR02 validee) (RO03 validee) (NF16 validee)) (SR05 conseillee))
-	(R69 ((<= semestre 2) (equal SY02 non_validee)) (SY02 conseillee))
-	(R70 ((<= semestre 2) (equal SY08 non_validee)) (SY08 conseillee)) ; Pas mal de pré-requis en maths/physique/elec issus du TC
+	(R67 ((>= Semestre 4) (equal SR04 non_validee) (equal Periode A)) (SR04 conseillee)) ; On pourrait peut-être ajouter une condition sur SR01 ou SR02 validée car il faut des pré-requis en OS
+	(R68 ((>= Semestre 4) (equal SR05 non_validee) (equal Periode A) (equal SR01 validee) (equal SR02 validee) (equal RO03 validee) (equal NF16 validee)) (SR05 conseillee))
+	(R69 ((<= Semestre 2) (equal SY02 non_validee)) (SY02 conseillee))
+	(R70 ((<= Semestre 2) (equal SY08 non_validee) (equal Periode A)) (SY08 conseillee)) ; Pas mal de pré-requis en maths/physique/elec issus du TC
+	; BI01 ?
+	(R71 ((equal IA02 non_validee) (equal Periode P)) (IA02 conseillee)) ; Pas vraiment de niveau conseillé
+	(R72 ((equal MT10 non_validee) (equal Periode P)) (MT10 conseillee)) ; Pas vraiment de niveau conseillé
+	(R74 ((>= Semestre 2) (<= Semestre 4) (equal NF11 non_validee) (equal NF16 validee) (equal Periode P)) (NF11 conseillee))
+	(R75 ((>= Semestre 2) (<= Semestre 4) (equal RO03 non_validee) (equal NF16 validee) (equal Periode P)) (RO03 conseillee))
+	(R76 ((>= Semestre 4) (equal RO04 non_validee) (equal Periode P)) (RO04 conseillee)) ; MT09 pourrait être un pré-requis (sinon MT22/MT23)
+	(R77 ((<= Semestre 2) (equal SR02 non_validee) (equal Periode P) (equal SR01 validee)) (SR02 conseillee))
+	(R78 ((>= Semestre 2) (<= Semestre 4) (equal SY06 non_validee) (equal Periode P) (equal SY02 validee)) (SY06 conseillee))
+	(R79 ((>= Semestre 4) (equal SY09 non_validee) (equal Periode P) (equal SY02 validee)) (SY09 conseillee))
+	(R80 ((<= Semestre 2) (equal SY14 non_validee) (equal Periode P)) (SY14 conseillee))
+	(R81 ((>= Semestre 4) (equal SY15 non_validee) (equal Periode P) (or (equal SY14 validee) (equal SY04 validee) (equal SY05 validee))) (SY15 conseillee))
 
 
 	)
