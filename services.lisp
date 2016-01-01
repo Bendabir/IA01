@@ -179,7 +179,7 @@
 	)
 	(if (> (getValue 'semestre) 3)
 		(progn
-			(format T "Quelle est ta filière ?(SRI ICSI STRIE ADEL FDD) ~%")
+			(format T "Quelle est ta filière ?(SRI, ICSI, STRIE, ADEL ou FDD) ~%")
 			(let ((choice (read-line)))
 				(cond
 					((not (or (equal choice "SRI") (equal choice "ICSI") (equal choice "STRIE") (equal choice "ADEL") (equal choice "FDD")))
@@ -203,8 +203,8 @@
 	(if (> (getValue 'semestre) 1)
 		(progn
 			(let ((answer T))
-				(format T "Quelle sont les UVs déjà validées ? (Rentrer NIL pour quitter) ~%")
-				(loop while (not (equal answer NIL)) do
+				(format T "Quelle sont les UVs déjà validées ? (Entrer NIL pour quitter) ~%")
+				(loop while answer do
 					(setq answer (read))
 					(if (getValue answer)
 						(setValue answer 'VALIDEE))
@@ -212,6 +212,7 @@
 			)
 		)
 	)
+	(format T "Base de faits générée ! ~%")
 )
 
 (defun generateBF ()
