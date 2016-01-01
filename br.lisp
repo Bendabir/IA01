@@ -148,7 +148,7 @@
 	(R123 ((equal LA02 non_validee) (equal LA01 validee)) (LA02 conseillee))
 	(R124 ((equal LA03 non_validee) (equal LA02 validee)) (LA03 conseillee))
 	(R125 ((equal LA12 non_validee)) (LA12 conseillee))
-	(R126 ((equal LA13 non_validee) (equal LA12 validee)) (LA12 conseillee))
+	(R126 ((equal LA13 non_validee) (equal LA12 validee)) (LA13 conseillee))
 	(R127 ((equal LA20 non_validee)) (LA20 conseillee))
 	(R128 ((equal LA21 non_validee) (equal LA20 validee)) (LA21 conseillee))
 	(R129 ((equal LA22 non_validee) (equal LA21 validee)) (LA22 conseillee))
