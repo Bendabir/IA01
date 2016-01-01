@@ -1,6 +1,6 @@
 (setq *BR* '(
 	; On détermine le nombre d'UVs à prendre
-	(R1 ((equal Semestre 1)) (NB_UV 6)) ; 2 cs + 2 tm + 2 tsh = 28 credits --> 32 (4*6 + 2*4)
+	(R1 ((equal Semestre 1)) (NB_UV 6))
 	(R2 ((equal Semestre 2) (< Credits 25)) (NB_UV 7))
 	(R3 ((equal Semestre 2) (> Credits 24)) (NB_UV 6))
 	(R4 ((equal Semetre 4) (< Credits 85)) (NB_UV 7))

@@ -2,8 +2,6 @@
 (load (merge-pathnames "services.lisp" *load-truename*))
 (load (merge-pathnames "br.lisp" *load-truename*))
 
-; Plutôt passer sur de la variable globale avec un defparameter ou équivalent ? J'me rappelle plus du cours 
-;(setq *BF* NIL)
 (defvar *BF* NIL)
 
 (defun main()
@@ -98,5 +96,7 @@
 		((equal (car P) 'equal) (equal (caddr P) F))
 		((equal (car P) '<) (< F (caddr P)))
 		((equal (car P) '>) (> F (caddr P)))
+		((equal (car P) '>=) (>= F (caddr P)))
+		((equal (car P) '<=) (<= F (caddr P)))
 	)
 )
