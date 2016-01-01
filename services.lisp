@@ -4,7 +4,9 @@
 )
 
 (defun setValue (elem value)
-	(setf (cadr (assoc elem *BF*)) value)
+	(if (getValue elem)
+		(setf (cadr (assoc elem *BF*)) value)
+	)
 )
 
 ;Recuperer les premisses d'une règle
@@ -143,16 +145,18 @@
 				(add2BF '(periode P)))
 		)
 	)
-	(format T "Auparavant, TC ou IUT ? ~%")
+	(format T "Auparavant, TC, Prepa ou IUT ? ~%")
 	(let ((choice (read-line)))
 		(cond
-			((not (or (equal choice "TC") (equal choice "IUT")))
+			((not (or (equal choice "TC") (equal choice "IUT") (equal choice "Prepa")))
 				(format T "~S n'est pas un choix correct" choice)
 				(return-from createBR NIL))
 			((equal choice "IUT")
 				(add2BF '(provenance IUT)))
 			((equal choice "TC")
 				(add2BF '(provenance TC)))
+			((equal choice "Prepa")
+				(add2BF '(provenance Prepa)))
 		)
 	)
 	(if (> (getValue 'semestre) 3)
