@@ -1,9 +1,4 @@
 (setq *BR* '(
-
-	; On met les classes d'UVs dans la base de règle, c'est un fait immuable
-	; (liste_CS (IA01 IA02 MB11 MT09 MT12 NF16 RO05 SR04 SR05 SY02 SY08 BI01 MT10 MT12 NF11 RO03 RO04 SR02 SY06 SY09 SY14 SY15))
-	; (liste_TM (FQ01 GE37 GE38 GE39 GE40 IA03 LO23 MI01 MP03 NA17 NF29 RO06 RV01 SR01 SR06 SY19 SY27 SY31 IA04 LO17 LO21 LO22 MI11 MI12 MP02 NF17 NF26 NF28 SR03 SY26 SY32))
-
 	(R1 ((equal Semestre 1)) (NB_UV 6)) ; 2 cs + 2 tm + 2 tsh = 28 credits
 	(R2 ((equal Semestre 2) (< Credits 25)) (NB_UV 7))
 	(R3 ((equal Semestre 2) (> Credits 24)) (NB_UV 6))
@@ -78,7 +73,8 @@
 	(R60 ((equal Semestre 2) (equal SR01 validee) (equal Periode P)) (SR02 CONSEILLEE))
 
 	; On pond une règle par UV, on affinera par la suite
-	; LES CS : 
+	; LES CS :
+	; Il faut ajouter une condition pour spécifier que ce sont des CS
 	(R61 ((<= Semestre 2) (equal IA01 non_validee) (equal Periode A)) (IA01 conseillee))
 	(R62 ((<= Semestre 2) (equal MB11 non_validee) (equal Provenance IUT)) (MB11 conseillee))
 	(R63 ((<= Semestre 2) (equal MT09 non_validee) (equal Periode A)) (MT09 conseillee))
@@ -101,6 +97,7 @@
 	(R80 ((<= Semestre 2) (equal SY14 non_validee) (equal Periode P)) (SY14 conseillee))
 	(R81 ((>= Semestre 4) (equal SY15 non_validee) (equal Periode P) (or (equal SY14 validee) (equal SY04 validee) (equal SY05 validee))) (SY15 conseillee))
 
+	; LES TM :
 
 	)
 )
