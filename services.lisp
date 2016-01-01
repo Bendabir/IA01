@@ -3,6 +3,10 @@
 	(cadr (assoc elem *BF*))
 )
 
+(defun setValue (elem value)
+	(setf (cadr (assoc elem *BF*)) value)
+)
+
 ;Recuperer les premisses d'une règle
 (defun getPremisses (r)
 	(cadr (assoc r *BR*))
@@ -180,13 +184,8 @@
 				(format T "Quelle sont les UVs déjà validées ? (Rentrer NIL pour quitter) ~%")
 				(loop while (not (equal answer NIL)) do
 					(setq answer (read))
-					; A tester, mais ça me parait plus propre
-					(setf (cadr (assoc answer *bf*)) 'validee)
-
-					;(dolist (fait *bf*) 
-					;	(if (eq answer (car fait))
-					;		(setf (cadr fait) 'VALIDEE))
-					;)
+					(if (not (equal (getValue answer) NIL))
+						(setValue answer 'VALIDEE))
 				)
 			)
 		)
