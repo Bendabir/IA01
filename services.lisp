@@ -224,7 +224,7 @@
 		'(Credits_TM 6)
 		'(Credits_TSH 8)
 		; La ligne du dessous va planter je pense
-		'(CreditsCSTM (+ CreditsCS  CreditsTM))
+		'(Credits_CSTM (+ Credits_CS Credits_TM))
 		'(FQ01 non_validee)
 		'(GE37 non_validee)
 		'(IA01 validee)

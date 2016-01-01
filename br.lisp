@@ -1,4 +1,8 @@
 (setq *BR* '(
+
+	; On met les classes d'UVs dans la base de règle, c'est un fait immuable
+	(liste_CS ())
+
 	(R1 ((equal Semestre 1)) (NB_UV 6)) ; 2 cs + 2 tm + 2 tsh = 28 credits
 	(R2 ((equal Semestre 2) (< Credits 25)) (NB_UV 7))
 	(R3 ((equal Semestre 2) (> Credits 24)) (NB_UV 6))
