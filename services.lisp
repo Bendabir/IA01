@@ -34,6 +34,21 @@
 	(format t "###############################################################~%")
 )
 
+(defun displayGoodbye()
+	(format t "~%###############################################################~%")
+	(format t "#         __~%")
+	(format t "# _(\\    |@@|~%")
+	(format t "#(__/\\__ \\--/ __~Vd~%" 36 "En espérant avoir été utile !")
+	(format t "#   \\___|----|  |   __~%")
+	(format t "#       \\ }{ /\\ )_ / _\\~%")
+	(format t "#       /\\__/\\ \\__O (__~%" 40 "A la rentrée prochaine, humain :)")
+	(format t "#      (--/\\--)    \\__/~%")
+	(format t "#      _)(  )(_~%" )
+	(format t "#     `---''---`~%")
+	(format t "#~%")
+	(format t "###############################################################~%")
+)
+
 ;Affichage du menu
 (defun displayMenu()
 	(format T "~%")
