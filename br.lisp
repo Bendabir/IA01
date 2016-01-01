@@ -44,15 +44,15 @@
 	
 
 	; Sélection des UVs
-	(R33 ((equal Semestre 1) (equal Provenance TC)) (SR01 conseillee))
-	(R34 ((equal Semestre 1) (equal Provenance Prepa)) (SR01 conseillee))
-	(R35 ((equal Semestre 1) (equal Provenance TC)) (NF16 conseillee))
-	(R36 ((equal Semestre 1) (equal Provenance Prepa)) (NF16 conseillee))
-	(R37 ((equal Semestre 1) (equal Provenance IUT)) (MB11 conseillee))
-	(R38 ((LO21 non_validee) (equal Periode P)) (LO21 conseilee))
-	(R39 ((NF17 non_validee) (equal Periode P)) (NF17 conseilee))
+	;(R33 ((equal Semestre 1) (equal Provenance TC)) (SR01 conseillee))
+	;(R34 ((equal Semestre 1) (equal Provenance Prepa)) (SR01 conseillee))
+	;(R35 ((equal Semestre 1) (equal Provenance TC)) (NF16 conseillee))
+	;(R36 ((equal Semestre 1) (equal Provenance Prepa)) (NF16 conseillee))
+	;(R37 ((equal Semestre 1) (equal Provenance IUT)) (MB11 conseillee))
+	;(R38 ((LO21 non_validee) (equal Periode P)) (LO21 conseilee))
+	;(R39 ((NF17 non_validee) (equal Periode P)) (NF17 conseilee))
 
-
+	; Les règles des UVs "obligatoires" pour les filières pourraient se placer comme une "surcouche". On peut quand même choisir ces UVs en dehors de la filière mais si on est dans la filière, le choix se porte plus sur ces UVs
 	(R40 ((equal Filiere SRI) (equal Periode A) (equal SR04 non_validee)) (SR04 conseillee))
 	(R41 ((equal Filiere SRI) (equal Periode A) (equal SR06 non_validee)) (SR06 conseillee))
 	(R42 ((equal Filiere SRI) (equal Periode P) (equal SR03 non_validee)) (SR03 conseillee))
@@ -73,8 +73,8 @@
 	(R57 ((equal Filiere STRIE) (equal Periode P) (equal MI11 non_validee)) (MI11 conseillee))
 	(R58 ((equal Filiere STRIE) (equal Periode P) (equal MI12 non_validee)) (MI12 conseillee))
 
-	(R59 ((equal Semestre 2) (equal NF16 validee) (equal Periode P)) (NF17 CONSEILLEE))
-	(R60 ((equal Semestre 2) (equal SR01 validee) (equal Periode P)) (SR02 CONSEILLEE))
+	;(R59 ((equal Semestre 2) (equal NF16 validee) (equal Periode P)) (NF17 CONSEILLEE))
+	;(R60 ((equal Semestre 2) (equal SR01 validee) (equal Periode P)) (SR02 CONSEILLEE))
 
 	; On pond une règle par UV, on affinera par la suite
 	; LES CS :
@@ -95,13 +95,31 @@
 	(R74 ((>= Semestre 2) (<= Semestre 4) (equal NF11 non_validee) (equal NF16 validee) (equal Periode P)) (NF11 conseillee))
 	(R75 ((>= Semestre 2) (<= Semestre 4) (equal RO03 non_validee) (equal NF16 validee) (equal Periode P)) (RO03 conseillee))
 	(R76 ((>= Semestre 4) (equal RO04 non_validee) (equal Periode P)) (RO04 conseillee)) ; MT09 pourrait être un pré-requis (sinon MT22/MT23)
-	(R77 ((<= Semestre 2) (equal SR02 non_validee) (equal Periode P) (equal SR01 validee)) (SR02 conseillee))
+	(R77 ((<= Semestre 2) (equal SR02 non_validee) (equal Periode P) (or (equal SR01 validee) (equal Provenance IUT))) (SR02 conseillee))
 	(R78 ((>= Semestre 2) (<= Semestre 4) (equal SY06 non_validee) (equal Periode P) (equal SY02 validee)) (SY06 conseillee))
 	(R79 ((>= Semestre 4) (equal SY09 non_validee) (equal Periode P) (equal SY02 validee)) (SY09 conseillee))
 	(R80 ((<= Semestre 2) (equal SY14 non_validee) (equal Periode P)) (SY14 conseillee))
 	(R81 ((>= Semestre 4) (equal SY15 non_validee) (equal Periode P) (or (equal SY14 validee) (equal SY04 validee) (equal SY05 validee))) (SY15 conseillee))
 
 	; LES TM :
+	(R82 ((<= Semestre 2) (equal FQ01 non_validee)) (FQ01 conseillee))
+	(R83 ((>= Semestre 2) (equal GE37 non_validee)) (GE37 conseillee))
+	(R84 ((>= Semestre 4) (equal GE38 non_validee)) (GE38 conseillee))
+	(R85 ((>= Semestre 4) (equal GE39 non_validee) (equal GE15 validee)) (GE39 conseillee))
+	(R86 ((>= Semestre 4) (equal GE40 non_validee) (equal GE37 validee) (or (equal GE15 validee) (equal GE27 validee)) (equal Periode A)) (GE40 conseillee))
+	(R87 ((>= Semestre 4) (equal IA03 non_validee) (equal Periode A)) (IA03 conseillee))
+	(R88 ((>= Semestre 5) (equal LO23 non_validee) (equal Periode A) (equal LO21 validee)) (LO23 conseillee))
+	(R89 ((<= Semestre 2) (equal MI01 non_validee) (equal Periode A)) (MI01 conseillee))
+	(R90 ((>= Semestre 4) (equal MP03 non_validee) (equal Periode A)) (MP03 conseillee))
+	(R91 ((<= Semestre 2) (equal NA17 non_validee)) (NA17 conseillee)) ; Passe après NF17 en priorité ?
+	(R92 ((>= Semestre 4) (equal NF29 non_validee) (equal Periode A)) (NF29 conseillee))
+	(R93 ((>= Semestre 4) (equal RO06 non_validee) (equal NF16 validee) (equal Periode A)) (RO06 conseillee))
+	(R94 ((>= Semestre 4) (equal RV01 non_validee) (equal Periode A) (or (equal LO12 validee) (equal NF28 validee))) (RV01 conseillee))
+	(R95 ((<= Semestre 2) (equal SR01 non_validee) (equal Periode A) (or (equal Provenance TC) (equal Provenance Prepa))) (SR01 conseillee))
+	(R96 ((>= Semestre 4) (equal SR06 non_validee) (equal Periode A) (or (equal SR01 validee) (equal Provenance IUT)) (equal SR02 validee) (equal SR03 validee)) (SR06 conseillee))
+	(R97 ((>= Semestre 4) (equal SY19 non_validee) (equal Periode A) (or (equal SR01 validee) (equal Provenance IUT)) (equal SY02 validee)) (SY19 conseillee))
+	(R98 ((>= Semestre 4) (equal SY27 non_validee) (equal Periode A) (equal LO21 validee)) (SY27 conseillee))
+	(R99 ((>= Semestre 1) (equal SY31 non_validee) (equal Periode A)) (SY31 conseillee))
 
 	)
 )
