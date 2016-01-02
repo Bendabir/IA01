@@ -1,14 +1,3 @@
-;Recuperer la valeur d'un élèment dans la BF
-(defun getValue (elem)
-	(cadr (assoc elem *BF*))
-)
-
-(defun setValue (elem value)
-	(if (getValue elem)
-		(setf (cadr (assoc elem *BF*)) value)
-	)
-)
-
 ; Récupérer une règle à partir de son étiquette (ex: R50)
 (defun getRule (r)
 	(assoc r *BR*)
@@ -22,6 +11,35 @@
 ;recuperer la conclusion d'une règle
 (defun getGoal (r)
 	(cddr (getRule r))
+)
+
+(defun removeRule (r)
+	; Si la règle existe
+	(if (getRule r)
+		(setq *BR* (remove (getRule r) *BR*))
+	)
+)
+
+;Recuperer la valeur d'un élèment dans la BF
+(defun getValue (elem)
+	(cadr (assoc elem *BF*))
+)
+
+(defun setValue (elem value)
+	(if (getValue elem)
+		(setf (cadr (assoc elem *BF*)) value)
+	)
+)
+
+(defun getTargetedUVs ()
+	(let
+		((uvs nil))
+		(dolist (fait *BF* (reverse uvs))
+			(if (equal (cadr fait) "conseillee")
+				(push (car fait) uvs)
+			)
+		)
+	)
 )
 
 (defun displayWelcome()
@@ -127,10 +145,6 @@
 			(if (assoc (car element) *BF*)
 				; Si l'élément existe déjà, on le modifie juste
 				(setValue (car element) (cadr element))
-				; (progn
-				; 	(format T "Attention, l'élèment est déjà renseigné. Ajout annulé ! ~%")
-				; 	(print element)
-				; )
 				(push element *BF*)
 			)
 			(progn

@@ -41,16 +41,6 @@
 	;(R30 ((equal Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
 	;(R31 ((equal Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
 	(R32 ((equal Semestre 5)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
-	
-
-	; Sélection des UVs
-	;(R33 ((equal Semestre 1) (equal Provenance "TC")) (SR01 "conseillee"))
-	;(R34 ((equal Semestre 1) (equal Provenance "Prepa")) (SR01 "conseillee"))
-	;(R35 ((equal Semestre 1) (equal Provenance "TC")) (NF16 "conseillee"))
-	;(R36 ((equal Semestre 1) (equal Provenance "Prepa")) (NF16 "conseillee"))
-	;(R37 ((equal Semestre 1) (equal Provenance "IUT")) (MB11 "conseillee"))
-	;(R38 ((LO21 non_validee) (equal Periode "P")) (LO21 conseilee))
-	;(R39 ((NF17 non_validee) (equal Periode "P")) (NF17 conseilee))
 
 	; Les règles des UVs "obligatoires" pour les filières pourraient se placer comme une "surcouche". On peut quand même choisir ces UVs en dehors de la filière mais si on est dans la filière, le choix se porte plus sur ces UVs
 	(R40 ((equal Filiere "SRI") (equal Periode "A") (equal SR04 "non_validee")) (SR04 "conseillee"))
