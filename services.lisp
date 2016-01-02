@@ -31,6 +31,17 @@
 	)
 )
 
+(defun getTargetedUVs ()
+	(let
+		((uvs nil))
+		(dolist (fait *BF* (reverse uvs))
+			(if (equal (cadr fait) "conseillee")
+				(push (car fait) uvs)
+			)
+		)
+	)
+)
+
 (defun displayWelcome()
 	(format t "~50%###############################################################~%")
 	(format t "#         __~%")

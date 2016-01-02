@@ -166,3 +166,24 @@
 		)
 	)
 )
+
+; TANT QUE UVs_choisies != 5 ou 6 ou 7 ET analyse = en_cours ET il existe une règle applicable FAIRE
+;	R = filtrage(Ensemble_des_règles_applicables) // On filtre pour cibler en profondeur sur les règles applicables
+; 	BF = BF + conclusion(R)
+; 	BR = BR - R
+; FIN_TANT_QUE
+
+; SI UVs_choisies = 5 ou 6 ou 7 ET analyse = terminée ALORS
+; 	Afficher les UVs
+; SINON
+; 	Afficher "Vous êtes dans la merde !"
+
+; Idée générale, faut affiner (notamment dans le choix des UVs etc.)
+(defun engine ()
+	(loop while (candidate-rules)
+		(dolist (r (candidate-rules))
+			(triggerRule r)
+		)
+	)
+	(getTargetedUVs)
+)
