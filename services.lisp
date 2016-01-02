@@ -56,7 +56,7 @@
 	(format T "|                     Menu                      |~%")
 	(format T "_________________________________________________~%")
 	(format T "| Que souhaites-tu faire, humain ?              |~%")
-	(format T "| 1 - Voir mon dossier étudiant	               |~%")
+	(format T "| 1 - Voir mon dossier étudiant	                |~%")
 	(format T "| 2 - Renseigner mon dossier étudiant           |~%")
 	(format T "| 3 - Recherche en chainage avant en profondeur |~%")
 	(format T "| 4 - Recherche en chainage avant en largeur (bonus si on veut faire les bg)|~%")
@@ -97,7 +97,6 @@
 				)
 			))
 			((eq choice 5)
-				(displayGoodbye)
 				(return-from displayMenu NIL)
 			)						
 		)
@@ -107,7 +106,9 @@
 
 ; Petite fonction qui permet d'afficher le menu en boucle !
 (defun menu()
+	(displayWelcome)
 	(loop while (displayMenu))
+	(displayGoodbye)
 )
 
 ;;On affiche la BF sauf les UVs non validées.
