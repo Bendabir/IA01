@@ -11,14 +11,18 @@
 	)
 )
 
+(defun getRule (r)
+	(assoc r *BR*)
+)
+
 ;Recuperer les premisses d'une règle
 (defun getPremisses (r)
-	(cadr (assoc r *BR*))
+	(cadr (getRule r))
 )
 
 ;recuperer la conclusion d'une règle
 (defun getGoal (r)
-	(cddr (assoc r *BR*))
+	(cddr (getRule r))
 )
 
 (defun displayWelcome()
