@@ -114,12 +114,13 @@
 ;;On affiche la BF sauf les UVs non validées.
 (defun displayBF()
 	(if *BF*
-	(dolist (fait *BF*)
-		(if (not (equal 'NON_VALIDEE (cadr fait)))
-			(print fait)
+		(dolist (fait *BF*)
+			(if (not (equal "non_validee" (cadr fait)))
+				(print fait)
+			)
 		)
+		(format T "Le dossier étudiant n'est pas encore renseigné ! ~%")
 	)
-	(format T "Le dossier étudiant n'est pas encore renseigné ! ~%"))
 )
 
 (defun add2BF (element)
@@ -250,20 +251,12 @@
 		(progn
 			(format T "Quelle est ta filière ? (SRI, ICSI, STRIE, ADEL ou FDD) ~%")
 			(let ((choice (read-line)))
-				(cond
-					((not (or (equal choice "SRI") (equal choice "ICSI") (equal choice "STRIE") (equal choice "ADEL") (equal choice "FDD")))
+				(if (not (or (equal choice "SRI") (equal choice "ICSI") (equal choice "STRIE") (equal choice "ADEL") (equal choice "FDD")))
+					(progn
 						(format T "~S n'est pas un choix correct" choice)
 						(return-from createBR NIL))
-					((equal choice "SRI")
-						(add2BF '(filiere SRI)))
-					((equal choice "ICSI")
-						(add2BF '(filiere ICSI)))
-					((equal choice "STRIE")
-						(add2BF '(filiere STRIE)))
-					((equal choice "ADEL")
-						(add2BF '(filiere ADEL)))
-					((equal choice "FDD")
-						(add2BF '(filiere FDD)))
+					)
+					(add2BF (list 'filiere choice))
 				)
 			)
 		)
