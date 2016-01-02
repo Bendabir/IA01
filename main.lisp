@@ -1,7 +1,7 @@
 (defun main()
 	; Permet de charger le fichier LISP relativement au dossier
-	(load (merge-pathnames "services.lisp" *load-truename*))
-	(load (merge-pathnames "br.lisp" *load-truename*))
+	;(load (merge-pathnames "services.lisp" *load-truename*))
+	;(load (merge-pathnames "br.lisp" *load-truename*))
 
 	(defvar *BF* NIL)
 	(defvar *listeCS* '(BI01 IA01 MB11 MT09 MT12 NF16 RO05 SR04 SR05 SY02 SY08 IA02 MT10 NF11 RO03 RO04 SR02 SY06 SY09 SY14 SY15)) ;21 CS
@@ -148,7 +148,6 @@
 		((candidates nil))
 		(dolist (r *BR* (reverse candidates))
 			(if (is-triggerable r)
-				; On ne garde que les index des règles
 				(push (car r) candidates)
 			)
 		)
