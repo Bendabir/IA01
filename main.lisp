@@ -153,15 +153,15 @@
 ; Permet de déclencher une règle
 (defun triggerRule (r)
 	(let
-
-
-	)
-
-
-	; On vérifie qu'elle est déclenchable
-	(cond
-		((is-triggerable r)
-			;(remove (assoc 'A liste) liste)
+		; On récupère le but de la fonction
+		(
+			(goal (car (getGoal r)))
+		)
+		; On vérifie qu'elle est déclenchable
+		(cond
+			((is-triggerable r)
+				;(remove (assoc 'A liste) liste)
+			)
 		)
 	)
 )

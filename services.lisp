@@ -6,8 +6,6 @@
 (defun setValue (elem value)
 	(if (getValue elem)
 		(setf (cadr (assoc elem *BF*)) value)
-		; Si l'élément n'existe pas, on l'ajoute dans la base de faits (sert pour le déclenchement de règles)
-		(add2BF (list elem value))
 	)
 )
 
@@ -127,10 +125,12 @@
 	(if (listp element)
 		(if (eq (length element) 2)
 			(if (assoc (car element) *BF*)
-				(progn
-					(format T "Attention, l'élèment est déjà renseigné. Ajout annulé ! ~%")
-					(print element)
-				)
+				; Si l'élément existe déjà, on le modifie juste
+				(setValue (car element) (cadr element))
+				; (progn
+				; 	(format T "Attention, l'élèment est déjà renseigné. Ajout annulé ! ~%")
+				; 	(print element)
+				; )
 				(push element *BF*)
 			)
 			(progn
