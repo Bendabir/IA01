@@ -50,7 +50,7 @@
 )
 
 ;Affichage du menu
-(defun displayMenu()
+(defun menu()
 	(format T "~%")
 	(format T "_________________________________________________~%")
 	(format T "|                     Menu                      |~%")
@@ -97,18 +97,11 @@
 				)
 			))
 			((eq choice 5)
-				(return-from displayMenu NIL)
+				(return-from menu NIL)
 			)						
 		)
 	)
 	T
-)
-
-; Petite fonction qui permet d'afficher le menu en boucle !
-(defun menu()
-	(displayWelcome)
-	(loop while (displayMenu))
-	(displayGoodbye)
 )
 
 ;;On affiche la BF sauf les UVs non validées.

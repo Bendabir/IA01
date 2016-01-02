@@ -4,7 +4,11 @@
 	;(load (merge-pathnames "br.lisp" *load-truename*))
 
 	(defvar *BF* NIL) 
-	(menu)
+
+	; Affichage du menu
+	(displayWelcome)
+	(loop while (menu))
+	(displayGoodbye)
 )
 
 ; Pour le moteur, on va partir sur du chainage avant je pense
