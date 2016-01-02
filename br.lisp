@@ -1,8 +1,8 @@
 (setq *BR* '(
 	; On détermine le nombre d'UVs à prendre
 	(R1 ((equal Semestre 1)) (NB_UV 6))
-	(R2 ((equal Semestre 2) (< Credits 25)) (NB_UV 7))
-	(R3 ((equal Semestre 2) (> Credits 24)) (NB_UV 6))
+	(R2 ((equal Semestre 2) (< Credits 27)) (NB_UV 7))
+	(R3 ((equal Semestre 2) (> Credits 26)) (NB_UV 6))
 	(R4 ((equal Semetre 4) (< Credits 85)) (NB_UV 7))
 	(R5 ((equal Semetre 4) (> Credits 84)) (NB_UV 6))
 	(R6 ((equal Semestre 5) (< Credits 115)) (NB_UV 7))
@@ -17,7 +17,7 @@
 
 	(R12 ((equal Semestre 2) (< Credits_CS 12)) (NB_CS 3))
 	(R13 ((equal Semestre 2) (> Credits_CS 11)) (NB_CS (- NB_UV 5)))
-	(R14 ((equal Semestre 2) (< Credits_TM 12)) (NB_TM 1)) ; 3 ?
+	(R14 ((equal Semestre 2) (< Credits_TM 12)) (NB_TM 1)) ; 3 plutot ? Sinon c'est light
 	(R15 ((equal Semestre 2) (> Credits_TM 11)) (NB_TM (- NB_UV 5)))
 	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
 	;(R16 ((equal Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
