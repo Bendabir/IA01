@@ -169,9 +169,9 @@
 
 (defun createBF()
  	(setq *BF* '(
- 		(Credits 0)
  		(Credits_CS 0)
  		(Credits_TM 0)
+ 		(credits_TSH 0)
  		(FQ01 "non_validee")
  		(GE37 "non_validee")
  		(IA01 "non_validee")
@@ -290,11 +290,24 @@
  				(loop while answer do
  					(setq answer (read))
  					(if (getValue answer)
- 						(setValue answer "validee"))
+ 						(progn
+ 							(setValue answer "validee")
+ 							(if (member answer *listeCS*)
+ 								(setValue 'Credits_CS (+ (getValue 'Credits_CS) 6))
+ 							)
+ 							(if (member answer *listeTM*)
+ 								(setValue 'Credits_TM (+ (getValue 'Credits_TM) 6))
+ 							)
+ 							(if (member answer *listeTSH*)
+ 								(setValue 'Credits_TSH (+ (getValue 'Credits_TSH) 4))
+ 							)
+ 						)
+ 					)
  				)
  			)
  		)
  	)
+ 	(refreshCredits)
  	(format T "Base de faits générée ! ~%")
 )
 
