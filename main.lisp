@@ -66,6 +66,7 @@
 	)
 )
 
+; Permet de vérifier un premisse
 (defun checkPremisse (P &optional F)
 	(cond
 		((equal (car P) 'equal) (equal (caddr P) F))
@@ -84,6 +85,47 @@
 	)
 )
 
+(defun checkPremisse (p)
+	(let
+		(
+			; On récupère l'élément (sous forme de liste, comme ça, si on a un OR, on récupère une liste avec tous les sous-premisses)
+			(element (cdr p))
+			; Et sa valeur
+			(value (caddr p))
+			; L'opérateur
+			(op (car p))
+			; La valeur actuelle de l'élément dans la BF
+			(current-value nil)
+		)
+
+		; Si la value est un atome, alors on est dans un cas normal (il faut tester sinon cela plante quand on récupère la valeur d'une liste, logique...)
+		(cond
+			((not (listp value))
+				(setq current-value (getValue (car element)))
+				; Si current-value vaut NIL, c'est que l'on a pas trouvé l'élément dans la BF, donc c'est pas vérifié dans tous les cas
+				(if (not current-value)
+					(return-from checkPremisse NIL)
+				)
+			)
+		)
+
+		; On traite
+		(if (equal op 'or)
+			; Si on a un or, on traite différement
+			(let
+				((OK NIL))
+				; On vérifie chaque sous-premisse de manière récursive
+				(dolist (sous-premisse element OK)
+					(setq OK (or OK (checkPremisse sous-premisse)))
+				)
+			)
+			; Sinon, on vérifie directement
+			(eval (list op current-value value))
+		)
+	)
+)
+
+; Permet de déclencher une règle
 (defun triggerRule (r)
 
 )
