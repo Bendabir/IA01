@@ -242,10 +242,10 @@
 		(if (not (or (equal choice "TC") (equal choice "IUT") (equal choice "Prepa")))
 			(progn
 				(format T "~S n'est pas un choix correct" choice)
-				(return-from createBR NIL))
+				(return-from createBR NIL)
 			)
 			(add2BF (list 'provenance choice))
-		)		
+		)
 	)
 	(if (> (getValue 'semestre) 3)
 		(progn
@@ -254,7 +254,7 @@
 				(if (not (or (equal choice "SRI") (equal choice "ICSI") (equal choice "STRIE") (equal choice "ADEL") (equal choice "FDD")))
 					(progn
 						(format T "~S n'est pas un choix correct" choice)
-						(return-from createBR NIL))
+						(return-from createBR NIL)
 					)
 					(add2BF (list 'filiere choice))
 				)
