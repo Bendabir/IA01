@@ -6,6 +6,8 @@
 (defun setValue (elem value)
 	(if (getValue elem)
 		(setf (cadr (assoc elem *BF*)) value)
+		; Si l'élément n'existe pas, on l'ajoute dans la base de faits (sert pour le déclenchement de règles)
+		(add2BF (list elem value))
 	)
 )
 

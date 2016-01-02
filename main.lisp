@@ -37,11 +37,14 @@
 ; On peut utiliser les faits stockés en dernier pour cela
 
 (defun chainageAvantProfondeur ()
-	(let (
+	(let 
+		(
 			(L (candidateRules))
 			(analyse T)
 			(UVs_Choisies)
 		)
+
+		
 	)
 )
 
@@ -71,12 +74,12 @@
 		((equal (car P) '>=) (>= F (caddr P)))
 		((equal (car P) '<=) (<= F (caddr P)))
 		((equal (car P) 'or) (let ((result NIL))
-								(dolist (Q (cdr P))
-									(setq FactValue (getValue (cadr Q)))
-									(push (checkPremisse Q FactValue) result)
-								)
-								(push 'OR result)
-								(eval result)
-							))
+			(dolist (Q (cdr P))
+				(setq FactValue (getValue (cadr Q)))
+				(push (checkPremisse Q FactValue) result)
+			)
+			(push 'OR result)
+			(eval result)
+		))
 	)
 )
