@@ -146,13 +146,17 @@
 )
 
 (defun createBF()
-	(setq *BF* '(
+	(setq *BF* `(
 		(Credits 0)
 		(Credits_CS 0)
 		(Credits_TM 0)
-		(Credits_CSTM (+ Credits_CS  Credits_TM))
+		(Credits_CSTM ,(+ (getValue 'Credits_CS) (getValue 'Credits_TM)))
+		(BI01 "non_validee")
 		(FQ01 "non_validee")
 		(GE37 "non_validee")
+		(GE38 "non_validee")
+		(GE39 "non_validee")
+		(GE40 "non_validee")
 		(IA01 "non_validee")
 		(IA02 "non_validee")
 		(IA03 "non_validee")
@@ -172,12 +176,16 @@
 		(MT12 "non_validee")
 		(NF11 "non_validee")
 		(NF16 "non_validee")
+		(NA17 "non_validee")
 		(NF17 "non_validee")
 		(NF26 "non_validee")
 		(NF28 "non_validee")
 		(NF29 "non_validee")
+		(RO03 "non_validee")
+		(RO04 "non_validee")
 		(RO05 "non_validee")
 		(RO06 "non_validee")
+		(RV01 "non_validee")
 		(SR01 "non_validee")
 		(SR02 "non_validee")
 		(SR03 "non_validee")
@@ -185,16 +193,23 @@
 		(SR05 "non_validee")
 		(SR06 "non_validee")
 		(SY02 "non_validee")
+		(SY06 "non_validee")
+		(SY08 "non_validee")
 		(SY09 "non_validee")
+		(SY14 "non_validee")
 		(SY15 "non_validee")
 		(SY19 "non_validee")	
-		(SY23 "non_validee")
-
+		(SY26 "non_validee")
+		(SY27 "non_validee")
+		(SY31 "non_validee")
+		(SY32 "non_validee")
 		(EI03 "non_validee") ; Communication
 		(GE10 "non_validee") ; Economie
 		(GE15 "non_validee") ; Entreprise
 		(GE21 "non_validee") ; Economie
 		(GE22 "non_validee") ; Economie
+		(GE25 "non_validee")
+		(GE27 "non_validee")
 		(GE36 "non_validee") ; Marketing / Entreprise
 		(HE03 "non_validee") ; Logique
 		(LA00 "non_validee")
@@ -222,7 +237,7 @@
 		(if (or (> choice 5) (< choice 1) (eq choice 3) (eq choice 6))
 			(progn
 				(format T "~S n'est pas un choix correct" choice)
-				(return-from createBR NIL)
+				(return-from createBF NIL)
 			)
 			(add2BF (list 'semestre choice))
 		)
@@ -287,10 +302,13 @@
 		'(Credits_CS 18)
 		'(Credits_TM 6)
 		'(Credits_TSH 8)
-		; La ligne du dessous va planter je pense
-		'(Credits_CSTM (+ Credits_CS Credits_TM))
+		`(Credits_CSTM ,(+ (getValue 'Credits_CS) (getValue 'Credits_TM)))
+		'(BI01 "non_validee")
 		'(FQ01 "non_validee")
 		'(GE37 "non_validee")
+		'(GE38 "non_validee")
+		'(GE39 "non_validee")
+		'(GE40 "non_validee")
 		'(IA01 "validee")
 		'(IA02 "non_validee")
 		'(IA03 "non_validee")
@@ -310,10 +328,14 @@
 		'(MT12 "non_validee")
 		'(NF11 "non_validee")
 		'(NF16 "validee")
+		'(NA17 "non_validee")
 		'(NF17 "non_validee")
 		'(NF26 "non_validee")
 		'(NF28 "non_validee")
 		'(NF29 "non_validee")
+		'(RV01 "non_validee")
+		'(RO03 "non_validee")
+		'(RO04 "non_validee")
 		'(RO05 "non_validee")
 		'(RO06 "non_validee")
 		'(SR01 "validee")
@@ -323,23 +345,30 @@
 		'(SR05 "non_validee")
 		'(SR06 "non_validee")
 		'(SY02 "validee")
+		'(SY06 "non_validee")
+		'(SY08 "non_validee")
 		'(SY09 "non_validee")
+		'(SY14 "non_validee")
 		'(SY15 "non_validee")
 		'(SY19 "non_validee")	
-		'(SY23 "non_validee")
-		
+		'(SY26 "non_validee")
+		'(SY27 "non_validee")
+		'(SY31 "non_validee")
+		'(SY32 "non_validee")
 		'(EI03 "non_validee") ; Communication
-		'(GE10 "non_validee") ; Economie
+		'(GE10 "validee") ; Economie
 		'(GE15 "non_validee") ; Entreprise
 		'(GE21 "non_validee") ; Economie
 		'(GE22 "non_validee") ; Economie
+		'(GE25 "non_validee")
+		'(GE27 "non_validee")
 		'(GE36 "non_validee") ; Marketing / Entreprise
 		'(HE03 "non_validee") ; Logique
 		'(LA00 "non_validee")
 		'(LA01 "non_validee")
 		'(LA02 "non_validee")
 		'(LA03 "non_validee")
-		'(LA12 "non_validee")
+		'(LA12 "validee")
 		'(LA13 "non_validee")
 		'(LA20 "non_validee")
 		'(LA21 "non_validee")
