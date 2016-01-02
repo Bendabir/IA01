@@ -1,13 +1,10 @@
 (defun main()
 	; Permet de charger le fichier LISP relativement au dossier
-	(load (merge-pathnames "services.lisp" *load-truename*))
-	(load (merge-pathnames "br.lisp" *load-truename*))
+	;(load (merge-pathnames "services.lisp" *load-truename*))
+	;(load (merge-pathnames "br.lisp" *load-truename*))
 
 	(defvar *BF* NIL) 
-
-	(displayWelcome)
-
-	(menu))
+	(menu)
 )
 
 ; Pour le moteur, on va partir sur du chainage avant je pense
