@@ -161,8 +161,7 @@
 		(cond
 			((is-triggerable r)
 				(add2BF goal) ; On ajoute le but dans la BF
-				; On supprime la règle de la BR
-				;(remove (assoc 'A liste) liste)
+				(removeRule r); On supprime la règle de la BR
 			)
 		)
 	)

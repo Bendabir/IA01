@@ -13,6 +13,13 @@
 	(cddr (getRule r))
 )
 
+(defun removeRule (r)
+	; Si la règle existe
+	(if (getRule r)
+		(setq *BR* (remove (getRule r) *BR*))
+	)
+)
+
 ;Recuperer la valeur d'un élèment dans la BF
 (defun getValue (elem)
 	(cadr (assoc elem *BF*))
