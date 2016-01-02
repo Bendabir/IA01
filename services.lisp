@@ -280,8 +280,8 @@
 (defun generateBF ()
 	(list
 		'(semestre 2)
-		'(periode P)
-		'(provenance TC)
+		'(periode "P")
+		'(provenance "TC")
 		'(filiere NIL)
 		'(Credits 32)
 		'(Credits_CS 18)

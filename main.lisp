@@ -125,6 +125,19 @@
 	)
 )
 
+; Est-ce que la règle est déclenchable ?
+(defun is-triggerable (r)
+	(let
+		(
+			(premisses (getPremisses r))
+			(OK T)
+		)
+		(dolist (p premisses OK)
+			(setq OK (and OK (checkPremisse p)))
+		)
+	)
+)
+
 ; Permet de déclencher une règle
 (defun triggerRule (r)
 
