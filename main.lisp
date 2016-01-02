@@ -36,35 +36,35 @@
 ; Il faut que le filtrage vise les règles en profondeur pour avoir un algo en profondeur d'abord
 ; On peut utiliser les faits stockés en dernier pour cela
 
-(defun chainageAvantProfondeur ()
-	(let 
-		(
-			(L (candidateRules))
-			(analyse T)
-			(UVs_Choisies)
-		)
+; (defun chainageAvantProfondeur ()
+; 	(let 
+; 		(
+; 			(L (candidateRules))
+; 			(analyse T)
+; 			(UVs_Choisies)
+; 		)
 
 
-	)
-)
+; 	)
+; )
 
-(defun candidateRules ()
-	(let (RulesList (flag 0))
-		(dolist (Rule *BR* (reverse RulesList))
-			(dolist (Premisse (getPremisses (car Rule)))
-				(let* ( (attribut (cadr Premisse))
-						(FactValue (getValue attribut)))
-					(if (not (checkPremisse Premisse FactValue))
-						(setq flag 1)
-					)
-				)
-			)
-			(if (= flag 0)
-				(push (car Rule) RulesList))
-			(setq flag 0)
-		)
-	)
-)
+; (defun candidateRules ()
+; 	(let (RulesList (flag 0))
+; 		(dolist (Rule *BR* (reverse RulesList))
+; 			(dolist (Premisse (getPremisses (car Rule)))
+; 				(let* ( (attribut (cadr Premisse))
+; 						(FactValue (getValue attribut)))
+; 					(if (not (checkPremisse Premisse FactValue))
+; 						(setq flag 1)
+; 					)
+; 				)
+; 			)
+; 			(if (= flag 0)
+; 				(push (car Rule) RulesList))
+; 			(setq flag 0)
+; 		)
+; 	)
+; )
 
 ; Permet de vérifier un premisse
 ; (defun checkPremisse (P &optional F)
@@ -134,6 +134,18 @@
 		)
 		(dolist (p premisses OK)
 			(setq OK (and OK (checkPremisse p)))
+		)
+	)
+)
+
+(defun candidate-rules ()
+	(let
+		((candidates nil))
+		(dolist (r *BR* (reverse candidates))
+			(if (is-triggerable r)
+				; On ne garde que les index des règles
+				(push (car r) candidates)
+			)
 		)
 	)
 )
