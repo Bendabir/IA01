@@ -43,113 +43,114 @@
 	(R32 ((equal Semestre 5)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
 	; Les règles des UVs "obligatoires" pour les filières pourraient se placer comme une "surcouche". On peut quand même choisir ces UVs en dehors de la filière mais si on est dans la filière, le choix se porte plus sur ces UVs
-	(R40 ((equal Filiere "SRI") (equal Periode "A") (equal SR04 "non_validee")) (SR04 "conseillee"))
-	(R41 ((equal Filiere "SRI") (equal Periode "A") (equal SR06 "non_validee")) (SR06 "conseillee"))
-	(R42 ((equal Filiere "SRI") (equal Periode "P") (equal SR03 "non_validee")) (SR03 "conseillee"))
-	(R43 ((equal Filiere "SRI") (equal Periode "P") (equal SR05 "non_validee")) (SR05 "conseillee"))
-	(R44 ((equal Filiere "ADEL") (equal Periode "A") (equal MP02 "non_validee")) (MP02 "conseillee"))
-	(R45 ((equal Filiere "ADEL") (equal Periode "A") (equal MP03 "non_validee")) (MP03 "conseillee"))
-	(R46 ((equal Filiere "ADEL") (equal Periode "A") (equal RO06 "non_validee")) (RO06 "conseillee"))
-	(R47 ((equal Filiere "FDD") (equal Periode "A") (equal SY19 "non_validee")) (SY19 "conseillee"))
-	(R48 ((equal Filiere "FDD") (equal Periode "P") (equal SY09 "non_validee")) (SY09 "conseillee"))
-	(R49 ((equal Filiere "FDD") (equal Periode "P") (equal NF26 "non_validee")) (NF26 "conseillee"))
-	(R50 ((equal Filiere "ICSI") (equal Periode "A") (equal NF29 "non_validee")) (NF29 "conseillee"))
-	(R51 ((equal Filiere "ICSI") (equal Periode "A") (equal IA03 "non_validee")) (IA03 "conseillee"))
-	(R52 ((equal Filiere "ICSI") (equal Periode "P") (equal NF28 "non_validee")) (NF28 "conseillee"))
-	(R53 ((equal Filiere "ICSI") (equal Periode "P") (equal IA04 "non_validee")) (IA04 "conseillee"))
-	(R54 ((equal Filiere "ICSI") (equal Periode "P") (equal LO17 "non_validee")) (LO17 "conseillee"))
-	(R56 ((equal Filiere "STRIE") (equal Periode "P") (equal SY15 "non_validee")) (SY15 "conseillee"))
-	(R57 ((equal Filiere "STRIE") (equal Periode "P") (equal MI11 "non_validee")) (MI11 "conseillee"))
-	(R58 ((equal Filiere "STRIE") (equal Periode "P") (equal MI12 "non_validee")) (MI12 "conseillee"))
+	(R40 ((equal Filiere "SRI") (> NB_CS 0) (equal Periode "A") (equal SR04 "non_validee")) (SR04 "conseillee"))
+	(R41 ((equal Filiere "SRI") (> NB_TM 0) (equal Periode "A") (equal SR06 "non_validee")) (SR06 "conseillee"))
+	(R42 ((equal Filiere "SRI") (> NB_TM 0) (equal Periode "P") (equal SR03 "non_validee")) (SR03 "conseillee"))
+	(R43 ((equal Filiere "SRI") (> NB_CS 0) (equal Periode "P") (equal SR05 "non_validee")) (SR05 "conseillee"))
+	(R44 ((equal Filiere "ADEL") (> NB_TM 0) (equal Periode "A") (equal MP02 "non_validee")) (MP02 "conseillee"))
+	(R45 ((equal Filiere "ADEL") (> NB_TM 0) (equal Periode "A") (equal MP03 "non_validee")) (MP03 "conseillee"))
+	(R46 ((equal Filiere "ADEL") (> NB_TM 0) (equal Periode "A") (equal RO06 "non_validee")) (RO06 "conseillee"))
+	(R47 ((equal Filiere "FDD") (> NB_TM 0) (equal Periode "A") (equal SY19 "non_validee")) (SY19 "conseillee"))
+	(R48 ((equal Filiere "FDD") (> NB_CS 0) (equal Periode "P") (equal SY09 "non_validee")) (SY09 "conseillee"))
+	(R49 ((equal Filiere "FDD") (> NB_TM 0) (equal Periode "P") (equal NF26 "non_validee")) (NF26 "conseillee"))
+	(R50 ((equal Filiere "ICSI") (> NB_TM 0) (equal Periode "A") (equal NF29 "non_validee")) (NF29 "conseillee"))
+	(R51 ((equal Filiere "ICSI") (> NB_TM 0) (equal Periode "A") (equal IA03 "non_validee")) (IA03 "conseillee"))
+	(R52 ((equal Filiere "ICSI") (> NB_TM 0) (equal Periode "P") (equal NF28 "non_validee")) (NF28 "conseillee"))
+	(R53 ((equal Filiere "ICSI") (> NB_TM 0) (equal Periode "P") (equal IA04 "non_validee")) (IA04 "conseillee"))
+	(R54 ((equal Filiere "ICSI") (> NB_TM 0) (equal Periode "P") (equal LO17 "non_validee")) (LO17 "conseillee"))
+	(R56 ((equal Filiere "STRIE") (> NB_CS 0) (equal Periode "P") (equal SY15 "non_validee")) (SY15 "conseillee"))
+	(R57 ((equal Filiere "STRIE") (> NB_TM 0) (equal Periode "P") (equal MI11 "non_validee")) (MI11 "conseillee"))
+	(R58 ((equal Filiere "STRIE") (> NB_TM 0) (equal Periode "P") (equal MI12 "non_validee")) (MI12 "conseillee"))
 
 	;(R59 ((equal Semestre 2) (equal NF16 "validee") (equal Periode "P")) (NF17 CONSEILLEE))
 	;(R60 ((equal Semestre 2) (equal SR01 "validee") (equal Periode "P")) (SR02 CONSEILLEE))
 
 	; On pond une règle par UV, on affinera par la suite
+	; Il faut ordonner les UVs selon l'ordre des listes par semestre, histoire de leurs donner des "priorités"
 	; LES CS :
-	(R61 ((member IA01 CS_POSSIBLES) (equal IA01 "non_validee") (equal Periode "A")) (IA01 "conseillee"))
-	(R62 ((member MB11 CS_POSSIBLES) (equal MB11 "non_validee") (equal Provenance "IUT")) (MB11 "conseillee"))
-	(R63 ((member MT09 CS_POSSIBLES) (equal MT09 "non_validee") (equal Periode "A")) (MT09 "conseillee"))
-	(R73 ((member MT12 CS_POSSIBLES) (equal MT12 "non_validee")) (MT12 "conseillee")) ; Pas vraiment de niveau conseillé
-	(R65 ((member NF16 CS_POSSIBLES) (equal NF16 "non_validee")) (NF16 "conseillee"))
-	(R66 ((member RO05 CS_POSSIBLES) (equal RO05 "non_validee") (equal Periode "A")) (RO05 "conseillee"))
-	(R67 ((member SR04 CS_POSSIBLES) (equal SR04 "non_validee") (equal Periode "A")) (SR04 "conseillee")) ; On pourrait peut-être ajouter une condition sur SR01 ou SR02 validée car il faut des pré-requis en OS
-	(R68 ((member SR05 CS_POSSIBLES) (equal SR05 "non_validee") (equal Periode "A") (equal SR01 "validee") (equal SR02 "validee") (equal RO03 "validee") (equal NF16 "validee")) (SR05 "conseillee"))
-	(R69 ((member SY02 CS_POSSIBLES) (equal SY02 "non_validee")) (SY02 "conseillee"))
-	(R70 ((member SY08 CS_POSSIBLES) (equal SY08 "non_validee") (equal Periode "A") (equal SY02 "validee")) (SY08 "conseillee")) ; Pas mal de pré-requis en maths/physique/elec issus du "TC"
-	(R113 ((member BI01 CS_POSSIBLES) (equal BI01 "non_validee") (equal Periode "P")) (BI01 "conseillee"))
-	(R71 ((member IA02 CS_POSSIBLES) (equal IA02 "non_validee") (equal Periode "P")) (IA02 "conseillee")) ; Pas vraiment de niveau conseillé
-	(R72 ((member MT10 CS_POSSIBLES) (equal MT10 "non_validee") (equal Periode "P")) (MT10 "conseillee")) ; Pas vraiment de niveau conseillé
-	(R74 ((member NF11 CS_POSSIBLES) (equal NF11 "non_validee") (equal NF16 "validee") (equal Periode "P")) (NF11 "conseillee"))
-	(R75 ((member RO03 CS_POSSIBLES) (equal RO03 "non_validee") (equal NF16 "validee") (equal Periode "P")) (RO03 "conseillee"))
-	(R76 ((member RO04 CS_POSSIBLES) (equal RO04 "non_validee") (equal Periode "P")) (RO04 "conseillee")) ; MT09 pourrait être un pré-requis (sinon MT22/MT23)
-	(R77 ((member SR02 CS_POSSIBLES) (equal SR02 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT"))) (SR02 "conseillee"))
-	(R78 ((member SY06 CS_POSSIBLES) (equal SY06 "non_validee") (equal Periode "P") (equal SY02 "validee")) (SY06 "conseillee"))
-	(R79 ((member SY09 CS_POSSIBLES) (equal SY09 "non_validee") (equal Periode "P") (equal SY02 "validee")) (SY09 "conseillee"))
-	(R80 ((member SY14 CS_POSSIBLES) (equal SY14 "non_validee") (equal Periode "P")) (SY14 "conseillee"))
-	(R81 ((member SY15 CS_POSSIBLES) (equal SY15 "non_validee") (equal Periode "P") (or (equal SY14 "validee") (equal SY04 "validee") (equal SY05 "validee"))) (SY15 "conseillee"))
+	(R61 ((member IA01 CS_POSSIBLES) (> NB_CS 0) (equal IA01 "non_validee") (equal Periode "A")) (IA01 "conseillee"))
+	(R62 ((member MB11 CS_POSSIBLES) (> NB_CS 0) (equal MB11 "non_validee") (equal Provenance "IUT")) (MB11 "conseillee"))
+	(R63 ((member MT09 CS_POSSIBLES) (> NB_CS 0) (equal MT09 "non_validee") (equal Periode "A")) (MT09 "conseillee"))
+	(R73 ((member MT12 CS_POSSIBLES) (> NB_CS 0) (equal MT12 "non_validee")) (MT12 "conseillee")) ; Pas vraiment de niveau conseillé
+	(R65 ((member NF16 CS_POSSIBLES) (> NB_CS 0) (equal NF16 "non_validee")) (NF16 "conseillee"))
+	(R66 ((member RO05 CS_POSSIBLES) (> NB_CS 0) (equal RO05 "non_validee") (equal Periode "A")) (RO05 "conseillee"))
+	(R67 ((member SR04 CS_POSSIBLES) (> NB_CS 0) (equal SR04 "non_validee") (equal Periode "A")) (SR04 "conseillee")) ; On pourrait peut-être ajouter une condition sur SR01 ou SR02 validée car il faut des pré-requis en OS
+	(R68 ((member SR05 CS_POSSIBLES) (> NB_CS 0) (equal SR05 "non_validee") (equal Periode "A") (equal SR01 "validee") (equal SR02 "validee") (equal RO03 "validee") (equal NF16 "validee")) (SR05 "conseillee"))
+	(R69 ((member SY02 CS_POSSIBLES) (> NB_CS 0) (equal SY02 "non_validee")) (SY02 "conseillee"))
+	(R70 ((member SY08 CS_POSSIBLES) (> NB_CS 0) (equal SY08 "non_validee") (equal Periode "A") (equal SY02 "validee")) (SY08 "conseillee")) ; Pas mal de pré-requis en maths/physique/elec issus du "TC"
+	(R113 ((member BI01 CS_POSSIBLES) (> NB_CS 0) (equal BI01 "non_validee") (equal Periode "P")) (BI01 "conseillee"))
+	(R71 ((member IA02 CS_POSSIBLES) (> NB_CS 0) (equal IA02 "non_validee") (equal Periode "P")) (IA02 "conseillee")) ; Pas vraiment de niveau conseillé
+	(R72 ((member MT10 CS_POSSIBLES) (> NB_CS 0) (equal MT10 "non_validee") (equal Periode "P")) (MT10 "conseillee")) ; Pas vraiment de niveau conseillé
+	(R74 ((member NF11 CS_POSSIBLES) (> NB_CS 0) (equal NF11 "non_validee") (equal NF16 "validee") (equal Periode "P")) (NF11 "conseillee"))
+	(R75 ((member RO03 CS_POSSIBLES) (> NB_CS 0) (equal RO03 "non_validee") (equal NF16 "validee") (equal Periode "P")) (RO03 "conseillee"))
+	(R76 ((member RO04 CS_POSSIBLES) (> NB_CS 0) (equal RO04 "non_validee") (equal Periode "P")) (RO04 "conseillee")) ; MT09 pourrait être un pré-requis (sinon MT22/MT23)
+	(R77 ((member SR02 CS_POSSIBLES) (> NB_CS 0) (equal SR02 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT"))) (SR02 "conseillee"))
+	(R78 ((member SY06 CS_POSSIBLES) (> NB_CS 0) (equal SY06 "non_validee") (equal Periode "P") (equal SY02 "validee")) (SY06 "conseillee"))
+	(R79 ((member SY09 CS_POSSIBLES) (> NB_CS 0) (equal SY09 "non_validee") (equal Periode "P") (equal SY02 "validee")) (SY09 "conseillee"))
+	(R80 ((member SY14 CS_POSSIBLES) (> NB_CS 0) (equal SY14 "non_validee") (equal Periode "P")) (SY14 "conseillee"))
+	(R81 ((member SY15 CS_POSSIBLES) (> NB_CS 0) (equal SY15 "non_validee") (equal Periode "P") (or (equal SY14 "validee") (equal SY04 "validee") (equal SY05 "validee"))) (SY15 "conseillee"))
 
 	; LES TM :
-	(R82 ((member FQ01 TM_POSSIBLES) (equal FQ01 "non_validee")) (FQ01 "conseillee"))
-	(R83 ((member GE37 TM_POSSIBLES) (equal GE37 "non_validee")) (GE37 "conseillee"))
-	(R84 ((member GE38 TM_POSSIBLES) (equal GE38 "non_validee")) (GE38 "conseillee"))
-	(R85 ((member GE39 TM_POSSIBLES) (equal GE39 "non_validee") (equal GE15 "validee")) (GE39 "conseillee"))
-	(R86 ((member GE40 TM_POSSIBLES) (equal GE40 "non_validee") (equal Periode "A") (equal GE37 "validee") (or (equal GE15 "validee") (equal GE27 "validee"))) (GE40 "conseillee"))
-	(R87 ((member IA03 TM_POSSIBLES) (equal IA03 "non_validee") (equal Periode "A")) (IA03 "conseillee"))
-	(R88 ((member LO23 TM_POSSIBLES) (equal LO23 "non_validee") (equal Periode "A") (equal LO21 "validee")) (LO23 "conseillee"))
-	(R89 ((member MI01 TM_POSSIBLES) (equal MI01 "non_validee") (equal Periode "A")) (MI01 "conseillee"))
-	(R90 ((member MP03 TM_POSSIBLES) (equal MP03 "non_validee") (equal Periode "A")) (MP03 "conseillee"))
-	(R91 ((member NA17 TM_POSSIBLES) (equal NA17 "non_validee") (equal NF17 "non_validee")) (NA17 "conseillee")) ; Passe après NF17 en priorité ?
-	(R92 ((member NF29 TM_POSSIBLES) (equal NF29 "non_validee") (equal Periode "A")) (NF29 "conseillee"))
-	(R93 ((member RO06 TM_POSSIBLES) (equal RO06 "non_validee") (equal Periode "A") (equal NF16 "validee")) (RO06 "conseillee"))
-	(R94 ((member RV01 TM_POSSIBLES) (equal RV01 "non_validee") (equal Periode "A") (or (equal LO12 "validee") (equal NF28 "validee"))) (RV01 "conseillee"))
-	(R95 ((member SR01 TM_POSSIBLES) (equal SR01 "non_validee") (equal Periode "A") (or (equal Provenance "TC") (equal Provenance "Prepa"))) (SR01 "conseillee"))
-	(R96 ((member SR06 TM_POSSIBLES) (equal SR06 "non_validee") (equal Periode "A") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SR02 "validee") (equal SR03 "validee")) (SR06 "conseillee"))
-	(R97 ((member SY19 TM_POSSIBLES) (equal SY19 "non_validee") (equal Periode "A") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SY02 "validee")) (SY19 "conseillee"))
-	(R98 ((member SY27 TM_POSSIBLES) (equal SY27 "non_validee") (equal Periode "A") (equal LO21 "validee")) (SY27 "conseillee"))
-	(R99 ((member SY31 TM_POSSIBLES) (equal SY31 "non_validee") (equal Periode "A")) (SY31 "conseillee"))
-	(R100 ((member IA04 TM_POSSIBLES) (equal IA04 "non_validee") (equal Periode "P") (equal LO21 "validee") (equal IA01 "validee") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SR02 "validee")) (IA04 "conseillee"))
-	(R101 ((member LO17 TM_POSSIBLES) (equal LO17 "non_validee") (equal Periode "P")) (LO17 "conseillee"))
-	(R102 ((member LO21 TM_POSSIBLES) (equal LO21 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT"))) (LO21 "conseillee"))
-	(R103 ((member LO22 TM_POSSIBLES) (equal LO22 "non_validee") (equal Periode "P")) (LO22 "conseillee"))
-	(R104 ((member MI11 TM_POSSIBLES) (equal MI11 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT"))) (MI11 "conseillee"))
-	(R105 ((member MI12 TM_POSSIBLES) (equal MI12 "non_validee") (equal Periode "P")) (MI12 "conseillee"))
-	(R106 ((member MP02 TM_POSSIBLES) (equal MP02 "non_validee") (equal Periode "P") (equal GE25 "validee")) (MP02 "conseillee"))
-	(R107 ((member NF17 TM_POSSIBLES) (equal NF17 "non_validee") (equal Periode "P") (equal NA17 "non_validee") ) (NF17 "conseillee"))
-	(R108 ((member NF26 TM_POSSIBLES) (equal NF26 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SR02 "validee") (equal SY02 "validee") (or (equal NF17 "validee") (equal NA17 "validee"))) (NF26 "conseillee"))
-	(R109 ((member NF28 TM_POSSIBLES) (equal NF28 "non_validee") (equal Periode "P") (equal LO21 "validee")) (NF28 "conseillee"))
-	(R110 ((member SR03 TM_POSSIBLES) (equal SR03 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SR02 "validee")) (SR03 "conseillee"))
-	(R111 ((member SY26 TM_POSSIBLES) (equal SY26 "non_validee") (equal Periode "P")) (SY26 "conseillee"))
-	(R112 ((member SY32 TM_POSSIBLES) (equal SY32 "non_validee") (equal Periode "P")) (SY32 "conseillee"))
+	(R82 ((member FQ01 TM_POSSIBLES) (> NB_TM 0) (equal FQ01 "non_validee")) (FQ01 "conseillee"))
+	(R83 ((member GE37 TM_POSSIBLES) (> NB_TM 0) (equal GE37 "non_validee")) (GE37 "conseillee"))
+	(R84 ((member GE38 TM_POSSIBLES) (> NB_TM 0) (equal GE38 "non_validee")) (GE38 "conseillee"))
+	(R85 ((member GE39 TM_POSSIBLES) (> NB_TM 0) (equal GE39 "non_validee") (equal GE15 "validee")) (GE39 "conseillee"))
+	(R86 ((member GE40 TM_POSSIBLES) (> NB_TM 0) (equal GE40 "non_validee") (equal Periode "A") (equal GE37 "validee") (or (equal GE15 "validee") (equal GE27 "validee"))) (GE40 "conseillee"))
+	(R87 ((member IA03 TM_POSSIBLES) (> NB_TM 0) (equal IA03 "non_validee") (equal Periode "A")) (IA03 "conseillee"))
+	(R88 ((member LO23 TM_POSSIBLES) (> NB_TM 0) (equal LO23 "non_validee") (equal Periode "A") (equal LO21 "validee")) (LO23 "conseillee"))
+	(R89 ((member MI01 TM_POSSIBLES) (> NB_TM 0) (equal MI01 "non_validee") (equal Periode "A")) (MI01 "conseillee"))
+	(R90 ((member MP03 TM_POSSIBLES) (> NB_TM 0) (equal MP03 "non_validee") (equal Periode "A")) (MP03 "conseillee"))
+	(R91 ((member NA17 TM_POSSIBLES) (> NB_TM 0) (equal NA17 "non_validee") (equal NF17 "non_validee")) (NA17 "conseillee")) ; Passe après NF17 en priorité ?
+	(R92 ((member NF29 TM_POSSIBLES) (> NB_TM 0) (equal NF29 "non_validee") (equal Periode "A")) (NF29 "conseillee"))
+	(R93 ((member RO06 TM_POSSIBLES) (> NB_TM 0) (equal RO06 "non_validee") (equal Periode "A") (equal NF16 "validee")) (RO06 "conseillee"))
+	(R94 ((member RV01 TM_POSSIBLES) (> NB_TM 0) (equal RV01 "non_validee") (equal Periode "A") (or (equal LO12 "validee") (equal NF28 "validee"))) (RV01 "conseillee"))
+	(R95 ((member SR01 TM_POSSIBLES) (> NB_TM 0) (equal SR01 "non_validee") (equal Periode "A") (or (equal Provenance "TC") (equal Provenance "Prepa"))) (SR01 "conseillee"))
+	(R96 ((member SR06 TM_POSSIBLES) (> NB_TM 0) (equal SR06 "non_validee") (equal Periode "A") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SR02 "validee") (equal SR03 "validee")) (SR06 "conseillee"))
+	(R97 ((member SY19 TM_POSSIBLES) (> NB_TM 0) (equal SY19 "non_validee") (equal Periode "A") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SY02 "validee")) (SY19 "conseillee"))
+	(R98 ((member SY27 TM_POSSIBLES) (> NB_TM 0) (equal SY27 "non_validee") (equal Periode "A") (equal LO21 "validee")) (SY27 "conseillee"))
+	(R99 ((member SY31 TM_POSSIBLES) (> NB_TM 0) (equal SY31 "non_validee") (equal Periode "A")) (SY31 "conseillee"))
+	(R100 ((member IA04 TM_POSSIBLES) (> NB_TM 0) (equal IA04 "non_validee") (equal Periode "P") (equal LO21 "validee") (equal IA01 "validee") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SR02 "validee")) (IA04 "conseillee"))
+	(R101 ((member LO17 TM_POSSIBLES) (> NB_TM 0) (equal LO17 "non_validee") (equal Periode "P")) (LO17 "conseillee"))
+	(R102 ((member LO21 TM_POSSIBLES) (> NB_TM 0) (equal LO21 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT"))) (LO21 "conseillee"))
+	(R103 ((member LO22 TM_POSSIBLES) (> NB_TM 0) (equal LO22 "non_validee") (equal Periode "P")) (LO22 "conseillee"))
+	(R104 ((member MI11 TM_POSSIBLES) (> NB_TM 0) (equal MI11 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT"))) (MI11 "conseillee"))
+	(R105 ((member MI12 TM_POSSIBLES) (> NB_TM 0) (equal MI12 "non_validee") (equal Periode "P")) (MI12 "conseillee"))
+	(R106 ((member MP02 TM_POSSIBLES) (> NB_TM 0) (equal MP02 "non_validee") (equal Periode "P") (equal GE25 "validee")) (MP02 "conseillee"))
+	(R107 ((member NF17 TM_POSSIBLES) (> NB_TM 0) (equal NF17 "non_validee") (equal Periode "P") (equal NA17 "non_validee") ) (NF17 "conseillee"))
+	(R108 ((member NF26 TM_POSSIBLES) (> NB_TM 0) (equal NF26 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SR02 "validee") (equal SY02 "validee") (or (equal NF17 "validee") (equal NA17 "validee"))) (NF26 "conseillee"))
+	(R109 ((member NF28 TM_POSSIBLES) (> NB_TM 0) (equal NF28 "non_validee") (equal Periode "P") (equal LO21 "validee")) (NF28 "conseillee"))
+	(R110 ((member SR03 TM_POSSIBLES) (> NB_TM 0) (equal SR03 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT")) (equal SR02 "validee")) (SR03 "conseillee"))
+	(R111 ((member SY26 TM_POSSIBLES) (> NB_TM 0) (equal SY26 "non_validee") (equal Periode "P")) (SY26 "conseillee"))
+	(R112 ((member SY32 TM_POSSIBLES) (> NB_TM 0) (equal SY32 "non_validee") (equal Periode "P")) (SY32 "conseillee"))
 
 	; LES TSH que l'on prend en compte
-	(R114 ((member EI03 TSH_POSSIBLES) (equal EI03 "non_validee")) (EI03 "conseillee")) ; Communication
-	(R115 ((member GE10 TSH_POSSIBLES) (equal GE10 "non_validee")) (GE10 "conseillee")) ; Economie
-	(R116 ((member GE15 TSH_POSSIBLES) (equal GE15 "non_validee")) (GE15 "conseillee")) ; Entreprise
-	(R117 ((member GE21 TSH_POSSIBLES) (equal GE21 "non_validee")) (GE21 "conseillee")) ; Economie
-	(R118 ((member GE22 TSH_POSSIBLES) (equal GE22 "non_validee")) (GE22 "conseillee")) ; Economie
-	(R119 ((member GE36 TSH_POSSIBLES) (equal GE36 "non_validee")) (GE36 "conseillee")) ; Marketing / Entreprise
-	(R120 ((member HE03 TSH_POSSIBLES) (equal HE03 "non_validee")) (HE03 "conseillee")) ; Logique
-	(R121 ((member LA00 TSH_POSSIBLES) (equal LA00 "non_validee")) (LA00 "conseillee"))
-	(R122 ((member LA01 TSH_POSSIBLES) (equal LA01 "non_validee") (equal LA00 "validee")) (LA01 "conseillee"))
-	(R123 ((member LA02 TSH_POSSIBLES) (equal LA02 "non_validee") (equal LA01 "validee")) (LA02 "conseillee"))
-	(R124 ((member LA03 TSH_POSSIBLES) (equal LA03 "non_validee") (equal LA02 "validee")) (LA03 "conseillee"))
-	(R125 ((member LA12 TSH_POSSIBLES) (equal LA12 "non_validee")) (LA12 "conseillee"))
-	(R126 ((member LA13 TSH_POSSIBLES) (equal LA13 "non_validee") (equal LA12 "validee")) (LA13 "conseillee"))
-	(R127 ((member LA20 TSH_POSSIBLES) (equal LA20 "non_validee")) (LA20 "conseillee"))
-	(R128 ((member LA21 TSH_POSSIBLES) (equal LA21 "non_validee") (equal LA20 "validee")) (LA21 "conseillee"))
-	(R129 ((member LA22 TSH_POSSIBLES) (equal LA22 "non_validee") (equal LA21 "validee")) (LA22 "conseillee"))
-	(R130 ((member LA23 TSH_POSSIBLES) (equal LA23 "non_validee") (equal LA22 "validee")) (LA23 "conseillee"))
-	(R131 ((member LG60 TSH_POSSIBLES) (equal LG60 "non_validee")) (LG60 "conseillee")) ; tching tchong
-	(R132 ((member LG61 TSH_POSSIBLES) (equal LG61 "non_validee") (equal LG60 "validee")) (LG61 "conseillee"))
-	(R133 ((member LG62 TSH_POSSIBLES) (equal LG62 "non_validee") (equal LG61 "validee")) (LG62 "conseillee")) ; Master Tching Tchong 
-	(R134 ((member PH01 TSH_POSSIBLES) (equal PH01 "non_validee")) (PH01 "conseillee")) ; Philo
-	(R135 ((member PH03 TSH_POSSIBLES) (equal PH03 "non_validee")) (PH03 "conseillee")) ; Philo
-	(R136 ((member PH10 TSH_POSSIBLES) (equal PH10 "non_validee")) (PH10 "conseillee")) ; Philo
-	(R137 ((member SI28 TSH_POSSIBLES) (equal SI28 "non_validee")) (SI28 "conseillee")) ; Ecriture interactive et multimedia
-	(R138 ((member SP01 TSH_POSSIBLES) (equal SP01 "non_validee")) (SP01 "conseillee")) ; Sport
-	(R139 ((member GE25 TSH_POSSIBLES) (equal GE25 "non_validee")) (GE25 "conseillee")) ; Eco
-	(R140 ((member GE27 TSH_POSSIBLES) (equal GE27 "non_validee")) (GE27 "conseillee")) ; Eco
+	(R114 ((member EI03 TSH_POSSIBLES) (> NB_TSH 0) (equal EI03 "non_validee")) (EI03 "conseillee")) ; Communication
+	(R115 ((member GE10 TSH_POSSIBLES) (> NB_TSH 0) (equal GE10 "non_validee")) (GE10 "conseillee")) ; Economie
+	(R116 ((member GE15 TSH_POSSIBLES) (> NB_TSH 0) (equal GE15 "non_validee")) (GE15 "conseillee")) ; Entreprise
+	(R117 ((member GE21 TSH_POSSIBLES) (> NB_TSH 0) (equal GE21 "non_validee")) (GE21 "conseillee")) ; Economie
+	(R118 ((member GE22 TSH_POSSIBLES) (> NB_TSH 0) (equal GE22 "non_validee")) (GE22 "conseillee")) ; Economie
+	(R119 ((member GE36 TSH_POSSIBLES) (> NB_TSH 0) (equal GE36 "non_validee")) (GE36 "conseillee")) ; Marketing / Entreprise
+	(R120 ((member HE03 TSH_POSSIBLES) (> NB_TSH 0) (equal HE03 "non_validee")) (HE03 "conseillee")) ; Logique
+	(R121 ((member LA00 TSH_POSSIBLES) (> NB_TSH 0) (equal LA00 "non_validee")) (LA00 "conseillee"))
+	(R122 ((member LA01 TSH_POSSIBLES) (> NB_TSH 0) (equal LA01 "non_validee") (equal LA00 "validee")) (LA01 "conseillee"))
+	(R123 ((member LA02 TSH_POSSIBLES) (> NB_TSH 0) (equal LA02 "non_validee") (equal LA01 "validee")) (LA02 "conseillee"))
+	(R124 ((member LA03 TSH_POSSIBLES) (> NB_TSH 0) (equal LA03 "non_validee") (equal LA02 "validee")) (LA03 "conseillee"))
+	(R125 ((member LA12 TSH_POSSIBLES) (> NB_TSH 0) (equal LA12 "non_validee")) (LA12 "conseillee"))
+	(R126 ((member LA13 TSH_POSSIBLES) (> NB_TSH 0) (equal LA13 "non_validee") (equal LA12 "validee")) (LA13 "conseillee"))
+	(R127 ((member LA20 TSH_POSSIBLES) (> NB_TSH 0) (equal LA20 "non_validee")) (LA20 "conseillee"))
+	(R128 ((member LA21 TSH_POSSIBLES) (> NB_TSH 0) (equal LA21 "non_validee") (equal LA20 "validee")) (LA21 "conseillee"))
+	(R129 ((member LA22 TSH_POSSIBLES) (> NB_TSH 0) (equal LA22 "non_validee") (equal LA21 "validee")) (LA22 "conseillee"))
+	(R130 ((member LA23 TSH_POSSIBLES) (> NB_TSH 0) (equal LA23 "non_validee") (equal LA22 "validee")) (LA23 "conseillee"))
+	(R131 ((member LG60 TSH_POSSIBLES) (> NB_TSH 0) (equal LG60 "non_validee")) (LG60 "conseillee")) ; tching tchong
+	(R132 ((member LG61 TSH_POSSIBLES) (> NB_TSH 0) (equal LG61 "non_validee") (equal LG60 "validee")) (LG61 "conseillee"))
+	(R133 ((member LG62 TSH_POSSIBLES) (> NB_TSH 0) (equal LG62 "non_validee") (equal LG61 "validee")) (LG62 "conseillee")) ; Master Tching Tchong 
+	(R134 ((member PH01 TSH_POSSIBLES) (> NB_TSH 0) (equal PH01 "non_validee")) (PH01 "conseillee")) ; Philo
+	(R135 ((member PH03 TSH_POSSIBLES) (> NB_TSH 0) (equal PH03 "non_validee")) (PH03 "conseillee")) ; Philo
+	(R136 ((member PH10 TSH_POSSIBLES) (> NB_TSH 0) (equal PH10 "non_validee")) (PH10 "conseillee")) ; Philo
+	(R137 ((member SI28 TSH_POSSIBLES) (> NB_TSH 0) (equal SI28 "non_validee")) (SI28 "conseillee")) ; Ecriture interactive et multimedia
+	(R138 ((member SP01 TSH_POSSIBLES) (> NB_TSH 0) (equal SP01 "non_validee")) (SP01 "conseillee")) ; Sport
+	(R139 ((member GE25 TSH_POSSIBLES) (> NB_TSH 0) (equal GE25 "non_validee")) (GE25 "conseillee")) ; Eco
+	(R140 ((member GE27 TSH_POSSIBLES) (> NB_TSH 0) (equal GE27 "non_validee")) (GE27 "conseillee")) ; Eco
 
 	; On fait un semblant de classement pour inférer correctement après
 	(R200 ((= Semestre 1)) (CS_POSSIBLES (NF16 MB11 SY02 SR02 IA01 MT09 IA02 MT10 SY08 SY14 RO05)))
@@ -168,6 +169,6 @@
 	; Pour la gestion du nombres d'UVs
 	(R300 ((> NB_CS 0)) (NB_CS (- NB_CS 1)))
 	(R301 ((> NB_TM 0)) (NB_TM (- NB_TM 1)))
-	(R301 ((> NB_TSH 0)) (NB_TSH (- NB_TSH 1)))
+	(R302 ((> NB_TSH 0)) (NB_TSH (- NB_TSH 1)))
 	)
 )
