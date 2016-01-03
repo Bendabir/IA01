@@ -141,3 +141,31 @@
 ; 	)
 ; 	(getTargetedUVs)
 ; )
+
+(defun engine ()
+	(let
+		((r (car (candidate-rules))))
+
+		(loop while (candidate-rules) do
+			; On déclenche la première règle
+			(triggerRule r)
+			; Si on a déclenché une UV, alors on décompte en conséquence
+			(cond
+				((member (car (getGoal r)) *listeCS*)
+					(setValue 'NB_CS (- (getValue 'NB_CS) 1))
+				)
+				((member (car (getGoal r)) *listeTM*)
+					(setValue 'NB_TM (- (getValue 'NB_TM) 1))
+				)
+				((member (car (getGoal r)) *listeTSH*)
+					(setValue 'NB_TSH (- (getValue 'NB_TSH) 1))
+				)
+			)
+
+			; On passe à la règle suivante
+			(setq r (car (candidate-rules)))
+		)
+	)
+	; On retourne les UVs ciblées
+	(getTargetedUVs)
+)
