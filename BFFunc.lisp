@@ -6,7 +6,7 @@
 	(add2BF (list 'Credits (+ (getValue 'Credits_CS) (getValue 'Credits_TSH) (getValue 'Credits_TM))))
 )
 
-;;On affiche la BF sauf les UVs non validées.
+; On affiche la BF sauf les UVs non validées.
 (defun displayBF()
 	(if *BF*
 		(dolist (fait *BF*)
@@ -18,8 +18,8 @@
 	)
 )
 
-
-
+; Permet d'ajouter un élément (attribut valeur) à la BF
+; Si l'attribut existe déjà, on modifie la valeur sinon on l'ajoute
 (defun add2BF (element)
 	(if (listp element)
 		(if (eq (length element) 2)
@@ -39,8 +39,7 @@
 		)
 	)
 )
-
-
+; Permet de créer une BF à partir de questions posées à l'utilisateur
 (defun createBF()
  	(setq *BF* '(
  		(Credits_CS 0)
@@ -125,7 +124,7 @@
 		(LA21 "non_validee")
 		(LA22 "non_validee")
 		(LA23 "non_validee")
-		(LG60 "non_validee") ; tching tchong
+		(LG60 "non_validee") ; Tching Tchong
 		(LG61 "non_validee")
 		(LG62 "non_validee") ; Master Tching Tchong 
 		(PH01 "non_validee") ; Philo
@@ -138,7 +137,7 @@
  	(let ((choice (parse-integer (read-line))))
  		(if (not (member choice '(1 2 4 5)))
  			(progn
- 				(format T "~S n'est pas un choix correct" choice)
+ 				(format T "~S n'est pas un choix correct. ~%" choice)
  				(return-from createBF NIL)
  			)
  			(add2BF (list 'semestre choice))
@@ -148,7 +147,7 @@
  	(let ((choice (read-line)))
  		(if (not (superMember choice '("A" "P")))
  			(progn
- 				(format T "~S n'est pas un choix correct" choice)
+ 				(format T "~S n'est pas un choix correct. ~%" choice)
  				(return-from createBF NIL)
  			)
  			(add2BF (list 'periode choice))
@@ -158,19 +157,20 @@
  	(let ((choice (read-line)))
  		(if (not (superMember choice '("TC" "IUT" "Prepa")))
  			(progn
- 				(format T "~S n'est pas un choix correct" choice)
+ 				(format T "~S n'est pas un choix correct. ~%" choice)
  				(return-from createBF NIL)
  			)
  			(add2BF (list 'provenance choice))
  		)
  	)
+ 	; Si on est en 2ème année, on demande la filière
  	(if (> (getValue 'semestre) 3)
  		(progn
  			(format T "Quelle est ta filière ? (SRI, ICSI, STRIE, ADEL ou FDD) ~%")
  			(let ((choice (read-line)))
  				(if (not (superMember choice '("SRI" "ICSI" "STRIE" "ADEL" "FDD")))
  					(progn
- 						(format T "~S n'est pas un choix correct" choice)
+ 						(format T "~S n'est pas un choix correct. ~%" choice)
  						(return-from createBF NIL)
  					)
  					(add2BF (list 'filiere choice))
@@ -179,6 +179,7 @@
  		)
  		(add2BF '(filiere NIL))
  	)
+ 	; Aucune UVs de validée en GI01 (on suppose que l'on n'a pas d'avance)
  	(if (> (getValue 'semestre) 1)
  		(progn
  			(let ((answer T))
@@ -203,10 +204,11 @@
  			)
  		)
  	)
- 	(refreshCredits)
+ 	(refreshCredits) ; Calcul des crédits
  	(format T "Base de faits générée ! ~%")
 )
 
+; Génère une BF d'exemple
 (defun generateBF ()
 	(list
 		'(semestre 4)
@@ -295,7 +297,7 @@
 		'(LA21 "non_validee")
 		'(LA22 "non_validee")
 		'(LA23 "validee")
-		'(LG60 "validee") ; tching tchong
+		'(LG60 "validee") ; Tching Tchong
 		'(LG61 "non_validee")
 		'(LG62 "non_validee") ; Master Tching Tchong 
 		'(PH01 "non_validee") ; Philo
