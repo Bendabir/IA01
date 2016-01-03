@@ -73,11 +73,19 @@
 		; On récupère le but de la fonction
 		(
 			(goal (car (getGoal r)))
+			(value (cadr goal))
 		)
 		; On vérifie qu'elle est déclenchable
 		(cond
 			((is-triggerable r)
-				(add2BF goal) ; On ajoute le but dans la BF
+				; Si le but est une expression composée, alors on va l'évaluer
+				(if (listp value)
+					(if (member (car value) '(+ - * / or and))
+						(setq value (eval (list (car value) (getValue (cadr value)) (caddr value))))
+					)
+				)
+
+				(add2BF (list (car goal) value)) ; On ajoute le but dans la BF
 				(removeRule r); On supprime la règle de la BR
 			)
 		)
