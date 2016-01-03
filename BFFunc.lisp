@@ -25,8 +25,8 @@
 		(if (eq (length element) 2)
 			(if (assoc (car element) *BF*)
 				; Si l'élément existe déjà, on le modifie juste
-				(setValue (car element) (cadr element))
-				(push element *BF*)
+				(not (null (setValue (car element) (cadr element)))) ; On renvoie vrai
+				(not (null (push element *BF*))) ; On renvoie vrai si la modif a eu lieu
 			)
 			(progn
 				(format T "Erreur, l'élèment n'est pas de la forme (nom valeur) ~%")
