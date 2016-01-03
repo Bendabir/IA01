@@ -209,14 +209,13 @@
 
 (defun generateBF ()
 	(list
-		'(semestre 2)
+		'(semestre 4)
 		'(periode "P")
 		'(provenance "TC")
-		'(filiere NIL)
-		;'(Credits 32)
-		'(Credits_CS 18)
-		'(Credits_TM 6)
-		'(Credits_TSH 8)
+		'(filiere "SRI")
+		'(Credits_CS 24)
+		'(Credits_TM 24)
+		'(Credits_TSH 16)
  		'(CS_POSSIBLES nil)
  		'(TM_POSSIBLES nil)
  		'(TSH_POSSIBLES nil)
@@ -227,7 +226,7 @@
 		
 		'(BI01 "non_validee")
 		'(FQ01 "non_validee")
-		'(GE37 "non_validee")
+		'(GE37 "validee")
 		'(GE38 "non_validee")
 		'(GE39 "non_validee")
 		'(GE40 "non_validee")
@@ -236,7 +235,7 @@
 		'(IA03 "non_validee")
 		'(IA04 "non_validee")
 		'(LO17 "non_validee")
-		'(LO21 "non_validee")
+		'(LO21 "validee")
 		'(LO22 "non_validee")
 		'(LO23 "non_validee")
 		'(MB11 "non_validee")
@@ -251,7 +250,7 @@
 		'(NF11 "non_validee")
 		'(NF16 "validee")
 		'(NA17 "non_validee")
-		'(NF17 "non_validee")
+		'(NF17 "validee")
 		'(NF26 "non_validee")
 		'(NF28 "non_validee")
 		'(NF29 "non_validee")
@@ -261,7 +260,7 @@
 		'(RO05 "non_validee")
 		'(RO06 "non_validee")
 		'(SR01 "validee")
-		'(SR02 "non_validee")
+		'(SR02 "validee")
 		'(SR03 "non_validee")
 		'(SR04 "non_validee")
 		'(SR05 "non_validee")
@@ -295,8 +294,8 @@
 		'(LA20 "non_validee")
 		'(LA21 "non_validee")
 		'(LA22 "non_validee")
-		'(LA23 "non_validee")
-		'(LG60 "non_validee") ; tching tchong
+		'(LA23 "validee")
+		'(LG60 "validee") ; tching tchong
 		'(LG61 "non_validee")
 		'(LG62 "non_validee") ; Master Tching Tchong 
 		'(PH01 "non_validee") ; Philo
