@@ -67,6 +67,12 @@
 	)
 )
 
+(defun debug-candidates-rules ()
+	(dolist (x (candidate-rules))
+		(print (getRule x))
+	)
+)
+
 ; Fonction pour calculer le but d'une règle lorsqu'il s'agit d'une expression mathématique
 (defun calculateGoal (g)
 	(if (listp (caddr g))
@@ -98,6 +104,7 @@
 				(removeRule r); On supprime la règle de la BR
 			)
 		)
+		(is-triggerable r) ; On retourne T ou NIL selon si l'on a pu appliquer la règle
 	)
 )
 
