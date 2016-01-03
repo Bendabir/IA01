@@ -118,14 +118,14 @@ Les conditions du diplôme sont les suivantes, il faut avoir validé :
 Nous avons établi des conditions sur le nombre d'UVs à prendre par semestre selon l'avance ou le retard de l'étudiant. En moyenne et selon nos calculs, il faut valider 30 crédits par semestre pour obtenir le diplôme. On considérera donc que 6 crédits de retards (par rapport à cette moyenne) nécessitent de prendre une UV en plus. Ce qui donne les règles suivantes :
 
 - Si **Semestre = 1** alors **UVs_a_prendre = 6** 
-En GI01, il n'y a ni retard ni avance, on prend donc un semestre typique de 6 crédits
+En GI01, il n'y a ni retard ni avance, on prend donc un semestre typique de 6 UVs.
 - Si **Semestre = 2** et **crédits <= 26** alors **UVs_a_prendre = 7** 
 - Si **Semestre = 2** et **crédits > 26** alors **UVs_a_prendre = 6**
 Si l'étudiant a validé moins de 26 crédits lors de son GI01 (Ce qui correspond à une CS ou une TM ratée), alors il doit prendre 7 UVs.
 - Si **Semestre = 4** et **crédits <= 84** alors **UVs_a_prendre = 7**
 - Si **Semestre = 4** et **crédits > 84** alors **UVs_a_prendre = 6**
 - Si **Semestre = 5** et **crédits <= 114** alors **UVs_a_prendre = 7**
-- Si **Semestre = 5** et **crédits > 114** et **crédits <= 126** alors UVs_a_prendre = 6**
+- Si **Semestre = 5** et **crédits > 114** et **crédits <= 126** alors **UVs_a_prendre = 6**
 - Si **Semestre = 5** et **crédits > 126** alors **UVs_a_prendre = 5** 
 
 Lors du GI05, qui est alors le dernier semestre à l'UTC, l'étudiant doit se trouver entre 114 et 126 crédits pour être « dans les normes ». S'il a moins de 114, alors il lui faudra prendre 7 UVs afin de valider le nombre requis de crédits. A l'inverse, il se peut qu'un étudiant soit en avance pour se permettre de ne prendre que 5 UVs.
