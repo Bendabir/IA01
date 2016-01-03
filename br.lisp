@@ -152,8 +152,8 @@
 	(R140 ((member GE27 TSH_CONSEILLEES) (equal GE27 "non_validee")) (GE27 "conseillee")) ; Sport
 
 	; On fait un semblant de classement pour inférer correctement après
-	(R200 ((= Semestre 1)) (CS_conseillees (NF16 MB11 SY02 SR02 IA01 IA02 MT09 IA02 MT10 SY08 SY14 RO05)))
-	(R201 ((= Semestre 2)) (CS_conseillees (NF16 MB11 SY02 SR02 IA01 IA02 MT09 IA02 RO03 MT10 SY08 SY14 NF11 SY06 RO05)))
+	(R200 ((= Semestre 1)) (CS_conseillees (NF16 MB11 SY02 SR02 IA01 MT09 IA02 MT10 SY08 SY14 RO05)))
+	(R201 ((= Semestre 2)) (CS_conseillees (NF16 MB11 SY02 SR02 IA01 MT09 IA02 RO03 MT10 SY08 SY14 NF11 SY06 RO05)))
 	(R202 ((= Semestre 4)) (CS_conseillees (RO03 SR04 SR05 RO04 RO05 NF11 MT10 SY06 SY09 SY15 IA02 BI01)))
 	(R203 ((= Semestre 5)) (CS_conseillees (SR04 SR05 RO04 RO05 SY09 SY15 MT10 IA02 BI01)))
 
