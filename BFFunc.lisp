@@ -212,6 +212,9 @@
 		'(Credits_CS 18)
 		'(Credits_TM 6)
 		'(Credits_TSH 8)
+ 		'(CS_conseillees nil)
+ 		'(TM_conseillees nil)
+ 		'(TSH_conseillees nil)
 		
 		'(BI01 "non_validee")
 		'(FQ01 "non_validee")
