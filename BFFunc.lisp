@@ -128,7 +128,6 @@
 		(PH10 "non_validee") ; Philo
 		(SI28 "non_validee") ; Ecriture interactive et multimedia
 		(SP01 "non_validee") ; Sport
-		(TO01 "non_validee") ;Preparation au TOEIC
  	))
  	(format T "En quel semestre entrez vous ? GI0X ( X = 1,2,4 ou 5) ~%")
  	(let ((choice (parse-integer (read-line))))
@@ -293,6 +292,5 @@
 		'(PH10 "non_validee") ; Philo
 		'(SI28 "non_validee") ; Ecriture interactive et multimedia
 		'(SP01 "non_validee") ; Sport
-		'(TO01 "non_validee") ;Preparation au TOEIC
 	)
 )
