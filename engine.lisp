@@ -71,8 +71,8 @@
 (defun calculateGoal (g)
 	(if (listp (caddr g))
 		; Si le dernier élement est une liste, alors on a encore une expression
-		(eval (list (car g) () ()))
 		(eval (list (car g) (getValue (cadr g)) (calculateGoal (caddr g))))
+		(eval (list (car g) (getValue (cadr g)) (getValue (caddr g))))
 	)
 )
 
@@ -90,7 +90,7 @@
 				; Si le but est une expression composée, alors on va l'évaluer
 				(if (listp value)
 					(if (member (car value) '(+ - * / or and))
-						(setq value (eval (list (car value) (getValue (cadr value)) (caddr value))))
+						(setq value (calculateGoal value))
 					)
 				)
 
