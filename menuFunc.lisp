@@ -78,8 +78,7 @@
 			))
 			((eq choice 3)
 				(engine)
-				(load *BRLocation*) ; On recharge la BF
-				T
+				(load *BRLocation* :verbose nil) ; On recharge la BF
 			)
 			((eq choice 4)
 				(return-from menu NIL)
