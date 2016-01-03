@@ -114,6 +114,7 @@
 		(GE27 "non_validee")
 		(GE36 "non_validee") ; Marketing / Entreprise
 		(HE03 "non_validee") ; Logique
+		(IC05 "non_validee") ; Représentation
 		(LA00 "non_validee")
 		(LA01 "non_validee")
 		(LA02 "non_validee")
@@ -287,6 +288,7 @@
 		'(GE27 "non_validee")
 		'(GE36 "non_validee") ; Marketing / Entreprise
 		'(HE03 "non_validee") ; Logique
+		'(IC05 "non_validee") ; Représentation
 		'(LA00 "non_validee")
 		'(LA01 "non_validee")
 		'(LA02 "non_validee")
