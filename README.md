@@ -142,7 +142,6 @@ PARTIE A RETRAVAILLER. Surement possible de condenser les règles en fonction du
 
 Lors du premier semestre, on considérera un équilibre entre les UVs (2 / 2 / 2)
 
-
 - Si **Semestre = 2** et **crédits_CS < 12** alors **CS_a_prendre = 3**
 - Si **Semestre = 2** et **crédits_CS >= 12** alors **CS_a_prendre = UVs_a_prendre - 5** DONC SI IL A VALIDE TOUTES SES UV (2/2/2), IL DEVRA DONC PRENDRE 6-5 = 1 CS ??
 
@@ -152,7 +151,6 @@ Si l'étudiant n'a pas validé 2 CS en GI01, alors il doit en prendre 3 en GI02.
 - Si **Semestre = 2** et **crédits_TM >= 12** alors **TM_a_prendre = UVs_a_prendre - 5**
 
 Si l'étudiant n'a pas validé 2 TM en GI01, alors il doit en prendre 3 en GI02. Sinon, il doit prendre .......
-
 
 - Si **Semestre = 2** et **crédits_CS + crédits_TM < 24** et **CS_a_prendre + TM_a_prendre < 5** alors **CS_a_prendre = CS_a_prendre + 1**
 - Si **Semestre = 2** et **crédits_CS + crédits_TM < 24** et **CS_a_prendre + TM_a_prendre < 5** alors **TM_a_prendre = TM_a_prendre + 1** CETTE REGLE NE VA JAMAIS S EXECUTER A CAUSE DE LA PRECEDENTE NON ?
@@ -224,13 +222,14 @@ Retourner ListeCandidates
 
 Nous avons du implémenter quelques fonctions de service afin de rendre le code plus lisible et faciliter sa maintenance. Cela nous permettait également de faire évoluer les représentations des règles et des faits sans pour autant modifier le moteur d'inférence à chaque fois.
 
+- getRule : renvoie la totalité de la règle passée en argument 
 - getPremisses : renvoie la liste des prémisses de la règle passée en argument 
 - getGoal : renvoie la liste des conclusions de la règle passée en argument 
 - getValue : renvoie la valeur contenu dans la base de faits du fait passé en argument. 
 - checkPremisse : renvoie T si la prémisse passée en argument est vérifiée , NIL sinon
 - is-triggerable : fait appel à checkPremisse pour vérifier si toutes les prémisses d'une règle sont vérifiées et peut donc être appliquée. Renvoie T si oui, NIL si non.
 - triggerRule : permet d'appliquer la règle, d'ajouter le but à la BF et de supprimer la règle de la BR.
-- RemoveRule : supprime la règle de la BR après avoir été appliquée
+- RemoveRule : supprime la règle de la BR
 - getTargetedUVs : retourne la liste des UVs conseillée par le SE
 
 
@@ -238,6 +237,7 @@ Nous avons du implémenter quelques fonctions de service afin de rendre le code 
 
 Ce moteur permet de déduire une liste d'UVs à conseiller à l'étudiant grâce à l'application de règles sur notre base de faits.
 A chaque cycle du moteur d'inférence, on choisit de déclencher la première règle ayant pour prémisse le dernier fait établi (il s'agit d'un choix stratégique parmi d'autres possibles). L'algorithme en chaînage avant en profondeur est le suivant :
+
 ```
  TANT QUE UVs_choisies != 5 ou 6 ou 7 ET analyse = en_cours ET ListeCandidates != NIL FAIRE
 	R = filtrage(Ensemble_des_règles_applicables) // On filtre pour cibler en profondeur sur les règles applicables
