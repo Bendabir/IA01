@@ -4,7 +4,7 @@
 ### Introduction 
 
 
-Ce TP nous a permis de réaliser un système expert d’ordre 0+. Un système expert est un programme informatique qui « raisonne sur des problèmes dont la résolution repose sur une expertise humaine dans un domaine délimité. » (Edward Feigenbaum) L'utilisation d'un tel système est justifiée quand la résolution du problème ne connaît pasd'algorithme connu ou de modèle mathématique. Pour raisonner, un SE se compose de trois parties : une base de règles qui indique le raisonnement à suivre, une base de faits que donne l'utilisateur, et un moteur d'inférence qui fait fonctionner les règles à partir de ces faits pour obtenir de nouveaux faits jusqu'à atteindre à la réponse à la question posée. Le SE proposé est d'ordre 0+ : les faits sont représentés comme des couples (attribut valeur).
+Ce TP nous a permis de réaliser un système expert d’ordre 0+. Un système expert est un programme informatique qui « raisonne sur des problèmes dont la résolution repose sur une expertise humaine dans un domaine délimité. » (Edward Feigenbaum) L'utilisation d'un tel système est justifiée quand la résolution du problème ne connaît pas d'algorithme connu ou de modèle mathématique. Pour raisonner, un SE se compose de trois parties : une base de règles qui indique le raisonnement à suivre, une base de faits que donne l'utilisateur, et un moteur d'inférence qui fait fonctionner les règles à partir de ces faits pour obtenir de nouveaux faits jusqu'à atteindre à la réponse à la question posée. Le SE proposé est d'ordre 0+ : les faits sont représentés comme des couples (attribut valeur).
 
 Nous présenterons tout d'abord notre problématique et l'expertise, puis la représentation des connaissances, faits et règles, dans les bases de faits BF et la base de règle BR, ainsi que des jeux d'essais. Enfin, nous décrirons et comparerons les deux moteurs : en chaînage avant et en chaînage arrière, tous les deux en profondeur d'abord.
 
@@ -12,7 +12,7 @@ Nous présenterons tout d'abord notre problématique et l'expertise, puis la rep
 
 Comme chaque semestre, Jean-Karim a la pression. Il est étudiant en Génie Informatique à l'Université de Technologie de Compiègne et comme chaque semestre, c'est la panique lorsqu'il faut choisir ses UVs. Tous les soirs durant l'intersemestre, il bouquine avant de s'endormir son livre de chevet : "Le guide des UVs à l'UTC". Ce livre, à la fois source de bonheur et de liberté, est aussi source d'angoisse pour Jean-Karim. Que faire comme UVs ? Qu'est-ce qui m'intéresse vraiment ? Qu'est-ce qui est impératif de prendre pour ma filière ? Si je rate telle UV, il va me manquer tant de crédits...
 
-Après moult interrogations, moult calculs de crédits, beaucoup de sueurs et de peur, Jean-Karim a une brillante idée : " Et si quelque chose pouvait m'aider à choisir mes UVs ?" L'illumination. Jean-Karim, ayant fait IA01 en GI01, se rappelle d'un cours sombre et lointain sur les Systèmes Experts à Base de Règles. Ni une, ni deux, il replonge dans son vieux poly gardé préciseusement au fond d'un placard et décide de concevoir un Conseiller d'Uvs.
+Après moult interrogations, moult calculs de crédits, beaucoup de sueurs et de peur, Jean-Karim a une brillante idée : " Et si quelque chose pouvait m'aider à choisir mes UVs ?" L'illumination. Jean-Karim, ayant fait IA01 en GI01, se rappelle d'un cours sombre et lointain sur les Systèmes Experts à Base de Règles. Ni une, ni deux, il replonge dans son vieux poly gardé précieusement au fond d'un placard et décide de concevoir un Conseiller d'Uvs.
 
 
 
@@ -94,7 +94,7 @@ Par exemple, si l'on prend le dossier étudiant de Jean-Karim :
 * Periode : Printemps
 * CS validées : NF16, IA01, SY02 pour un total de 18 crédits CS validés
 * TM validées : SR01 pour un total de 6 crédits TM validés
-* TSH validées : LA12, SI11 pour un total de 8 crédits TSH validés
+* TSH validées : LA12, GE10  pour un total de 8 crédits TSH validés
 
 Pour représenter la base de faits en Lisp, nous avons choisi de créer une simple liste ```(fait1 fait2 fait3 ... fait n)``` où un fait correspond à un couple ```(attribut valeur)```.
 
