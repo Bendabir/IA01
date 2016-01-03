@@ -179,6 +179,6 @@
 	(format t "~%") ; Saut de ligne izy
 	(format t "Après examination de ton dossier étudiant, je te conseilles les UVs suivantes : ~%")
 	(dolist (UV (getTargetedUVs))
-		(format t "~S (~%) ~%" UV (getUVCategory UV))
+		(format t "~S (~S) ~%" UV (getUVCategory UV))
 	)
 )
