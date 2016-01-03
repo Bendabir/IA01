@@ -29,7 +29,7 @@
 )
 
 (defun setValue (elem value)
-	(if (getValue elem)
+	(if (assoc elem *BF*)
 		(setf (cadr (assoc elem *BF*)) value)
 	)
 )

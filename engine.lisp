@@ -1,6 +1,5 @@
 ; Ce fichier contient les fonctions relatives au moteur d'inférence
 
-
 (defun checkPremisse (p)
 	(let
 		(
@@ -36,7 +35,10 @@
 				)
 			)
 			; Sinon, on vérifie directement
-			(eval (list op current-value value))
+			(if (equal op 'member)
+				(member (car element) (getValue value))
+				(eval (list op current-value value))
+			)
 		)
 	)
 )

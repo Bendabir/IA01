@@ -76,7 +76,7 @@
 					)
 				)
 			))
-			((eq choice 5)
+			((eq choice 4)
 				(return-from menu NIL)
 			)						
 		)
