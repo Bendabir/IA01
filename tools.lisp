@@ -50,3 +50,18 @@
 		)
 	)
 )
+
+; Permet de connaitre la catégorie d'une CS
+(defun getUVCategory (UV)
+	(cond
+		((member UV *listeCS*)
+			'CS
+		)
+		((member UV *listeTM*)
+			'TM
+		)
+		((member UV *listeTSH*)
+			'TSH
+		)
+	)
+)

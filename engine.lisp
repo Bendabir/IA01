@@ -159,15 +159,15 @@
 			(cond
 				((member target *listeCS*)
 					(setValue 'NB_CS (- (getValue 'NB_CS) 1))
-					(format T "~S faisait référence à une CS. Décrémentation.~%" r)
+					(format T "~S (~S) faisait référence à une CS.~%" r target)
 				)
 				((member target *listeTM*)
 					(setValue 'NB_TM (- (getValue 'NB_TM) 1))
-					(format T "~S faisait référence à une TM. Décrémentation.~%" r)
+					(format T "~S (~S) faisait référence à une TM.~%" r target)
 				)
 				((member target *listeTSH*)
 					(setValue 'NB_TSH (- (getValue 'NB_TSH) 1))
-					(format T "~S faisait référence à une TSH. Décrémentation.~%" r)
+					(format T "~S (~S) faisait référence à une TSH.~%" r target)
 				)
 			)
 
@@ -176,5 +176,9 @@
 		)
 	)
 	; On retourne les UVs ciblées
-	(getTargetedUVs)
+	(format t "~%") ; Saut de ligne izy
+	(format t "Après examination de ton dossier étudiant, je te conseilles les UVs suivantes : ~%")
+	(dolist (UV (getTargetedUVs))
+		(format t "~S (~%) ~%" UV (getUVCategory UV))
+	)
 )
