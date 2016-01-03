@@ -10,7 +10,7 @@ Nous présenterons tout d'abord notre problématique et l'expertise, puis la rep
 
 ### Problèmatique
 
-Comme chaque semestre, Jean-Karim a la pression. Il est étudiant en génie informatique à l'Université de Technologie de Compiègne et comme chaque semestre, c'est la panique lorsqu'il faut choisir ses UV. Tous les soirs durant l'intersemestre, il bouquine avant de s'endormir son livre de chevet : "Le guide des UVs à l'UTC". Ce livre, à la fois source de bonheur et de liberté, est aussi source d'angoisse pour Jean-Karim. Que faire comme UVs ? Qu'est ce qui m'intéresse vraiment ? Qu'est ce qu'il est impératif de prendre pour ma filière ? Si je rate telle UV, il va me manquer tant de crédits...
+Comme chaque semestre, Jean-Karim a la pression. Il est étudiant en Génie Informatique à l'Université de Technologie de Compiègne et comme chaque semestre, c'est la panique lorsqu'il faut choisir ses UVs. Tous les soirs durant l'intersemestre, il bouquine avant de s'endormir son livre de chevet : "Le guide des UVs à l'UTC". Ce livre, à la fois source de bonheur et de liberté, est aussi source d'angoisse pour Jean-Karim. Que faire comme UVs ? Qu'est-ce qui m'intéresse vraiment ? Qu'est-ce qui est impératif de prendre pour ma filière ? Si je rate telle UV, il va me manquer tant de crédits...
 
 Après moult interrogations, moult calculs de crédits, beaucoup de sueurs et de peur, Jean-Karim a une brillante idée : " Et si quelque chose pouvait m'aider à choisir mes UVs ?" L'illumination. Jean-Karim, ayant fait IA01 en GI01, se rappelle d'un cours sombre et lointain sur les Systèmes Experts à Base de Règles. Ni une, ni deux, il replonge dans son vieux poly gardé au fond d'un placard, et décide de concevoir un Conseiller d'Uvs.
 
