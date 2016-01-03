@@ -78,6 +78,8 @@
 			))
 			((eq choice 3)
 				(engine)
+				(load *BRLocation*) ; On recharge la BF
+				T
 			)
 			((eq choice 4)
 				(return-from menu NIL)

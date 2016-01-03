@@ -1,46 +1,46 @@
 (setq *BR* '(
 	; On détermine le nombre d'UVs à prendre
-	(R1 ((equal Semestre 1)) (NB_UV 6))
-	(R2 ((equal Semestre 2) (< Credits 27)) (NB_UV 7))
-	(R3 ((equal Semestre 2) (> Credits 26)) (NB_UV 6))
-	(R4 ((equal Semetre 4) (< Credits 85)) (NB_UV 7))
-	(R5 ((equal Semetre 4) (> Credits 84)) (NB_UV 6))
-	(R6 ((equal Semestre 5) (< Credits 115)) (NB_UV 7))
-	(R7 ((equal Semestre 5) (> Credits 114) (< Credits 127)) (NB_UV 6))
-	(R8 ((equal Semestre 5) (> Credits 126)) (NB_UV 5))
+	(R1 ((= Semestre 1)) (NB_UV 6))
+	(R2 ((= Semestre 2) (<= Credits 26)) (NB_UV 7))
+	(R3 ((= Semestre 2) (> Credits 26)) (NB_UV 6))
+	(R4 ((= Semestre 4) (<= Credits 85)) (NB_UV 7))
+	(R5 ((= Semestre 4) (> Credits 85)) (NB_UV 6))
+	(R6 ((= Semestre 5) (<= Credits 115)) (NB_UV 7))
+	(R7 ((= Semestre 5) (> Credits 115) (<= Credits 127)) (NB_UV 6))
+	(R8 ((= Semestre 5) (> Credits 127)) (NB_UV 5))
 
 
 	; On détermine le nombre d'UVs à prendre par catégorie
-	(R9 ((equal Semestre 1)) (NB_CS 2))
-	(R10 ((equal Semestre 1)) (NB_TM 2))
-	(R11 ((equal Semestre 1)) (NB_TSH 2))
+	(R9 ((= Semestre 1)) (NB_CS 2))
+	(R10 ((= Semestre 1)) (NB_TM 2))
+	(R11 ((= Semestre 1)) (NB_TSH 2))
 
-	(R12 ((equal Semestre 2) (< Credits_CS 12)) (NB_CS 3))
-	(R13 ((equal Semestre 2) (> Credits_CS 11)) (NB_CS (- NB_UV 5)))
-	(R14 ((equal Semestre 2) (< Credits_TM 12)) (NB_TM 1)) ; 3 plutot ? Sinon c'est light
-	(R15 ((equal Semestre 2) (> Credits_TM 11)) (NB_TM (- NB_UV 5)))
+	(R12 ((= Semestre 2) (< Credits_CS 12)) (NB_CS 3))
+	(R13 ((= Semestre 2) (> Credits_CS 11)) (NB_CS (- NB_UV 5)))
+	(R14 ((= Semestre 2) (< Credits_TM 12)) (NB_TM 1)) ; 3 plutot ? Sinon c'est light
+	(R15 ((= Semestre 2) (> Credits_TM 11)) (NB_TM (- NB_UV 5)))
 	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
-	;(R16 ((equal Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
-	;(R17 ((equal Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
-	(R18 ((equal Semestre 2)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
+	;(R16 ((= Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
+	;(R17 ((= Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
+	(R18 ((= Semestre 2)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
-	(R19 ((equal Semetre 4) (< Credits_CS 18)) (NB_CS 1)) ; 3 ?
-	(R20 ((equal Semetre 4) (> Credits_CS 17)) (NB_CS (- NB_UV 5)))
-	(R21 ((equal Semetre 4) (< Credits_TM 18)) (NB_TM 2)) ; 3 ?
-	(R22 ((equal Semetre 4) (> Credits_TM 17)) (NB_TM (- NB_UV 5)))
+	(R19 ((= Semestre 4) (< Credits_CS 18)) (NB_CS 1)) ; 3 ?
+	(R20 ((= Semestre 4) (> Credits_CS 17)) (NB_CS (- NB_UV 5)))
+	(R21 ((= Semestre 4) (< Credits_TM 18)) (NB_TM 2)) ; 3 ?
+	(R22 ((= Semestre 4) (> Credits_TM 17)) (NB_TM (- NB_UV 5)))
 	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
-	;(R23 ((equal Semetre 4) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
-	;(R24 ((equal Semetre 4) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
-	(R25 ((equal Semetre 4)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
+	;(R23 ((= Semestre 4) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
+	;(R24 ((= Semestre 4) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
+	(R25 ((= Semestre 4)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
-	(R26 ((equal Semestre 5) (< Credits_CS 24)) (NB_CS 2)) ; 3? 
-	(R27 ((equal Semestre 5) (> Credits_CS 23)) (NB_CS (- NB_UV 5)))
-	(R28 ((equal Semestre 5) (< Credits_TM 24)) (NB_TM 2)) ;3?
-	(R29 ((equal Semestre 5) (> Credits_TM 23)) (NB_TM (- NB_UV 5)))
+	(R26 ((= Semestre 5) (< Credits_CS 24)) (NB_CS 2)) ; 3? 
+	(R27 ((= Semestre 5) (> Credits_CS 23)) (NB_CS (- NB_UV 5)))
+	(R28 ((= Semestre 5) (< Credits_TM 24)) (NB_TM 2)) ;3?
+	(R29 ((= Semestre 5) (> Credits_TM 23)) (NB_TM (- NB_UV 5)))
 	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
-	;(R30 ((equal Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
-	;(R31 ((equal Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
-	(R32 ((equal Semestre 5)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
+	;(R30 ((= Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
+	;(R31 ((= Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
+	(R32 ((= Semestre 5)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
 	; Pour la gestion du nombres d'UVs
 	;(R300 ((> NB_CS 0)) (NB_CS (- NB_CS 1)))
