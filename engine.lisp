@@ -142,25 +142,26 @@
 			(target nil)
 		)
 		(reinitUVs) ; On remet à 0 les UVs conseillées
+		(format T "Déroulement du raisonnement : ~%")
 		(loop while (candidate-rules) do
 			; On récupère le but avant, sinon il n'existe plus car on supprime la règle lors de son déclenchement!
 			(setq target (caar (getGoal r)))
 			; On déclenche la première règle
 			(triggerRule r)
-			(format T "Déclenchement de ~S (~S) ~%" r target)
+			(format T " - Déclenchement de ~S (~S) ~%" r target)
 			; Si on a déclenché une UV, alors on décompte en conséquence
 			(cond
 				((member target *listeCS*)
 					(setValue 'NB_CS (- (getValue 'NB_CS) 1))
-					(format T "~S (~S) faisait référence à une CS.~%" r target)
+					(format T "   ~S (~S) faisait référence à une CS.~%" r target)
 				)
 				((member target *listeTM*)
 					(setValue 'NB_TM (- (getValue 'NB_TM) 1))
-					(format T "~S (~S) faisait référence à une TM.~%" r target)
+					(format T "   ~S (~S) faisait référence à une TM.~%" r target)
 				)
 				((member target *listeTSH*)
 					(setValue 'NB_TSH (- (getValue 'NB_TSH) 1))
-					(format T "~S (~S) faisait référence à une TSH.~%" r target)
+					(format T "   ~S (~S) faisait référence à une TSH.~%" r target)
 				)
 			)
 
