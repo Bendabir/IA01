@@ -37,12 +37,6 @@
 	)
 )
 
-; Actualiser les credits totaux et les credits CS/TM
-(defun refreshCredits ()
-	(add2BF (list 'Credits_CSTM (+ (getValue 'Credits_CS) (getValue 'Credits_TM))))
-	(add2BF (list 'Credits (+ (getValue 'Credits_CS) (getValue 'Credits_TSH) (getValue 'Credits_TM))))
-)
-
 ; Permet de dire si un élément est dans une liste, peu importe le type d'élément
 ; Member ne fonctionne pas avec les chaînes de caractères
 (defun superMember (element set)
