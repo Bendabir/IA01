@@ -6,16 +6,17 @@
 	(assoc r *BR*)
 )
 
-;Recuperer les premisses d'une règle
+; Récupérer les premisses d'une règle
 (defun getPremisses (r)
 	(cadr (getRule r))
 )
 
-;recuperer la conclusion d'une règle
+; Récupérer la conclusion d'une règle
 (defun getGoal (r)
 	(cddr (getRule r))
 )
 
+; Supprime la règle de la BR
 (defun removeRule (r)
 	; Si la règle existe
 	(if (getRule r)
@@ -24,7 +25,8 @@
 	)	
 )
 
-;Recuperer la valeur d'un élèment dans la BF
+; Recuperer la valeur d'un élèment dans la BF
+; Si on passe en paramètre un entier ou une chaine, on retourne cette chaine (sert pour des prédictions par la suite)
 (defun getValue (elem)
 	(if (or (numberp elem) (stringp elem))
 		elem
@@ -32,6 +34,7 @@
 	)
 )
 
+; Modifie la valeur d'un élément dans la BF (s'il existe déjà)
 (defun setValue (elem value)
 	(if (assoc elem *BF*)
 		(setf (cadr (assoc elem *BF*)) value)
@@ -52,6 +55,7 @@
 )
 
 ; Permet de connaitre la catégorie d'une CS
+; Renvoie NIL si l'UV est inconnue
 (defun getUVCategory (UV)
 	(cond
 		((member UV *listeCS*)
