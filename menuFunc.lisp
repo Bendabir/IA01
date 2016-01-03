@@ -49,13 +49,14 @@
 			((or (< choice 1) (> choice 4))
 				(format T "Ce choix n'est pas valide. ~%")
 			)
+			; Affichage de la BF
 			((eq choice 1)
 				(displayBF)
 			)
+			; Choix du dossier
 			((eq choice 2)
 				(format T "Voulez-vous prendre un dossier etudiant (pour faire une démo) ou bien construire le tiens ? ~%( Réponses : prefabriquer / initialiser) ~%")
 				(let ((answer (read-line)))
-				; (loop while (and (not (equal answer "prefabriquer")) (not (equal answer "initialiser"))) do
 				(loop while (not (superMember answer '("prefabriquer" "initialiser"))) do
 					(format T "Veuillez rentrer seulement prefabriquer ou initialiser :~%")
 					(setq answer (read-line))
@@ -76,14 +77,16 @@
 					)
 				)
 			))
+			; Recherche d'UVs
 			((eq choice 3)
 				(engine)
 				(load *BRLocation* :verbose nil) ; On recharge la BF
 			)
+			; Quitter
 			((eq choice 4)
 				(return-from menu NIL)
 			)						
 		)
 	)
-	T
+	T ; On retourne T pour boucler dans le main. Seul l'option quitter renvoie NIL, ce qui permet de sortir de la boucle
 )
