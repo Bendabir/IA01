@@ -1,6 +1,6 @@
 (defun main()
 	; Permet de charger le fichier LISP relativement au dossier
-	(defvar *location* "D:/")
+	(defvar *location* "D:/Benjamin/Documents/UTC/GI01/IA01/TPs/TP3/")
 	;(defvar *location* "/home/valentin/git/IA01/")
 	(defvar *BRLocation* (concatenate 'string *location* "br.lisp"))
 
