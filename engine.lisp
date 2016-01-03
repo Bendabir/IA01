@@ -35,6 +35,7 @@
 				)
 			)
 			; Sinon, on vérifie directement
+			; On distingue le cas du member qui se comporte un peu différemment d'un opérateur de comparaison
 			(if (equal op 'member)
 				(member (car element) (getValue value))
 				(eval (list op current-value value))
@@ -50,6 +51,7 @@
 			(premisses (getPremisses r))
 			(OK T)
 		)
+		; On vérifie que tous les prémisses sont vrais
 		(dolist (p premisses OK)
 			(setq OK (and OK (checkPremisse p)))
 		)
@@ -61,6 +63,7 @@
 	(let
 		((candidates nil))
 		(dolist (r *BR* (reverse candidates))
+			; On récupère la liste de toutes les règles déclenchables
 			(if (is-triggerable (car r))
 				(push (car r) candidates)
 			)
@@ -138,9 +141,9 @@
 			(r (car (candidate-rules)))
 			(target nil)
 		)
-		(reinitUVs) ; On remet à 0
+		(reinitUVs) ; On remet à 0 les UVs conseillées
 		(loop while (candidate-rules) do
-			; On récupère le but avant, sinon il n'existe plus !
+			; On récupère le but avant, sinon il n'existe plus car on supprime la règle lors de son déclenchement!
 			(setq target (caar (getGoal r)))
 			; On déclenche la première règle
 			(triggerRule r)
