@@ -43,7 +43,7 @@
 	)
 )
 
-;Actualiser les credits totaux et les credits CS/TM
+; Actualiser les credits totaux et les credits CS/TM
 (defun refreshCredits ()
 	(add2BF (list 'Credits_CSTM (+ (getValue 'Credits_CS) (getValue 'Credits_TM))))
 	(add2BF (list 'Credits (+ (getValue 'Credits_CS) (getValue 'Credits_TSH) (getValue 'Credits_TM))))
@@ -167,6 +167,19 @@
 	)
 )
 
+; Permet de dire si un élément est dans une liste, peu importe le type d'élément
+; Member ne fonctionne pas avec les chaînes de caractères
+(defun superMember (element set)
+	(let
+		((found nil))
+		(dolist (x set found)
+			(if (equal x element)
+				(setq found T)
+			)
+		)
+	)
+)
+
 (defun createBF()
  	(setq *BF* '(
  		(Credits_CS 0)
@@ -240,7 +253,8 @@
  	))
  	(format T "En quel semestre entrez vous ? GI0X ( X = 1,2,4 ou 5) ~%")
  	(let ((choice (parse-integer (read-line))))
- 		(if (or (> choice 5) (< choice 1) (eq choice 3) (eq choice 6))
+ 		;(if (or (> choice 5) (< choice 1) (eq choice 3) (eq choice 6))
+ 		(if (not (member choice '(1 2 4 5)))
  			(progn
  				(format T "~S n'est pas un choix correct" choice)
  				(return-from createBR NIL)
