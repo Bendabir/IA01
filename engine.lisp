@@ -136,43 +136,48 @@
 
 ; Moteur
 (defun engine ()
-	(let
-		(
-			(r (car (candidate-rules)))
-			(target nil)
-		)
-		(reinitUVs) ; On remet à 0 les UVs conseillées
-		(format T "Déroulement du raisonnement : ~%")
-		(loop while (candidate-rules) do
-			; On récupère le but avant, sinon il n'existe plus car on supprime la règle lors de son déclenchement!
-			(setq target (caar (getGoal r)))
-			; On déclenche la première règle
-			(triggerRule r)
-			(format T " - Déclenchement de ~S (~S) ~%" r target)
-			; Si on a déclenché une UV, alors on décompte en conséquence
-			(cond
-				((member target *listeCS*)
-					(setValue 'NB_CS (- (getValue 'NB_CS) 1))
-					(format T "   ~S (~S) faisait référence à une CS.~%" r target)
+	(if *BF*
+		(progn
+			(let
+				(
+					(r (car (candidate-rules)))
+					(target nil)
 				)
-				((member target *listeTM*)
-					(setValue 'NB_TM (- (getValue 'NB_TM) 1))
-					(format T "   ~S (~S) faisait référence à une TM.~%" r target)
-				)
-				((member target *listeTSH*)
-					(setValue 'NB_TSH (- (getValue 'NB_TSH) 1))
-					(format T "   ~S (~S) faisait référence à une TSH.~%" r target)
+				(reinitUVs) ; On remet à 0 les UVs conseillées
+				(format T "Déroulement du raisonnement : ~%")
+				(loop while (candidate-rules) do
+					; On récupère le but avant, sinon il n'existe plus car on supprime la règle lors de son déclenchement!
+					(setq target (caar (getGoal r)))
+					; On déclenche la première règle
+					(triggerRule r)
+					(format T " - Déclenchement de ~S (~S) ~%" r target)
+					; Si on a déclenché une UV, alors on décompte en conséquence
+					(cond
+						((member target *listeCS*)
+							(setValue 'NB_CS (- (getValue 'NB_CS) 1))
+							(format T "   ~S (~S) faisait référence à une CS.~%" r target)
+						)
+						((member target *listeTM*)
+							(setValue 'NB_TM (- (getValue 'NB_TM) 1))
+							(format T "   ~S (~S) faisait référence à une TM.~%" r target)
+						)
+						((member target *listeTSH*)
+							(setValue 'NB_TSH (- (getValue 'NB_TSH) 1))
+							(format T "   ~S (~S) faisait référence à une TSH.~%" r target)
+						)
+					)
+
+					; On passe à la règle suivante
+					(setq r (car (candidate-rules)))
 				)
 			)
-
-			; On passe à la règle suivante
-			(setq r (car (candidate-rules)))
+			; On retourne les UVs ciblées
+			(format t "~%") ; Saut de ligne izy
+			(format t "Après examen de ton dossier étudiant, je te conseilles les UVs suivantes : ~%")
+			(dolist (UV (getTargetedUVs))
+				(format t "~S (~S) ~%" UV (getUVCategory UV))
+			)
 		)
-	)
-	; On retourne les UVs ciblées
-	(format t "~%") ; Saut de ligne izy
-	(format t "Après examen de ton dossier étudiant, je te conseilles les UVs suivantes : ~%")
-	(dolist (UV (getTargetedUVs))
-		(format t "~S (~S) ~%" UV (getUVCategory UV))
+		(format T "Entre d'abord ton dossier étudiant ! ~%")
 	)
 )
