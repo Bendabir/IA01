@@ -9,7 +9,6 @@
 	(R7 ((= Semestre 5) (> Credits 86) (<= Credits 97)) (NB_UV 6))
 	(R8 ((= Semestre 5) (> Credits 97)) (NB_UV 5))
 
-
 	; On détermine le nombre d'UVs à prendre par catégorie
 	(R9 ((= Semestre 1)) (NB_CS 2))
 	(R10 ((= Semestre 1)) (NB_TM 2))
@@ -17,37 +16,25 @@
 
 	(R12 ((= Semestre 2) (< Credits_CS 12)) (NB_CS 3))
 	(R13 ((= Semestre 2) (> Credits_CS 11)) (NB_CS (- NB_UV 4)))
-	(R14 ((= Semestre 2) (< Credits_TM 12)) (NB_TM 3)) ; 3 plutot ? Sinon c'est light
+	(R14 ((= Semestre 2) (< Credits_TM 12)) (NB_TM 3))
 	(R15 ((= Semestre 2) (> Credits_TM 11)) (NB_TM (- NB_UV 4)))
-	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
-	;(R16 ((= Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
-	;(R17 ((= Semestre 2) (< (+ Credits_CS Credits_TM) 24) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
 	(R18 ((= Semestre 2)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
 	(R19 ((= Semestre 4) (< Credits_CS 24)) (NB_CS 3)) ; 3 ?
 	(R20 ((= Semestre 4) (> Credits_CS 23)) (NB_CS (- NB_UV 4)))
 	(R21 ((= Semestre 4) (< Credits_TM 24)) (NB_TM 3)) ; 3 ?
 	(R22 ((= Semestre 4) (> Credits_TM 23)) (NB_TM (- NB_UV 4)))
-	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
-	;(R23 ((= Semestre 4) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
-	;(R24 ((= Semestre 4) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
 	(R25 ((= Semestre 4)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
 	(R26 ((= Semestre 5) (< Credits_CS 24)) (NB_CS 3)) ; 3? 
 	(R27 ((= Semestre 5) (> Credits_CS 23)) (NB_CS (- NB_UV 4)))
 	(R28 ((= Semestre 5) (< Credits_TM 24)) (NB_TM 3)) ;3?
 	(R29 ((= Semestre 5) (> Credits_TM 23)) (NB_TM (- NB_UV 4)))
-	; A revoir je pense que ca va pas : les deux regles ne peuvent pas aller ensemble
-	;(R30 ((= Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_CS 1))
-	;(R31 ((= Semestre 5) (< (+ Credits_CS Credits_TM) 42) (< (+ NB_CS NB_TM) 5)) (+ NB_TM 1))
 	(R32 ((= Semestre 5)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
-	; Pour la gestion du nombres d'UVs
-	;(R300 ((> NB_CS 0)) (NB_CS (- NB_CS 1)))
-	;(R301 ((> NB_TM 0)) (NB_TM (- NB_TM 1)))
-	;(R302 ((> NB_TSH 0)) (NB_TSH (- NB_TSH 1)))
-
-	; Les règles des UVs "obligatoires" pour les filières pourraient se placer comme une "surcouche". On peut quand même choisir ces UVs en dehors de la filière mais si on est dans la filière, le choix se porte plus sur ces UVs
+	; Les règles des UVs "obligatoires" pour les filières se placent comme une "surcouche". 
+	; On peut quand même choisir ces UVs en dehors de la filière mais si on est dans la filière, 
+	; le choix se porte plus sur ces UVs
 	(R40 ((equal Filiere "SRI") (> NB_CS 0) (equal Periode "A") (equal SR04 "non_validee")) (SR04 "conseillee"))
 	(R41 ((equal Filiere "SRI") (> NB_TM 0) (equal Periode "A") (equal SR06 "non_validee")) (SR06 "conseillee"))
 	(R42 ((equal Filiere "SRI") (> NB_TM 0) (equal Periode "P") (equal SR03 "non_validee")) (SR03 "conseillee"))
@@ -67,11 +54,8 @@
 	(R57 ((equal Filiere "STRIE") (> NB_TM 0) (equal Periode "P") (equal MI11 "non_validee")) (MI11 "conseillee"))
 	(R58 ((equal Filiere "STRIE") (> NB_TM 0) (equal Periode "P") (equal MI12 "non_validee")) (MI12 "conseillee"))
 
-	;(R59 ((= Semestre 2) (equal NF16 "validee") (equal Periode "P")) (NF17 CONSEILLEE))
-	;(R60 ((= Semestre 2) (equal SR01 "validee") (equal Periode "P")) (SR02 CONSEILLEE))
-
-	; On pond une règle par UV, on affinera par la suite
-	; Il faut ordonner les UVs selon l'ordre des listes par semestre, histoire de leurs donner des "priorités"
+	; Une règle par UV
+	; On ordonne les UVs selon l'ordre des listes par semestre, histoire de leurs donner des "priorités"
 	; LES CS :
 	(R77 ((member SR02 CS_POSSIBLES) (> NB_CS 0) (equal SR02 "non_validee") (equal Periode "P") (or (equal SR01 "validee") (equal Provenance "IUT"))) (SR02 "conseillee"))
 	(R81 ((member SY15 CS_POSSIBLES) (> NB_CS 0) (equal SY15 "non_validee") (equal Periode "P") (or (equal SY14 "validee") (equal SY04 "validee") (equal SY05 "validee"))) (SY15 "conseillee"))
@@ -111,6 +95,7 @@
 	(R98 ((member SY27 TM_POSSIBLES) (> NB_TM 0) (equal SY27 "non_validee") (equal Periode "A") (equal LO21 "validee")) (SY27 "conseillee"))
 	(R106 ((member MP02 TM_POSSIBLES) (> NB_TM 0) (equal MP02 "non_validee") (equal Periode "P") (equal GE25 "validee")) (MP02 "conseillee"))
 	(R107 ((member NF17 TM_POSSIBLES) (> NB_TM 0) (equal NF17 "non_validee") (equal Periode "P") (equal NA17 "non_validee") ) (NF17 "conseillee"))
+	(R91 ((member NA17 TM_POSSIBLES) (> NB_TM 0) (equal NA17 "non_validee") (equal NF17 "non_validee")) (NA17 "conseillee"))
 	(R109 ((member NF28 TM_POSSIBLES) (> NB_TM 0) (equal NF28 "non_validee") (equal Periode "P") (equal LO21 "validee")) (NF28 "conseillee"))
 	(R85 ((member GE39 TM_POSSIBLES) (> NB_TM 0) (equal GE39 "non_validee") (equal GE15 "validee")) (GE39 "conseillee"))
 	(R82 ((member FQ01 TM_POSSIBLES) (> NB_TM 0) (equal FQ01 "non_validee")) (FQ01 "conseillee"))
@@ -119,7 +104,6 @@
 	(R87 ((member IA03 TM_POSSIBLES) (> NB_TM 0) (equal IA03 "non_validee") (equal Periode "A")) (IA03 "conseillee"))
 	(R89 ((member MI01 TM_POSSIBLES) (> NB_TM 0) (equal MI01 "non_validee") (equal Periode "A")) (MI01 "conseillee"))
 	(R90 ((member MP03 TM_POSSIBLES) (> NB_TM 0) (equal MP03 "non_validee") (equal Periode "A")) (MP03 "conseillee"))
-	(R91 ((member NA17 TM_POSSIBLES) (> NB_TM 0) (equal NA17 "non_validee") (equal NF17 "non_validee")) (NA17 "conseillee")) ; Passe après NF17 en priorité ?
 	(R92 ((member NF29 TM_POSSIBLES) (> NB_TM 0) (equal NF29 "non_validee") (equal Periode "A")) (NF29 "conseillee"))
 	(R99 ((member SY31 TM_POSSIBLES) (> NB_TM 0) (equal SY31 "non_validee") (equal Periode "A")) (SY31 "conseillee"))
 	(R101 ((member LO17 TM_POSSIBLES) (> NB_TM 0) (equal LO17 "non_validee") (equal Periode "P")) (LO17 "conseillee"))
@@ -148,8 +132,8 @@
 	(R117 ((member GE21 TSH_POSSIBLES) (> NB_TSH 0) (equal GE21 "non_validee")) (GE21 "conseillee")) ; Economie
 	(R118 ((member GE22 TSH_POSSIBLES) (> NB_TSH 0) (equal GE22 "non_validee")) (GE22 "conseillee")) ; Economie
 	(R120 ((member HE03 TSH_POSSIBLES) (> NB_TSH 0) (equal HE03 "non_validee")) (HE03 "conseillee")) ; Logique
-	(R121 ((member LA00 TSH_POSSIBLES) (> NB_TSH 0) (equal LA00 "non_validee")) (LA00 "conseillee"))
-	(R125 ((member LA12 TSH_POSSIBLES) (> NB_TSH 0) (equal LA12 "non_validee")) (LA12 "conseillee"))
+	(R121 ((member LA00 TSH_POSSIBLES) (> NB_TSH 0) (equal LA00 "non_validee") (equal LA01 "non_validee")) (LA00 "conseillee"))
+	(R125 ((member LA12 TSH_POSSIBLES) (> NB_TSH 0) (equal LA12 "non_validee") (equal LA13 "non_validee")) (LA12 "conseillee"))
 	(R127 ((member LA20 TSH_POSSIBLES) (> NB_TSH 0) (equal LA20 "non_validee")) (LA20 "conseillee"))
 	(R134 ((member PH01 TSH_POSSIBLES) (> NB_TSH 0) (equal PH01 "non_validee")) (PH01 "conseillee")) ; Philo
 	(R135 ((member PH03 TSH_POSSIBLES) (> NB_TSH 0) (equal PH03 "non_validee")) (PH03 "conseillee")) ; Philo
