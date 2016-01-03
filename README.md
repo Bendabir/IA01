@@ -12,7 +12,7 @@ Nous présenterons tout d'abord notre problématique et l'expertise, puis la rep
 
 Comme chaque semestre, Jean-Karim a la pression. Il est étudiant en Génie Informatique à l'Université de Technologie de Compiègne et comme chaque semestre, c'est la panique lorsqu'il faut choisir ses UVs. Tous les soirs durant l'intersemestre, il bouquine avant de s'endormir son livre de chevet : "Le guide des UVs à l'UTC". Ce livre, à la fois source de bonheur et de liberté, est aussi source d'angoisse pour Jean-Karim. Que faire comme UVs ? Qu'est-ce qui m'intéresse vraiment ? Qu'est-ce qui est impératif de prendre pour ma filière ? Si je rate telle UV, il va me manquer tant de crédits...
 
-Après moult interrogations, moult calculs de crédits, beaucoup de sueurs et de peur, Jean-Karim a une brillante idée : " Et si quelque chose pouvait m'aider à choisir mes UVs ?" L'illumination. Jean-Karim, ayant fait IA01 en GI01, se rappelle d'un cours sombre et lointain sur les Systèmes Experts à Base de Règles. Ni une, ni deux, il replonge dans son vieux poly gardé au fond d'un placard, et décide de concevoir un Conseiller d'Uvs.
+Après moult interrogations, moult calculs de crédits, beaucoup de sueurs et de peur, Jean-Karim a une brillante idée : " Et si quelque chose pouvait m'aider à choisir mes UVs ?" L'illumination. Jean-Karim, ayant fait IA01 en GI01, se rappelle d'un cours sombre et lointain sur les Systèmes Experts à Base de Règles. Ni une, ni deux, il replonge dans son vieux poly gardé préciseusement au fond d'un placard et décide de concevoir un Conseiller d'Uvs.
 
 
 
@@ -21,11 +21,11 @@ Après moult interrogations, moult calculs de crédits, beaucoup de sueurs et de
 ### L'expertise
 
 ##### Les sources utilisées
-Pour obtenir des règles, il est nécessaire de procéder à une expertise au préalable afin de pouvoir construire de véritables règles. Une des parties les plus conséquentes de ce TP est l’expertise.
-Dans notre exemple, le SE conseillera une liste d'UVs pour le semestre à l'étudiant. N'ayant pas de règle prédéfinies, nous devons donc nous même concevoir l'expertise sur laquelle reposera tout le système. Nous devons donc trouver toutes les informations qui vont nous permettre d'élaborer la base de règle.
+Pour obtenir des règles, il est nécessaire de procéder à une expertise au préalable afin de pouvoir construire de véritables règles. Une des parties la plus conséquente de ce TP est l’expertise.
+Dans notre exemple, le SE conseillera une liste d'UVs pour le semestre à l'étudiant. N'ayant pas de règles prédéfinies, nous devons donc nous-mêmes concevoir l'expertise sur laquelle reposera tout le système. Nous devons donc trouver toutes les informations qui vont nous permettre d'élaborer la base de règles.
 Pour construire notre expertise, nous nous sommes basés sur la documentation fournie par l'UTC sur le choix des UVs, à savoir le catalogue des UVs disponibles et la plateforme de consultation des enseignements DEMETER.
 
-* Le catalogue des UV est disponible en ligne au lien suivant : 
+* Le catalogue des UVs est disponible en ligne au lien suivant : 
 
 https://www.utc.fr/fileadmin/user_upload/SITE-UTC/documents/Documentations/CatalogueUV_Inge_2015-2016_web.pdf
 
@@ -42,7 +42,7 @@ Cela nous permet d'obtenir les informations "officielles" concernant chaque UV. 
 * Le site UVWEB ( https://assos.utc.fr/uvweb/ ) permettant à chaque étudiant de noter chaque UV sur son utilité, sa dose de travail, son interêt et sa pédagogie.
 Nous exploiterons donc les avis de chaque UV afin d'obtenir un avis moyen de ce que pense un UTCéen sur une UV.
 
-A l'UTC, chaque étudiant peut choisir au début de chaque semestre entre 5 et 7 UVs (pour un maximum de 32 crédits) qu'il souhaite suivre parmi une liste de plus de 400 UVs. Cette situation amène à des situations quasi infinie et beaucoup trop compliquées à mettre en œuvre à notre niveau.
+A l'UTC, chaque étudiant peut choisir au début de chaque semestre entre 5 et 7 UVs (pour un maximum de 36 crédits) qu'il souhaite suivre parmi une liste de plus de 400 UVs. Cette situation amène à des situations quasi infinie et beaucoup trop compliquées à mettre en œuvre à notre niveau.
 
 ##### Limitations du sujet
 
