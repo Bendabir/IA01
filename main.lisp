@@ -1,11 +1,13 @@
 (defun main()
 	; Permet de charger le fichier LISP relativement au dossier
-	(defvar *BRLocation* "/home/valentin/git/IA01/br.lisp")
+	(defvar *location* "D:/")
+	;(defvar *location* "/home/valentin/git/IA01/")
+	(defvar *BRLocation* (concatenate 'string *location* "br.lisp"))
 
-	(load "/home/valentin/git/IA01/engine.lisp")
-	(load "/home/valentin/git/IA01/menuFunc.lisp")
-	(load "/home/valentin/git/IA01/tools.lisp")
-	(load "/home/valentin/git/IA01/BFFunc.lisp")
+	(load (concatenate 'string *location* "engine.lisp"))
+	(load (concatenate 'string *location* "menuFunc.lisp"))
+	(load (concatenate 'string *location* "tools.lisp"))
+	(load (concatenate 'string *location* "BFFunc.lisp"))
 	(load *BRLocation*)
 	;(load (merge-pathnames "menuFunc.lisp" *load-truename*))
 	;(load (merge-pathnames "tools.lisp" *load-truename*))
