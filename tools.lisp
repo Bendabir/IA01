@@ -19,8 +19,9 @@
 (defun removeRule (r)
 	; Si la règle existe
 	(if (getRule r)
-		(setq *BR* (remove (getRule r) *BR*))
-	)
+		(not (null (setq *BR* (remove (getRule r) *BR*)))) ; On retourne vrai si la modificaiton à bien eu lieu (nil lorsque la BR est vide)
+		nil ; Si on n'a pas trouvé la règle, on n'a pas pu la supprimer. Logique !
+	)	
 )
 
 ;Recuperer la valeur d'un élèment dans la BF
