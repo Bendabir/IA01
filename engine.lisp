@@ -150,20 +150,33 @@
 					(setq target (caar (getGoal r)))
 					; On déclenche la première règle
 					(triggerRule r)
-					(format T " - Déclenchement de ~S (~S) ~%" r target)
+					(format T " - Déclenchement de la règle ~S portant sur ~S ~%" r target)
 					; Si on a déclenché une UV, alors on décompte en conséquence
 					(cond
+						((equal target 'NB_UV)
+							(format T " 	Alright ! Il te faudrait ~S UVs pour ce semestre ~%" (getValue 'NB_UV))
+						)
+						((equal target 'NB_CS)
+							(format T " 	Je te conseille ~S CS... ~%" (getValue 'NB_CS))
+						)
+						((equal target 'NB_TM)
+							(format T " 	... Ainsi que ~S TM ...~%" (getValue 'NB_TM))
+						)
+						((equal target 'NB_TSH)
+							(format T " 	... Et ~S TSH ! ~%" (getValue 'NB_TSH))
+						)
+
 						((member target *listeCS*)
 							(setValue 'NB_CS (- (getValue 'NB_CS) 1))
-							(format T "   ~S (~S) faisait référence à une CS.~%" r target)
+							(format T "   Il semblerait que ~S soit une CS qui pourrait être utile... ~%" target)
 						)
 						((member target *listeTM*)
 							(setValue 'NB_TM (- (getValue 'NB_TM) 1))
-							(format T "   ~S (~S) faisait référence à une TM.~%" r target)
+							(format T "   Il semblerait que ~S soit une TM qui pourrait être utile... ~%" target)
 						)
 						((member target *listeTSH*)
 							(setValue 'NB_TSH (- (getValue 'NB_TSH) 1))
-							(format T "   ~S (~S) faisait référence à une TSH.~%" r target)
+							(format T "   Il semblerait que ~S soit une TSH qui pourrait être utile... ~%" target)
 						)
 					)
 
@@ -173,7 +186,7 @@
 			)
 			; On retourne les UVs ciblées
 			(format t "~%") ; Saut de ligne izy
-			(format t "Après examen de ton dossier étudiant, je te conseilles les UVs suivantes : ~%")
+			(format t "Après examen de ton dossier étudiant, je te conseille les UVs suivantes : ~%")
 			(dolist (UV (getTargetedUVs))
 				(format t "~S (~S) ~%" UV (getUVCategory UV))
 			)
