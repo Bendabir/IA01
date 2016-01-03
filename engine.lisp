@@ -110,6 +110,7 @@
 	)
 )
 
+; Permet de récupérer la liste des UVs conseillées
 (defun getTargetedUVs ()
 	(let
 		((uvs nil))
@@ -121,34 +122,23 @@
 	)
 )
 
-; TANT QUE UVs_choisies != 5 ou 6 ou 7 ET analyse = en_cours ET il existe une règle applicable FAIRE
-;	R = filtrage(Ensemble_des_règles_applicables) // On filtre pour cibler en profondeur sur les règles applicables
-; 	BF = BF + conclusion(R)
-; 	BR = BR - R
-; FIN_TANT_QUE
+; Permet de réinitialiser la liste des UVs conseillées
+(defun reinitUVs ()
+	(dolist (fait *BF*)
+		(if (equal (cadr fait) "conseillee")
+			(setf (cadr fait) "non_validee")
+		)
+	)
+)
 
-; SI UVs_choisies = 5 ou 6 ou 7 ET analyse = terminée ALORS
-; 	Afficher les UVs
-; SINON
-; 	Afficher "Vous êtes dans la merde !"
-
-; Idée générale, faut affiner (notamment dans le choix des UVs etc.)
-; (defun engine ()
-; 	(loop while (candidate-rules)
-; 		(dolist (r (candidate-rules))
-; 			(triggerRule r)
-; 		)
-; 	)
-; 	(getTargetedUVs)
-; )
-
+; Moteur
 (defun engine ()
 	(let
 		(
 			(r (car (candidate-rules)))
 			(target nil)
 		)
-
+		(reinitUVs) ; On remet à 0
 		(loop while (candidate-rules) do
 			; On récupère le but avant, sinon il n'existe plus !
 			(setq target (caar (getGoal r)))
