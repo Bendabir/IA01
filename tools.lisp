@@ -25,7 +25,10 @@
 
 ;Recuperer la valeur d'un élèment dans la BF
 (defun getValue (elem)
-	(cadr (assoc elem *BF*))
+	(if (or (numberp elem) (stringp elem))
+		elem
+		(cadr (assoc elem *BF*))
+	)
 )
 
 (defun setValue (elem value)

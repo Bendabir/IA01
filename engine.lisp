@@ -67,6 +67,15 @@
 	)
 )
 
+; Fonction pour calculer le but d'une règle lorsqu'il s'agit d'une expression mathématique
+(defun calculateGoal (g)
+	(if (listp (caddr g))
+		; Si le dernier élement est une liste, alors on a encore une expression
+		(eval (list (car g) () ()))
+		(eval (list (car g) (getValue (cadr g)) (calculateGoal (caddr g))))
+	)
+)
+
 ; Permet de déclencher une règle
 (defun triggerRule (r)
 	(let
