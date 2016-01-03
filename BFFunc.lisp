@@ -49,6 +49,11 @@
  		(CS_POSSIBLES nil)
  		(TM_POSSIBLES nil)
  		(TSH_POSSIBLES nil)
+ 		(NB_UV 0)
+ 		(NB_CS 0)
+ 		(NB_TM 0)
+ 		(NB_TSH 0)
+
  		(BI01 "non_validee")
 		(FQ01 "non_validee")
 		(GE37 "non_validee")
@@ -215,6 +220,10 @@
  		'(CS_POSSIBLES nil)
  		'(TM_POSSIBLES nil)
  		'(TSH_POSSIBLES nil)
+		'(NB_UV 0)
+ 		'(NB_CS 0)
+ 		'(NB_TM 0)
+ 		'(NB_TSH 0)
 		
 		'(BI01 "non_validee")
 		'(FQ01 "non_validee")
