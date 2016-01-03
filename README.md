@@ -42,13 +42,13 @@ Cela nous permet d'obtenir les informations "officielles" concernant chaque UV. 
 * Le site UVWEB ( https://assos.utc.fr/uvweb/ ) permettant à chaque étudiant de noter chaque UV sur son utilité, sa dose de travail, son interêt et sa pédagogie.
 Nous exploiterons donc les avis de chaque UV afin d'obtenir un avis moyen de ce que pense un UTCéen sur une UV.
 
-A l'UTC, chaque étudiant peut choisir au début de chaque semestre entre 5 et 7 UVs (pour un maximum de 36 crédits) qu'il souhaite suivre parmi une liste de plus de 400 UVs. Cette situation amène à des situations quasi infinie et beaucoup trop compliquées à mettre en œuvre à notre niveau.
+A l'UTC, chaque étudiant peut choisir au début de chaque semestre entre 5 et 7 UVs (pour un maximum de 36 crédits) qu'il souhaite suivre parmi une liste de plus de 400 UVs. Cette situation amène à un nombre de situations presque infini beaucoup trop compliquées à mettre en œuvre à notre niveau.
 
 ##### Limitations du sujet
 
-Pour notre système expert, nous nous limiterons à des cas comme celui de Jean-Karim, c'est-à-dire aux étudiants seulement en Génie Informatique (donc en GI0X, X compris entre 1 et 5), ne pouvant donc pas prendre d'UV de Tronc Commun ou d'autres branches, qu'importe le semestre actuel.
+Pour notre système expert, nous nous limiterons à des cas comme celui de Jean-Karim, c'est-à-dire aux étudiants en Génie Informatique (donc en GI0X, X compris entre 1 et 5), ne pouvant donc pas prendre d'UVs de Tronc Commun ou d'autres branches (une UV peut être trans-branches mais doit forcément être disponible pour les GIs), qu'importe le semestre actuel.
 
-On suppose aussi que les semestres GI03 et GI06 sont des semestres de stage, et que par conséquent il est impossible de choisir des UVs pour ces semestres. On considérera que Jean-Karim suit un cursus dit " basique " : il ne fait pas d'apprentissage, il ne part pas à l'étranger et valide les 30 crédits de stage TN09. Notre étude de cas se limite donc à un choix parmi environ 150 UVs possibles pour un étudiant en Génie Informatique.
+On suppose aussi que les semestres GI03 et GI06 sont des semestres de stage, et que par conséquent, il est impossible de choisir des UVs pour ces semestres. On considérera que Jean-Karim suit un cursus dit " basique " : il ne fait pas d'apprentissage, il ne part pas à l'étranger et valide les 30 crédits de stage TN09. Notre étude de cas se limite donc à un choix parmi environ 80 UVs possibles pour un étudiant en Génie Informatique.
 
 On a donc les cas suivants :
 
@@ -56,7 +56,7 @@ On a donc les cas suivants :
 
 * Jean-Karim entre en GI02, il a déjà XX crédits validés mais n'a pas encore de filière.
 
-* Jean-Karim entre en filière en GI04, il a acquis XX crédits lors de son GI01 et on GI02 (+ 30 les crédits de stage TN09 de GI03, qu'on ne considérera pas dans notre système expert) : il faut donc qu'il commence à valider des crédits de filière + des crédits de branche. On considérera la filière choisie.
+* Jean-Karim entre en filière en GI04, il a acquis XX crédits lors de son GI01 et on GI02 (+ 30 crédits de stage TN09 de GI03, qu'on ne considérera pas dans notre système expert) : il faut donc qu'il commence à valider des crédits de filière + des crédits de branche. On considérera la filière choisie.
 
 * Jean-Karim entre en GI05 (toujours dans la filière choisie), c'est son dernier semestre pour choisir des UVs, il faut donc qu'il valide l'intégralité des crédits manquants avant de partir en stage.
 
@@ -94,17 +94,17 @@ Par exemple, si l'on prend le dossier étudiant de Jean-Karim :
 * Periode : Printemps
 * CS validées : NF16, IA01, SY02 pour un total de 18 crédits CS validés
 * TM validées : SR01 pour un total de 6 crédits TM validés
-* TSH validées : LA12, SI11 pour un total de 4 crédits TSH validés
+* TSH validées : LA12, SI11 pour un total de 8 crédits TSH validés
 
 Pour représenter la base de faits en Lisp, nous avons choisi de créer une simple liste ```(fait1 fait2 fait3 ... fait n)``` où un fait correspond à un couple ```(attribut valeur)```.
 
 Pour les caractéristiques de l'élèves, ils pourront être représentés comme ceci : ``` (Provenance TC) (Semestre 2) (Filiere NIL) (Credits_CS 18) ...```
 
-Pour ce qui est des UVs, nous avons choisi de **tous** les représenter dans la base de faits à la suite des informations précédemment données. De cette manière, nous avons indirectement la liste des UVs gérées par le SE. Chaque UV peut prendre 3 valeurs : validée, non validée ou conseillée par le SE. ce qui donnerait : ```... (NF16 validée) (NF17 conseillée) (NF22 non_validée)...```
+Pour ce qui est des UVs, nous avons choisi de **toutes** les représenter dans la base de faits à la suite des informations précédemment données. De cette manière, nous avons indirectement la liste des UVs gérées par le SE. Chaque UV peut prendre 3 valeurs : validée, non validée ou conseillée par le SE. ce qui donnerait : ```... (NF16 validée) (NF17 conseillée) (NF22 non_validée)...```
 
 ###### Base de règles
 
-Les conditions du diplôme sont les suivantes, Il faut avoir validé :
+Les conditions du diplôme sont les suivantes, il faut avoir validé :
 
 - 30 crédits CS
 - 30 crédits TM
@@ -116,7 +116,6 @@ Les conditions du diplôme sont les suivantes, Il faut avoir validé :
 ###### Règles sur le nombre d'UVs
 
 Nous avons établi des conditions sur le nombre d'UVs à prendre par semestre selon l'avance ou le retard de l'étudiant. En moyenne et selon nos calculs, il faut valider 30 crédits par semestre pour obtenir le diplôme. On considérera donc que 6 crédits de retards (par rapport à cette moyenne) nécessitent de prendre une UV en plus. Ce qui donne les règles suivantes :
-
 
 - Si **Semestre = 1** alors **UVs_a_prendre = 6** 
 En GI01, il n'y a ni retard ni avance, on prend donc un semestre typique de 6 crédits
