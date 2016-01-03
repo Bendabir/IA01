@@ -148,6 +148,8 @@
 	(R136 ((member PH10 TSH_CONSEILLEES) (equal PH10 "non_validee")) (PH10 "conseillee")) ; Philo
 	(R137 ((member SI28 TSH_CONSEILLEES) (equal SI28 "non_validee")) (SI28 "conseillee")) ; Ecriture interactive et multimedia
 	(R138 ((member SP01 TSH_CONSEILLEES) (equal SP01 "non_validee")) (SP01 "conseillee")) ; Sport
+	(R139 ((member GE25 TSH_CONSEILLEES) (equal GE25 "non_validee")) (GE25 "conseillee")) ; Sport
+	(R140 ((member GE27 TSH_CONSEILLEES) (equal GE27 "non_validee")) (GE27 "conseillee")) ; Sport
 
 	; On fait un semblant de classement pour inférer correctement après
 	(R200 ((= Semestre 1)) (CS_conseillees (NF16 MB11 SY02 SR02 IA01 IA02 MT09 IA02 MT10 SY08 SY14 RO05)))
@@ -160,7 +162,7 @@
 	(R206 ((= Semestre 4)) (TM_conseillees (MP03 NF29 RO06 SR03 SR06 SY19 SY27 IA03 IA04 GE37 LO17 MI11 MI12 MP02 NF26 NF28 RV01 GE38 GE39 GE40 SY26 SY31 SY32)))
 	(R207 ((= Semestre 5)) (TM_conseillees (MP03 NF29 RO06 SR03 SR06 SY19 SY27 IA03 LO23 GE37 LO17 MI11 MI12 MP02 NF26 NF28 RV01 GE38 GE39 GE40 SY26 SY31)))
 
-	(R208 ((<= Semestre 2)) (TSH_conseillees (LA12 LA13 EI03 GE10 GE15 GE21 GE22 GE36 HE03 LA00 LA01 LA02 LA03 LA20 LA21 LA22 LA23 LG60 LG61 LG62 PH01 PH03 PH10 SI28 SP01)))
-	(R209 ((>= Semestre 4)) (TSH_conseillees (LA12 LA13 GE10 GE15 GE21 GE22 GE36 HE03 LA00 LA01 LA02 LA03 LA20 LA21 LA22 LA23 LG60 LG61 LG62 PH01 PH03 PH10 SI28)))
+	(R208 ((<= Semestre 2)) (TSH_conseillees (LA12 LA13 EI03 GE10 GE15 GE25 GE27 GE21 GE22 GE36 HE03 LA00 LA01 LA02 LA03 LA20 LA21 LA22 LA23 LG60 LG61 LG62 PH01 PH03 PH10 SI28 SP01)))
+	(R209 ((>= Semestre 4)) (TSH_conseillees (LA12 LA13 GE10 GE15 GE25 GE27 GE21 GE22 GE36 HE03 LA00 LA01 LA02 LA03 LA20 LA21 LA22 LA23 LG60 LG61 LG62 PH01 PH03 PH10 SI28)))
 	)
 )
