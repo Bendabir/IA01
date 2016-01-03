@@ -89,8 +89,7 @@
 	(format T "| 1 - Voir mon dossier étudiant	                |~%")
 	(format T "| 2 - Renseigner mon dossier étudiant           |~%")
 	(format T "| 3 - Recherche en chainage avant en profondeur |~%")
-	(format T "| 4 - Recherche en chainage avant en largeur (bonus si on veut faire les bg)|~%")
-	(format T "| 5 - Je ne veux plus de tes conseils, droïde ! |~%")
+	(format T "| 4 - Je ne veux plus de tes conseils, droïde ! |~%")
 	(format T "_________________________________________________~%")
 	(format T "~%") ; Petit saut de ligne au calme
 
