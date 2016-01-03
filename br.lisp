@@ -127,11 +127,12 @@
 	(R112 ((member SY32 TM_POSSIBLES) (> NB_TM 0) (equal SY32 "non_validee") (equal Periode "P")) (SY32 "conseillee"))
 
 	; LES TSH que l'on prend en compte
+	(R125 ((member LA12 TSH_POSSIBLES) (> NB_TSH 0) (equal LA12 "non_validee") (equal LA13 "non_validee")) (LA12 "conseillee"))
 	(R126 ((member LA13 TSH_POSSIBLES) (> NB_TSH 0) (equal LA13 "non_validee") (equal LA12 "validee")) (LA13 "conseillee"))
 	(R129 ((member LA22 TSH_POSSIBLES) (> NB_TSH 0) (equal LA22 "non_validee") (equal LA21 "validee") (equal LA23 "non_validee")) (LA22 "conseillee"))
 	(R130 ((member LA23 TSH_POSSIBLES) (> NB_TSH 0) (equal LA23 "non_validee") (equal LA22 "validee")) (LA23 "conseillee"))
 	(R132 ((member LG61 TSH_POSSIBLES) (> NB_TSH 0) (equal LG61 "non_validee") (equal LG60 "validee") (equal LG62 "non_validee")) (LG61 "conseillee"))
-	(R133 ((member LG62 TSH_POSSIBLES) (> NB_TSH 0) (equal LG62 "non_validee") (equal LG61 "validee")) (LG62 "conseillee")) ; Master Tching Tchong 
+	(R133 ((member LG62 TSH_POSSIBLES) (> NB_TSH 0) (equal LG62 "non_validee") (equal LG61 "validee")) (LG62 "conseillee")) 
 	(R128 ((member LA21 TSH_POSSIBLES) (> NB_TSH 0) (equal LA21 "non_validee") (equal LA20 "validee") (equal LA22 "non_validee") (equal LA23 "non_validee")) (LA21 "conseillee"))
 	(R122 ((member LA01 TSH_POSSIBLES) (> NB_TSH 0) (equal LA01 "non_validee") (equal LA00 "validee") (equal LA02 "non_validee") (equal LA03 "non_validee")) (LA01 "conseillee"))
 	(R123 ((member LA02 TSH_POSSIBLES) (> NB_TSH 0) (equal LA02 "non_validee") (equal LA01 "validee") (equal LA03 "non_validee")) (LA02 "conseillee"))
@@ -147,10 +148,9 @@
 	(R140 ((member GE27 TSH_POSSIBLES) (> NB_TSH 0) (equal GE27 "non_validee")) (GE27 "conseillee")) ; Eco
 	(R116 ((member GE15 TSH_POSSIBLES) (> NB_TSH 0) (equal GE15 "non_validee")) (GE15 "conseillee")) ; Entreprise
 	(R117 ((member GE21 TSH_POSSIBLES) (> NB_TSH 0) (equal GE21 "non_validee")) (GE21 "conseillee")) ; Economie
-	(R125 ((member LA12 TSH_POSSIBLES) (> NB_TSH 0) (equal LA12 "non_validee") (equal LA13 "non_validee")) (LA12 "conseillee"))
 	(R121 ((member LA00 TSH_POSSIBLES) (> NB_TSH 0) (equal LA00 "non_validee") (equal LA01 "non_validee") (equal LA02 "non_validee") (equal LA03 "non_validee")) (LA00 "conseillee"))
 	(R127 ((member LA20 TSH_POSSIBLES) (> NB_TSH 0) (equal LA20 "non_validee") (equal LA21 "non_validee") (equal LA22 "non_validee") (equal LA23 "non_validee")) (LA20 "conseillee"))
-	(R131 ((member LG60 TSH_POSSIBLES) (> NB_TSH 0) (equal LG60 "non_validee") (equal LG61 "non_validee") (equal LG62 "non_validee")) (LG60 "conseillee")) ; tching tchong
+	(R131 ((member LG60 TSH_POSSIBLES) (> NB_TSH 0) (equal LG60 "non_validee") (equal LG61 "non_validee") (equal LG62 "non_validee")) (LG60 "conseillee"))
 	(R134 ((member PH01 TSH_POSSIBLES) (> NB_TSH 0) (equal PH01 "non_validee")) (PH01 "conseillee")) ; Philo
 	(R135 ((member PH03 TSH_POSSIBLES) (> NB_TSH 0) (equal PH03 "non_validee")) (PH03 "conseillee")) ; Philo
 	(R136 ((member PH10 TSH_POSSIBLES) (> NB_TSH 0) (equal PH10 "non_validee")) (PH10 "conseillee")) ; Philo

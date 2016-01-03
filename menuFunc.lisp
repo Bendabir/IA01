@@ -69,7 +69,7 @@
 						(displayBF)
 					)
 					(progn
-						(format T "Très bien ! On va prendre le cas de Jean-Karim, un étudiant qui rentre en GI02 !~%~% ")
+						(format T "Très bien ! On va prendre le cas de Marie-Héléne, une étudiante qui rentre en GI04 !~%~% ")
 						(setq *BF* (generateBF))
 						(refreshCredits)
 						(format T "Son dossier etudiant est le suivant : ~%")

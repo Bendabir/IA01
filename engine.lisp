@@ -71,12 +71,6 @@
 	)
 )
 
-; Petit affichage pour du debug
-(defun debug-candidates-rules ()
-	(dolist (x (candidate-rules))
-		(print (getRule x)) ; On affiche toute la règle, et pas seulement l'étiquette
-	)
-)
 
 ; Fonction pour calculer le but d'une règle lorsqu'il s'agit d'une expression mathématique
 (defun calculateGoal (g)
@@ -185,7 +179,7 @@
 				)
 			)
 			; On retourne les UVs ciblées
-			(format t "~%") ; Saut de ligne izy
+			(format t "~%")
 			(format t "Après examen de ton dossier étudiant, je te conseille les UVs suivantes : ~%")
 			(dolist (UV (getTargetedUVs))
 				(format t "~S (~S) ~%" UV (getUVCategory UV))
