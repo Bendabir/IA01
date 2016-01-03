@@ -1,6 +1,13 @@
 (defun main()
 	; Permet de charger le fichier LISP relativement au dossier
-	;(load (merge-pathnames "services.lisp" *load-truename*))
+	(load "D:/engine.lisp")
+	(load "D:/menuFunc.lisp")
+	(load "D:/tools.lisp")
+	(load "D:/BFFunc.lisp")
+	(load "D:/br.lisp")
+	;(load (merge-pathnames "menuFunc.lisp" *load-truename*))
+	;(load (merge-pathnames "tools.lisp" *load-truename*))
+	;(load (merge-pathnames "BFFunc.lisp" *load-truename*))
 	;(load (merge-pathnames "br.lisp" *load-truename*))
 
 	(defvar *BF* NIL)

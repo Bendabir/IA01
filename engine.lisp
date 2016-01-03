@@ -78,7 +78,7 @@
 
 ; Permet de déclencher une règle
 (defun triggerRule (r)
-	(let
+	(let*
 		; On récupère le but de la fonction
 		(
 			(goal (car (getGoal r)))
@@ -124,11 +124,11 @@
 ; 	Afficher "Vous êtes dans la merde !"
 
 ; Idée générale, faut affiner (notamment dans le choix des UVs etc.)
-(defun engine ()
-	(loop while (candidate-rules)
-		(dolist (r (candidate-rules))
-			(triggerRule r)
-		)
-	)
-	(getTargetedUVs)
-)
+; (defun engine ()
+; 	(loop while (candidate-rules)
+; 		(dolist (r (candidate-rules))
+; 			(triggerRule r)
+; 		)
+; 	)
+; 	(getTargetedUVs)
+; )

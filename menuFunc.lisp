@@ -57,7 +57,7 @@
 				(let ((answer (read-line)))
 				; (loop while (and (not (equal answer "prefabriquer")) (not (equal answer "initialiser"))) do
 				(loop while (not (superMember answer '("prefabriquer" "initialiser"))) do
-					(print "Veuillez rentrer seulement prefabriquer ou initialiser ")
+					(format T "Veuillez rentrer seulement prefabriquer ou initialiser :~%")
 					(setq answer (read-line))
 				)
 
