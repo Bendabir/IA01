@@ -144,21 +144,30 @@
 
 (defun engine ()
 	(let
-		((r (car (candidate-rules))))
+		(
+			(r (car (candidate-rules)))
+			(target nil)
+		)
 
 		(loop while (candidate-rules) do
+			; On récupère le but avant, sinon il n'existe plus !
+			(setq target (caar (getGoal r)))
 			; On déclenche la première règle
 			(triggerRule r)
+			(format T "Déclenchement de ~S (~S) ~%" r target)
 			; Si on a déclenché une UV, alors on décompte en conséquence
 			(cond
-				((member (car (getGoal r)) *listeCS*)
+				((member target *listeCS*)
 					(setValue 'NB_CS (- (getValue 'NB_CS) 1))
+					(format T "~S faisait référence à une CS. Décrémentation.~%" r)
 				)
-				((member (car (getGoal r)) *listeTM*)
+				((member target *listeTM*)
 					(setValue 'NB_TM (- (getValue 'NB_TM) 1))
+					(format T "~S faisait référence à une TM. Décrémentation.~%" r)
 				)
-				((member (car (getGoal r)) *listeTSH*)
+				((member target *listeTSH*)
 					(setValue 'NB_TSH (- (getValue 'NB_TSH) 1))
+					(format T "~S faisait référence à une TSH. Décrémentation.~%" r)
 				)
 			)
 

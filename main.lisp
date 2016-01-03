@@ -22,3 +22,6 @@
 	(loop while (menu))
 	(displayGoodbye)
 )
+
+; Lancement automatique sa mère
+(main)
