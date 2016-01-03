@@ -46,7 +46,7 @@
 		((choice (read-line)))
 		(setq choice (parse-integer choice))
 		(cond
-			((or (< choice 1) (> choice 5))
+			((or (< choice 1) (> choice 4))
 				(format T "Ce choix n'est pas valide. ~%")
 			)
 			((eq choice 1)

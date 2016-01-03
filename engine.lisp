@@ -56,6 +56,7 @@
 	)
 )
 
+; Liste des règles applicables
 (defun candidate-rules ()
 	(let
 		((candidates nil))
@@ -67,9 +68,10 @@
 	)
 )
 
+; Petit affichage pour du debug
 (defun debug-candidates-rules ()
 	(dolist (x (candidate-rules))
-		(print (getRule x))
+		(print (getRule x)) ; On affiche toute la règle, et pas seulement l'étiquette
 	)
 )
 
