@@ -178,11 +178,25 @@
 					(setq r (car (candidate-rules)))
 				)
 			)
+
 			; On retourne les UVs ciblées
 			(format t "~%")
 			(format t "Après examen de ton dossier étudiant, je te conseille les UVs suivantes : ~%")
 			(dolist (UV (getTargetedUVs))
 				(format t "~S (~S) ~%" UV (getUVCategory UV))
+			)
+			(format T "~%")
+			(cond
+				; S'il manque une CS mais qu'on a toutes les TMs
+				((and (> (getValue 'NB_CS) 0) (= (getValue 'NB_TM) 0))
+					(format T "Il y a ~S CS que je ne peux pas proposer car tu ne possèdes pas les pré-requis nécessaires. ~%Je te suggère de compléter avec ~S TM à la place. Tu peux également prendre une TX/PR.~%" (getValue 'NB_CS) (getValue 'NB_CS))
+				)
+				((and (> (getValue 'NB_TM) 0) (= (getValue 'NB_CS) 0))
+					(format T "Il y a ~S TM que je ne peux pas proposer car tu ne possèdes pas les pré-requis nécessaires. ~%Je te suggère de compléter avec ~S CS à la place. Tu peux également prendre une TX/PR.~%" (getValue 'NB_TM) (getValue 'NB_TM))
+				)
+				((and (> (getValue 'NB_CS) 0) (> (getValue 'NB_TM) 0))
+					(format T "Il y a ~S CS et ~S TM que je ne peux pas proposer car tu ne possèdes pas les pré-requis nécessaires. ~%Une TX ou Pr ne suffira pas à rattraper ton retard. Je suis inquiet pour ton diplôme...~%" (getValue 'NB_CS) (getValue 'NB_TM))
+				)
 			)
 		)
 		(format T "Entre d'abord ton dossier étudiant ! ~%")
