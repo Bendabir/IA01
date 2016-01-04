@@ -61,7 +61,7 @@
 					(format T "Veuillez rentrer seulement prefabriquer ou initialiser :~%")
 					(setq answer (read-line))
 				)
-
+				(setq *BF* nil)
 				(if (equal answer "initialiser")
 					(progn
 						(format T "C'est parti, on va s'occuper de ton cas ! ~%~%")

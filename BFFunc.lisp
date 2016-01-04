@@ -39,6 +39,7 @@
 		)
 	)
 )
+
 ; Permet de créer une BF à partir de questions posées à l'utilisateur
 (defun createBF()
  	(setq *BF* '(
