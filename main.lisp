@@ -11,9 +11,6 @@
 	(load (concatenate 'string *location* "bf.lisp"))
 	(load *BRLocation*)
 
-	;(defparameter *BF* NIL)
-	;(initBF)
-
 	; Pour le calcul des crédits
 	(defvar *listeCS* '(BI01 IA01 MB11 MT09 MT12 NF16 RO05 SR04 SR05 SY02 SY08 IA02 MT10 NF11 RO03 RO04 SR02 SY06 SY09 SY14 SY15)) ;21 CS
 	(defvar *listeTM* '(FQ01 GE37 GE38 GE39 GE40 IA03 LO23 MI01 MP03 NA17 NF29 RO06 RV01 SR01 SR06 SY19 SY27 SY31 IA04 LO17 LO21 LO22 MI11 MI12 MP02 NF17 NF26 NF28 SR03 SY26 SY32)) ;31 TM
