@@ -1,8 +1,7 @@
 (defun main()
 	; VOTRE CHEMIN LOCAL AFIN DE POUVOIR LOAD LES FICHIERS
 	;(defvar *location* "D:/Benjamin/Documents/UTC/GI01/IA01/TPs/TP3/")
-	;(defvar *location* "/home/valentin/git/IA01/Rendu/")
-	;(defvar *location* "...............")
+	(defvar *location* "/home/valentin/git/IA01/Rendu/")
 	(defvar *BRLocation* (concatenate 'string *location* "br.lisp"))
 
 	(load (concatenate 'string *location* "engine.lisp"))
