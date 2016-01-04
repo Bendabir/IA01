@@ -1,4 +1,4 @@
-(setq *BF* '(
+(defparameter *BF* '(
  		(Credits_CS 0)
  		(Credits_TM 0)
  		(credits_TSH 0)

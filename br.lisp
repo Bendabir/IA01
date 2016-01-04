@@ -1,4 +1,4 @@
-(setq *BR* '(
+(defparameter *BR* '(
 	; On détermine le nombre d'UVs à prendre
 	(R1 ((= Semestre 1)) (NB_UV 6))
 	(R2 ((= Semestre 2) (<= Credits 26)) (NB_UV 7))
