@@ -61,7 +61,6 @@
 					(format T "Veuillez rentrer seulement prefabriquer ou initialiser :~%")
 					(setq answer (read-line))
 				)
-				(setq *BF* nil)
 				(if (equal answer "initialiser")
 					(progn
 						(format T "C'est parti, on va s'occuper de ton cas ! ~%~%")
@@ -70,7 +69,7 @@
 					)
 					(progn
 						(format T "Très bien ! On va prendre le cas de Marie-Héléne, une étudiante qui rentre en GI04 !~%~% ")
-						(setq *BF* (generateBF))
+						(generateBF)
 						(refreshCredits)
 						(format T "Son dossier etudiant est le suivant : ~%")
 						(displayBF)

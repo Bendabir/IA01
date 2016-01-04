@@ -1,6 +1,6 @@
 (defun main()
 	; Permet de charger le fichier LISP relativement au dossier
-	(defvar *location* "C:/Users/Benjamin/Documents/UTC/GI01/IA01/TPs/TP3/")
+	(defvar *location* "D:/Benjamin/Documents/UTC/GI01/IA01/TPs/TP3/")
 	;(defvar *location* "/home/valentin/git/IA01/")
 	(defvar *BRLocation* (concatenate 'string *location* "br.lisp"))
 
@@ -8,9 +8,11 @@
 	(load (concatenate 'string *location* "menuFunc.lisp"))
 	(load (concatenate 'string *location* "tools.lisp"))
 	(load (concatenate 'string *location* "BFFunc.lisp"))
+	(load (concatenate 'string *location* "bf.lisp"))
 	(load *BRLocation*)
 
-	(defparameter *BF* NIL)
+	;(defparameter *BF* NIL)
+	;(initBF)
 
 	; Pour le calcul des crédits
 	(defvar *listeCS* '(BI01 IA01 MB11 MT09 MT12 NF16 RO05 SR04 SR05 SY02 SY08 IA02 MT10 NF11 RO03 RO04 SR02 SY06 SY09 SY14 SY15)) ;21 CS
