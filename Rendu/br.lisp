@@ -20,16 +20,16 @@
 	(R15 ((= Semestre 2) (> Credits_TM 11)) (NB_TM (- NB_UV 4)))
 	(R18 ((= Semestre 2)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
-	(R19 ((= Semestre 4) (< Credits_CS 24)) (NB_CS 3)) ; 3 ?
+	(R19 ((= Semestre 4) (< Credits_CS 24)) (NB_CS 3)) 
 	(R20 ((= Semestre 4) (> Credits_CS 23)) (NB_CS (- NB_UV 4)))
-	(R21 ((= Semestre 4) (< Credits_TM 24)) (NB_TM 3)) ; 3 ?
+	(R21 ((= Semestre 4) (< Credits_TM 24)) (NB_TM 3)) 
 	(R22 ((= Semestre 4) (> Credits_TM 23)) (NB_TM (- NB_UV 4)))
 	(R25 ((= Semestre 4)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
-	(R26 ((= Semestre 5) (< Credits_CS 24)) (NB_CS 3)) ; 3? 
-	(R27 ((= Semestre 5) (> Credits_CS 23)) (NB_CS (- NB_UV 4)))
-	(R28 ((= Semestre 5) (< Credits_TM 24)) (NB_TM 3)) ;3?
-	(R29 ((= Semestre 5) (> Credits_TM 23)) (NB_TM (- NB_UV 4)))
+	(R26 ((= Semestre 5) (< Credits_CS 36)) (NB_CS 3))  
+	(R27 ((= Semestre 5) (> Credits_CS 35)) (NB_CS (- NB_UV 4)))
+	(R28 ((= Semestre 5) (< Credits_TM 36)) (NB_TM 3)) 
+	(R29 ((= Semestre 5) (> Credits_TM 35)) (NB_TM (- NB_UV 4)))
 	(R32 ((= Semestre 5)) (NB_TSH (- NB_UV (+ NB_CS NB_TM))))
 
 	; On fait un semblant de classement pour inférer correctement après
